@@ -11,6 +11,6 @@
 	Hello world!  
 </h1>
 
-<P>  The time on the server is. ${user.nama} </P>
+<P>  The time on the server is. ${user.name} </P>
 </body>
 </html>

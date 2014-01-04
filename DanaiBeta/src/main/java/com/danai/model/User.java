@@ -20,7 +20,7 @@ public class User {
 	@Column
 	private String password;
 	@Column
-	private String nama;
+	private String name;
 	@Column
 	private String foto;
 	@Column
@@ -34,11 +34,11 @@ public class User {
 		this.password = password;
 	}
 	
-	public String getNama() {
-		return nama;
+	public String getName() {
+		return name;
 	}
-	public void setNama(String nama) {
-		this.nama = nama;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getFoto() {
 		return foto;
