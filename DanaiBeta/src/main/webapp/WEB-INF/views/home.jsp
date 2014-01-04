@@ -1,58 +1,74 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page session="false" %>
-<html>
+<html lang="en">
 <head>
 	<link href="<c:url value="/resources/css/bootstrap.css"/>" type="text/css" rel="stylesheet" />
-	<link href="<c:url value="/resources/css/bootstrap-theme.css"/>" type="text/css" rel="stylesheet" />
 	<title>Home</title>
 </head>
 <body>
+	<script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
+<div class="container">
 <h1>
-	Hello world!  
+	Hello world!
 </h1>
 
 <P>  The time on the server is. ${user.name} </P>
 
-<h1>User for</h1>
-<form:form action="user.do" method="POST" commandName="user">
-	<table>
-		<tr>
-			<td>User ID</td>
-			<td><form:input cssClass="input-xlarge" path="userId" /></td>
-		</tr>
-		<tr>
-			<td>username</td>
-			<td><form:input path="username" /></td>
-		</tr>
-		<tr>
-			<td>password</td>
-			<td><form:input path="password" /></td>
-		</tr>
-		<tr>
-			<td>name</td>
-			<td><form:input path="name" /></td>
-		</tr>
-		<tr>
-			<td>foto</td>
-			<td><form:input path="foto" /></td>
-		</tr>
-		<tr>
-			<td>bio</td>
-			<td><form:input path="bio" /></td>
-		</tr>
-		
-		<tr>
-		<td colspan="2">
-			<input type="submit" name="action" value="Add" />
-			<input type="submit" name="action" value="Edit" />
-			<input type="submit" name="action" value="Delete" />
-			<input type="submit" name="action" value="Search" />
-		</td>
-		</tr>
-	</table>
-</form:form>
+	<div class="container">
+		<h1>User </h1>
+			<form:form action="user.do" method="POST" commandName="user">
+				<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="username">username</label>
+						<form:input  cssClass="form-control" path="username" id="username"/>
+					</div>
+				</div>
+				</div>
+				<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="password">password</label>
+						<form:password cssClass="form-control" path="password" id="password"/>
+					</div>
+				</div>
+				</div>
+				<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="name">name</label>
+						<form:input cssClass="form-control" path="name" id="name"/>
+					</div>
+				</div>
+				</div>
+				<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="foto">foto</label>
+						<form:input cssClass="form-control" path="foto" id="foto"/>
+					</div>
+				</div>
+				</div>
+				<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="bio">bio</label>
+						<form:textarea cssClass="form-control" path="bio"  id="bio"/>
+					</div>
+				</div>
+				</div>
+
+				<input type="submit" class="btn btn-success" name="action" value="Add" />
+				<input type="submit" class="btn btn-info" name="action" value="Edit" />
+				<input type="submit" class="btn btn-danger" name="action" value="Delete" />
+				<input type="submit" class="btn btn-primary" name="action" value="Search" />
+			</form:form>
+	</div>
 <br>
-<table>
+<table class="table table-hover table-bordered">
 	<tr>
 	<th>ID</th>
 	<th>username</th>
@@ -74,7 +90,7 @@
 </table>
 <br>
 <h1>created project for user 1</h1>
-<table>
+<table class="table table-bordered">
 	<tr>
 	<th>ID</th>
 	<th>location</th>
@@ -96,7 +112,7 @@
 </table>
 <br>
 <h1>Location</h1>
-<table>
+<table class="table table-bordered">
 	<tr>
 	<th>ID</th>
 	<th>city</th>
@@ -112,7 +128,7 @@
 </table>
 <br>
 <h1>Category</h1>
-<table>
+<table class="table table-bordered">
 	<tr>
 	<th>ID</th>
 	<th>name</th>
@@ -126,7 +142,7 @@
 </table>
 <br>
 <h1>Project</h1>
-<table>
+<table class="table table-bordered">
 	<tr>
 	<th>ID</th>
 	<th>location</th>
@@ -148,7 +164,7 @@
 </table>
 <br>
 <h1>Fund for project 1</h1>
-<table>
+<table class="table table-bordered">
 	<tr>
 	<th>ID</th>
 	<th>username</th>
@@ -165,7 +181,7 @@
 </table>
 <br>
 <h1>Comment for project 1</h1>
-<table>
+<table class="table table-bordered">
 	<tr>
 	<th>ID</th>
 	<th>username</th>
@@ -180,6 +196,6 @@
 	</c:forEach>
 </table>
 
-
+</div>
 </body>
 </html>

@@ -7,10 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.danai.model.Location;
 import com.danai.model.User;
 import com.danai.repository.CategoryDao;
 import com.danai.repository.LocationDao;
@@ -81,6 +83,24 @@ public class HomeController {
 		map.put("user",userResult);
 		//map.put("userList",userDao.getAllUser());
 		return home(map);
+	}
+	
+	
+	@RequestMapping(value="/location/",method = RequestMethod.GET)
+	public String location(Model model){
+		model.addAttribute("locations", locationDao.getAllLocation());
+		model.addAttribute("location", new Location());
+		return "location";
+	}
+	@RequestMapping(value="/location/add",method = RequestMethod.POST)
+	public String addLocation(@ModelAttribute Location location){
+		locationDao.add(location);
+		return "redirect:/location/";
+	}
+	@RequestMapping(value="/location/delete/{locationId}",method = RequestMethod.GET)
+	public String deleteLocation(@PathVariable Integer locationId){
+		locationDao.delete(locationId);
+		return "redirect:/location/";
 	}
 	
 	
