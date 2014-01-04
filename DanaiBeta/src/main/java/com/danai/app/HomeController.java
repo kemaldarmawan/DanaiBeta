@@ -30,6 +30,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		model.addAttribute("user",userDao.getUser(1));
+		model.addAttribute("user2",userDao.getUser(2));
 		return "home";
 	}
 	
