@@ -32,6 +32,7 @@ public class HomeController {
 		model.addAttribute("user",userDao.getUser(1));
 		model.addAttribute("user4",userDao.getUser(2));
 		model.addAttribute("user6",userDao.getUser(2));
+
 		
 
 		return "home";
