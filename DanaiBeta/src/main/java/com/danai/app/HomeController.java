@@ -35,6 +35,10 @@ public class HomeController {
 	}
 	
 	
-	
-	
+	@RequestMapping(value = "/list/user", method = RequestMethod.GET)
+	public String listUser(Model model){
+		
+		model.addAttribute("listUser",userDao.getAllUser());
+		return "home";
+	}
 }
