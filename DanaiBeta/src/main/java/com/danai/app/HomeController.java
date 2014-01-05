@@ -2,6 +2,9 @@ package com.danai.app;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,8 +51,7 @@ public class HomeController {
 		map.put("createdProjectList", userDao.getUser(1).getCreatedProject() );
 		map.put("fundProjectList", projectDao.getProject(2).getFunds() );
 		map.put("commentProjectList", projectDao.getProject(2).getComments() );
-
-		return "home";
+		return "danai";
 	}
 	
 	
@@ -82,7 +84,7 @@ public class HomeController {
 		}
 		map.put("user",userResult);
 		//map.put("userList",userDao.getAllUser());
-		return home(map);
+		return "redirect:/";
 	}
 	
 	

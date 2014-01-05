@@ -28,7 +28,7 @@ public class User {
 	private String foto;
 	@Column
 	private String bio;
-	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="user", fetch=FetchType.LAZY)
 	private Set<Project> createdProject;
 	
 	

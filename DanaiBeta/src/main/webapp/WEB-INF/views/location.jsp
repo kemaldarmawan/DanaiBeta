@@ -15,6 +15,7 @@
 	<div class="container">
 		<h1>Location</h1>
 	    <br>
+	    <div class="well">
 		<div class="row">
 			<div class="col-md-3 col-md-offset-1">
 				<form:form action="add" method="POST" commandName="location">
@@ -37,6 +38,7 @@
 					</div>
 				</form:form>
 			</div>
+		</div>
 		</div>
 		<br>
 		<table class="table table-hover" width="100">
