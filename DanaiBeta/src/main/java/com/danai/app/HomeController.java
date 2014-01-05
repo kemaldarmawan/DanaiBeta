@@ -99,6 +99,7 @@ public class HomeController {
 	}
 	@RequestMapping(value="/location/delete/{locationId}",method = RequestMethod.GET)
 	public String deleteLocation(@PathVariable Integer locationId){
+		System.out.println(locationDao.getLocation(locationId).getCity());
 		locationDao.delete(locationId);
 		return "redirect:/location/";
 	}
