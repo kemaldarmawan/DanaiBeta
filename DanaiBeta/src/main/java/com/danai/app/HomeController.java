@@ -94,6 +94,18 @@ public class HomeController {
 		model.addAttribute("location", new Location());
 		return "location";
 	}
+	
+	@RequestMapping(value="/project_location/",method = RequestMethod.GET)
+	public String projectLocation(Model model, HttpServletRequest request){
+		
+		//int loc_id = Integer.parseInt(request.getParameter("id"));
+		//model.addAttribute("projectList", projectDao.getProjectByLocation(loc_id) );
+		String search = request.getParameter("title");
+		model.addAttribute("projectList", projectDao.getProjectSearchByTitle(search) );
+		return "projectLocation";
+		
+	}
+	
 	@RequestMapping(value="/location/add",method = RequestMethod.POST)
 	public String addLocation(@ModelAttribute Location location){
 		locationDao.add(location);

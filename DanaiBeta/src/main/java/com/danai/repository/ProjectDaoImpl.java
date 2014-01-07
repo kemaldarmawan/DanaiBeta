@@ -2,7 +2,10 @@ package com.danai.repository;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,6 +49,26 @@ public class ProjectDaoImpl implements ProjectDao {
 	public List getAllProject() {
 		// TODO Auto-generated method stub	
 		return session.getCurrentSession().createQuery("from Project").list();
+	}
+
+	@Transactional
+	public List getProjectByLocation(int locationId) {
+		// TODO Auto-generated method stub
+		return session.getCurrentSession().createCriteria(Project.class).createCriteria("location").add(Restrictions.eq("locationId", locationId)).list();
+	}
+
+	@Transactional
+	public List getProjectSearchByTitle(String search) {
+		// TODO Auto-generated method stub
+		Criteria criteria = session.getCurrentSession().createCriteria(Project.class);
+		criteria.add(Restrictions.like("title", '%'+search+'%') );
+		return criteria.list();
+	}
+
+	@Transactional
+	public void setOrder(String attribute, int asc) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
