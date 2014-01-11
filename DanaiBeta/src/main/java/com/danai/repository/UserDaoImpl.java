@@ -2,7 +2,9 @@ package com.danai.repository;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,6 +46,16 @@ public class UserDaoImpl implements UserDao {
 	public User getUser(int userId) {
 		// TODO Auto-generated method stub
 		return (User)session.getCurrentSession().get(User.class, userId);
+	}
+	
+	@Transactional
+	public User getUser(String username) {
+		// TODO Auto-generated method stub
+		Criteria criteria = session.getCurrentSession().createCriteria(User.class);
+		criteria.add(Restrictions.eq("username",username));
+		if (criteria.list().size()>0)
+			return (User) criteria.list().get(0);
+		else return null;
 	}
 
 	@Override

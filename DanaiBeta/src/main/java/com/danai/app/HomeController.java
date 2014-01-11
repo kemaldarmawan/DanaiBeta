@@ -95,6 +95,15 @@ public class HomeController {
 		return "location";
 	}
 	
+	@RequestMapping(value="/user/",method = RequestMethod.GET)
+	public String user(Model model, HttpServletRequest request){
+		//model.addAttribute("users", locationDao.getAllLocation());
+		String username = request.getParameter("username");
+		model.addAttribute("user", userDao.getUser(username) );
+		//model.addAttribute("user", new Location());
+		return "user";
+	}
+	
 	@RequestMapping(value="/project_location/",method = RequestMethod.GET)
 	public String projectLocation(Model model, HttpServletRequest request){
 		
