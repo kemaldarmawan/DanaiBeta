@@ -43,14 +43,14 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Map<String, Object> map) {
-		map.put("user",userDao.getUser(1));
+		//map.put("user",userDao.getUser(1));
 		map.put("userList",userDao.getAllUser());
 		map.put("locationList", locationDao.getAllLocation());
 		map.put("categoryList", categoryDao.getAllCategory());
 		map.put("projectList", projectDao.getAllProject() );
-		map.put("createdProjectList", userDao.getUser(1).getCreatedProject() );
-		map.put("fundProjectList", projectDao.getProject(2).getFunds() );
-		map.put("commentProjectList", projectDao.getProject(2).getComments() );
+		//map.put("createdProjectList", userDao.getUser(1).getCreatedProject() );
+		//map.put("fundProjectList", projectDao.getProject(2).getFunds() );
+		//map.put("commentProjectList", projectDao.getProject(2).getComments() );
 		return "danai";
 	}
 	
