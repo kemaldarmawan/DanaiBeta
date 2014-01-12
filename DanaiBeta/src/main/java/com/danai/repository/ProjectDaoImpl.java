@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -106,6 +107,14 @@ public class ProjectDaoImpl implements ProjectDao {
 		Criteria c =session.getCurrentSession().createCriteria(Project.class);
 		iterateOrder(c);
 		return c.createCriteria("category").add(Restrictions.eq("categoryId", categoryId)).list();
+	}
+
+	@Transactional
+	public List getProjectSearchByUsername(String username) {
+		// TODO Auto-generated method stub
+		Criteria c =session.getCurrentSession().createCriteria(Project.class);
+		iterateOrder(c);
+		return c.createCriteria("user").add(Restrictions.like("username", '%'+username+'%' ) ).list();
 	}
 
 	
