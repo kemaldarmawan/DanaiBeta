@@ -135,14 +135,7 @@ public class HomeController {
 		//map.put("userList",userDao.getAllUser());
 		return "redirect:/";
 	}
-	
-	
-	@RequestMapping(value="/location/",method = RequestMethod.GET)
-	public String location(Model model){
-		model.addAttribute("locations", locationDao.getAllLocation());
-		model.addAttribute("location", new Location());
-		return "location";
-	}
+
 	
 	@RequestMapping(value="/user/",method = RequestMethod.GET)
 	public String user(Model model, HttpServletRequest request){
@@ -167,18 +160,7 @@ public class HomeController {
 		return "projectLocation";
 		
 	}
-	
-	@RequestMapping(value="/location/add",method = RequestMethod.POST)
-	public String addLocation(@ModelAttribute Location location){
-		locationDao.add(location);
-		return "redirect:/location/";
-	}
-	@RequestMapping(value="/location/delete/{locationId}",method = RequestMethod.GET)
-	public String deleteLocation(@PathVariable Integer locationId){
-		System.out.println(locationDao.getLocation(locationId).getCity());
-		locationDao.delete(locationId);
-		return "redirect:/location/";
-	}
+
 	
 	
 }
