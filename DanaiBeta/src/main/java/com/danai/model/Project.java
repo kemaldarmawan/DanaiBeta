@@ -54,8 +54,6 @@ public class Project {
 	private Date lastDate;
 	
 	@Column
-	private String photo;
-	@Column
 	private String explanation;
 	
 	@OneToMany(mappedBy="project",fetch=FetchType.LAZY)
@@ -80,7 +78,6 @@ public class Project {
 		this.minimalFund = minimalFund;
 		this.createdDate = createdDate;
 		this.lastDate = lastDate;
-		this.photo = photo;
 		this.explanation = explanation;
 	}
 	public int getProjectId() {
@@ -143,12 +140,6 @@ public class Project {
 	}
 	public void setLastDate(Date lastDate) {
 		this.lastDate = lastDate;
-	}
-	public String getPhoto() {
-		return photo;
-	}
-	public void setPhoto(String photo) {
-		this.photo = photo;
 	}
 	public String getExplanation() {
 		return explanation;

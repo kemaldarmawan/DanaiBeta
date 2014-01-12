@@ -25,8 +25,6 @@ public class User {
 	@Column
 	private String name;
 	@Column
-	private String foto;
-	@Column
 	private String bio;
 	@OneToMany(mappedBy="user", fetch=FetchType.LAZY)
 	private Set<Project> createdProject;
@@ -46,12 +44,7 @@ public class User {
 	public void setname(String name) {
 		this.name = name;
 	}
-	public String getFoto() {
-		return foto;
-	}
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
+	
 	public String getBio() {
 		return bio;
 	}

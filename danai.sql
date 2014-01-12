@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2014 at 05:55 AM
+-- Generation Time: Jan 12, 2014 at 06:13 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -76,15 +76,15 @@ CREATE TABLE IF NOT EXISTS `fund` (
   `value` int(11) NOT NULL,
   `createdDateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`fundId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `fund`
 --
 
 INSERT INTO `fund` (`fundId`, `projectId`, `userId`, `value`, `createdDateTime`) VALUES
-(4, 2, 2, 5000, '2014-01-12 04:55:03'),
-(5, 2, 3, 2000, '2014-01-12 04:55:03');
+(5, 2, 3, 2000, '2014-01-12 04:55:03'),
+(6, 2, 3, 8000, '2014-01-12 05:07:33');
 
 --
 -- Triggers `fund`
@@ -144,7 +144,6 @@ CREATE TABLE IF NOT EXISTS `project` (
   `currentFund` int(11) NOT NULL DEFAULT '0',
   `createdDate` date NOT NULL,
   `lastDate` date NOT NULL,
-  `photo` varchar(200) NOT NULL,
   `explanation` text NOT NULL,
   PRIMARY KEY (`projectId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
@@ -153,11 +152,11 @@ CREATE TABLE IF NOT EXISTS `project` (
 -- Dumping data for table `project`
 --
 
-INSERT INTO `project` (`projectId`, `locationId`, `categoryId`, `userId`, `title`, `description`, `minimalFund`, `currentFund`, `createdDate`, `lastDate`, `photo`, `explanation`) VALUES
-(2, 1, 1, 1, 'Project Nimbus', 'Take to the sky in this high speed mech action game. Dodge bullets, intercept missiles, defeat your enemies and save the Earth.', 50000, 7000, '2014-01-01', '2014-02-07', '', ''),
-(3, 2, 2, 2, 'Another Project', 'Art Category', 250000, 0, '2014-01-16', '2014-01-23', '', 'Another Project'),
-(4, 1, 1, 1, 'aaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaa', 1, 0, '2013-12-01', '2014-01-10', '', ''),
-(5, 2, 2, 2, 'AAAAAAAAAAAAA', 'aaaaaaaaaaaaaa', 1, 0, '2013-12-01', '2013-12-17', '', '');
+INSERT INTO `project` (`projectId`, `locationId`, `categoryId`, `userId`, `title`, `description`, `minimalFund`, `currentFund`, `createdDate`, `lastDate`, `explanation`) VALUES
+(2, 1, 1, 1, 'Project Nimbus', 'Take to the sky in this high speed mech action game. Dodge bullets, intercept missiles, defeat your enemies and save the Earth.', 50000, 10000, '2014-01-01', '2014-02-07', ''),
+(3, 2, 2, 2, 'Another Project', 'Art Category', 250000, 0, '2014-01-16', '2014-01-23', 'Another Project'),
+(4, 1, 1, 1, 'aaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaa', 1, 0, '2013-12-01', '2014-01-10', ''),
+(5, 2, 2, 2, 'AAAAAAAAAAAAA', 'aaaaaaaaaaaaaa', 1, 0, '2013-12-01', '2013-12-17', '');
 
 -- --------------------------------------------------------
 
@@ -170,7 +169,6 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `foto` varchar(200) NOT NULL,
   `bio` varchar(200) NOT NULL,
   PRIMARY KEY (`userId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
@@ -179,10 +177,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`userId`, `username`, `password`, `name`, `foto`, `bio`) VALUES
-(1, 'haidar', '1', 'haidar', '', ''),
-(2, 'witheld', '1', 'witheld', '', ''),
-(3, 'kemal', 'kemal', 'kemal', '', '');
+INSERT INTO `user` (`userId`, `username`, `password`, `name`, `bio`) VALUES
+(1, 'haidar', '1', 'haidar', ''),
+(2, 'witheld', '1', 'witheld', ''),
+(3, 'kemal', 'kemal', 'kemal', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
