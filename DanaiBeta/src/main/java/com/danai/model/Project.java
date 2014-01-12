@@ -43,6 +43,8 @@ public class Project {
 	private String description;
 	@Column
 	private int minimalFund;
+	@Column
+	private int currentFund;
 	
 	@Temporal(TemporalType.DATE)
 	@Column
@@ -52,14 +54,12 @@ public class Project {
 	private Date lastDate;
 	
 	@Column
-	private String photo;
-	@Column
 	private String explanation;
 	
-	@OneToMany(mappedBy="project",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="project",fetch=FetchType.LAZY)
 	private Set<Fund> funds;
 	
-	@OneToMany(mappedBy="project",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="project",fetch=FetchType.LAZY)
 	private Set<Comment> comments;
 	
 	
@@ -78,7 +78,6 @@ public class Project {
 		this.minimalFund = minimalFund;
 		this.createdDate = createdDate;
 		this.lastDate = lastDate;
-		this.photo = photo;
 		this.explanation = explanation;
 	}
 	public int getProjectId() {
@@ -123,6 +122,13 @@ public class Project {
 	public void setMinimalFund(int minimalFund) {
 		this.minimalFund = minimalFund;
 	}
+	public int getCurrentFund() {
+		return currentFund;
+	}
+
+	public void setCurrentFund(int currentFund) {
+		this.currentFund = currentFund;
+	}
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -134,12 +140,6 @@ public class Project {
 	}
 	public void setLastDate(Date lastDate) {
 		this.lastDate = lastDate;
-	}
-	public String getPhoto() {
-		return photo;
-	}
-	public void setPhoto(String photo) {
-		this.photo = photo;
 	}
 	public String getExplanation() {
 		return explanation;

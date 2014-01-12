@@ -15,7 +15,7 @@
 	Hello world!
 </h1>
 
-<P>  The time on the server is. ${user.name} </P>
+<P>  The time on the server is </P>
 
 	<div class="container">
 		<h1>User </h1>
@@ -47,14 +47,6 @@
 				<div class="row">
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="foto">foto</label>
-						<form:input cssClass="form-control" path="foto" id="foto"/>
-					</div>
-				</div>
-				</div>
-				<div class="row">
-				<div class="col-md-4">
-					<div class="form-group">
 						<label for="bio">bio</label>
 						<form:textarea cssClass="form-control" path="bio"  id="bio"/>
 					</div>
@@ -74,7 +66,6 @@
 	<th>username</th>
 	<th>password</th>
 	<th>name</th>
-	<th>foto</th>
 	<th>bio</th>
 	</tr>
 	<c:forEach items="${userList}" var="user">
@@ -83,7 +74,6 @@
 		<td>${user.username}</td>
 		<td>${user.password}</td>
 		<td>${user.name}</td>
-		<td>${user.foto}</td>
 		<td>${user.bio}</td>
 	</tr>
 	</c:forEach>
@@ -127,6 +117,28 @@
 	</c:forEach>
 </table>
 <br>
+<h1>created project for location 1</h1>
+<table class="table table-bordered">
+	<tr>
+	<th>ID</th>
+	<th>location</th>
+	<th>username</th>
+	<th>category</th>
+	<th>title</th>
+	<th>last date</th>
+	</tr>
+	<c:forEach items="${locationProjectList}" var="project">
+	<tr>
+		<td>${project.projectId}</td>
+		<td>${project.location.city}</td>
+		<td>${project.user.name}</td>
+		<td>${project.category.name}</td>
+		<td>${project.title}</td>
+		<td>${project.lastDate}</td>
+	</tr>
+	</c:forEach>
+</table>
+<br>
 <h1>Category</h1>
 <table class="table table-bordered">
 	<tr>
@@ -141,7 +153,7 @@
 	</c:forEach>
 </table>
 <br>
-<h1>Project</h1>
+<h1>created project for category 1</h1>
 <table class="table table-bordered">
 	<tr>
 	<th>ID</th>
@@ -151,6 +163,30 @@
 	<th>title</th>
 	<th>last date</th>
 	</tr>
+	<c:forEach items="${categoryProjectList}" var="project">
+	<tr>
+		<td>${project.projectId}</td>
+		<td>${project.location.city}</td>
+		<td>${project.user.name}</td>
+		<td>${project.category.name}</td>
+		<td>${project.title}</td>
+		<td>${project.lastDate}</td>
+	</tr>
+	</c:forEach>
+</table>
+<br>
+<h1>Project</h1>
+<table class="table table-bordered">
+	<tr>
+	<th>ID</th>
+	<th>location</th>
+	<th>username</th>
+	<th>category</th>
+	<th>title</th>
+	<th>last date</th>
+	<th>current fund</th>
+	<th>minimal fund</th>
+	</tr>
 	<c:forEach items="${projectList}" var="project">
 	<tr>
 		<td>${project.projectId}</td>
@@ -159,6 +195,8 @@
 		<td>${project.category.name}</td>
 		<td>${project.title}</td>
 		<td>${project.lastDate}</td>
+		<td>${project.currentFund}</td>
+		<td>${project.minimalFund}</td>
 	</tr>
 	</c:forEach>
 </table>

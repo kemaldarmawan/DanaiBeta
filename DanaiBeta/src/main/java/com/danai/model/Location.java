@@ -1,10 +1,14 @@
 package com.danai.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Location {
@@ -17,6 +21,10 @@ public class Location {
 	private String city;
 	@Column
 	private String province;
+	
+	@OneToMany(mappedBy="location", fetch=FetchType.LAZY)
+	private Set<Project> projects;
+	
 	
 	public Location() {}
 	public Location(int locationId, String city, String province) {
@@ -43,6 +51,13 @@ public class Location {
 	public void setProvince(String province) {
 		this.province = province;
 	}
+	public Set<Project> getProjects() {
+		return projects;
+	}
+	public void setProjects(Set<Project> projects) {
+		this.projects = projects;
+	}
+	
 	
 	
 	

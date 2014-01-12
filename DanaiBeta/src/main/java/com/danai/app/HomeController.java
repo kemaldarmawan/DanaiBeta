@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.danai.model.Category;
 import com.danai.model.Location;
 import com.danai.model.User;
 import com.danai.repository.CategoryDao;
@@ -62,6 +63,54 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value="/model_testing", method = RequestMethod.GET)
+	public String modelTesting(Model model)
+	{
+		model.addAttribute("user",userDao.getUser(1));
+		model.addAttribute("userList",userDao.getAllUser());
+		model.addAttribute("locationList", locationDao.getAllLocation());
+		model.addAttribute("locationProjectList", locationDao.getLocation(1).getProjects());
+		model.addAttribute("categoryList", categoryDao.getAllCategory());
+		model.addAttribute("categoryProjectList", categoryDao.getCategory(1).getProjects());
+		model.addAttribute("projectList", projectDao.getAllProject() );
+		model.addAttribute("createdProjectList", userDao.getUser(1).getCreatedProject() );
+		model.addAttribute("fundProjectList", projectDao.getProject(2).getFunds() );
+		model.addAttribute("commentProjectList", projectDao.getProject(2).getComments() );
+		return "home";
+		
+	}
+	
+	@RequestMapping(value="/model_testing_edit_del", method = RequestMethod.GET)
+	public String modelTestingEdDel(Model model, HttpServletRequest request)
+	{
+		// edit location
+		/*int loc_id = Integer.parseInt(request.getParameter("id"));
+		String new_name = request.getParameter("city");
+		Location loc = locationDao.getLocation(loc_id);
+		loc.setCity(new_name);
+		locationDao.edit(loc);*/
+		// add category
+		/*String name = request.getParameter("name");
+		Category cat = new Category();
+		cat.setName(name);
+		categoryDao.add(cat);*/
+		// del location
+		int loc_id = Integer.parseInt(request.getParameter("id"));
+		locationDao.delete(loc_id);
+		model.addAttribute("user",userDao.getUser(1));
+		model.addAttribute("userList",userDao.getAllUser());
+		model.addAttribute("locationList", locationDao.getAllLocation());
+		model.addAttribute("locationProjectList", locationDao.getLocation(1).getProjects());
+		model.addAttribute("categoryList", categoryDao.getAllCategory());
+		model.addAttribute("categoryProjectList", categoryDao.getCategory(1).getProjects());
+		model.addAttribute("projectList", projectDao.getAllProject() );
+		model.addAttribute("createdProjectList", userDao.getUser(1).getCreatedProject() );
+		model.addAttribute("fundProjectList", projectDao.getProject(2).getFunds() );
+		model.addAttribute("commentProjectList", projectDao.getProject(2).getComments() );
+		return "home";
+		
+	}
+	
 	@RequestMapping(value="/user.do", method=RequestMethod.POST)
 	public String doActions(@ModelAttribute User user, BindingResult result, @RequestParam String action, Map<String, Object> map) {
 		User userResult = new User();
@@ -107,10 +156,14 @@ public class HomeController {
 	@RequestMapping(value="/project_location/",method = RequestMethod.GET)
 	public String projectLocation(Model model, HttpServletRequest request){
 		
-		//int loc_id = Integer.parseInt(request.getParameter("id"));
-		//model.addAttribute("projectList", projectDao.getProjectByLocation(loc_id) );
-		String search = request.getParameter("title");
-		model.addAttribute("projectList", projectDao.getProjectSearchByTitle(search) );
+		int loc_id = Integer.parseInt(request.getParameter("id"));
+		//projectDao.addOrder("title", true);
+		//projectDao.addOrder("category",true);
+		projectDao.clearOrder();
+		projectDao.addOrder("lastDate", false);
+		model.addAttribute("projectList", projectDao.getProjectByCategory(loc_id) );
+		//String search = request.getParameter("title");
+		//model.addAttribute("projectList", projectDao.getProjectSearchByTitle(search) );
 		return "projectLocation";
 		
 	}
