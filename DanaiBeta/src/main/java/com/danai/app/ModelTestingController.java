@@ -41,7 +41,7 @@ public class ModelTestingController {
 		model.addAttribute("createdProjectList", userDao.getUser(1).getCreatedProject() );
 		model.addAttribute("fundProjectList", projectDao.getProject(2).getFunds() );
 		model.addAttribute("commentProjectList", projectDao.getProject(2).getComments() );
-		return "home";
+		return "modelTesting";
 		
 	}
 	
@@ -72,7 +72,7 @@ public class ModelTestingController {
 		model.addAttribute("createdProjectList", userDao.getUser(1).getCreatedProject() );
 		model.addAttribute("fundProjectList", projectDao.getProject(2).getFunds() );
 		model.addAttribute("commentProjectList", projectDao.getProject(2).getComments() );
-		return "home";
+		return "modelTesting";
 		
 	}
 	
@@ -82,7 +82,7 @@ public class ModelTestingController {
 		String username = request.getParameter("username");
 		model.addAttribute("user", userDao.getUser(username) );
 		//model.addAttribute("user", new Location());
-		return "user";
+		return "modelTestingUser";
 	}
 	
 	@RequestMapping(value="/modelTesting/project/",method = RequestMethod.GET)
@@ -98,7 +98,7 @@ public class ModelTestingController {
 		model.addAttribute("projectList", projectDao.getProjectSearchByUsername(usern) );
 		//String search = request.getParameter("title");
 		//model.addAttribute("projectList", projectDao.getProjectSearchByTitle(search) );
-		return "projectLocation";
+		return "modelTestingProject";
 		
 	}
 }
