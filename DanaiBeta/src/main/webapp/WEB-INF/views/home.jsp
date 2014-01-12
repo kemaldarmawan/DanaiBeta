@@ -47,14 +47,6 @@
 				<div class="row">
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="foto">foto</label>
-						<form:input cssClass="form-control" path="foto" id="foto"/>
-					</div>
-				</div>
-				</div>
-				<div class="row">
-				<div class="col-md-4">
-					<div class="form-group">
 						<label for="bio">bio</label>
 						<form:textarea cssClass="form-control" path="bio"  id="bio"/>
 					</div>
@@ -74,7 +66,6 @@
 	<th>username</th>
 	<th>password</th>
 	<th>name</th>
-	<th>foto</th>
 	<th>bio</th>
 	</tr>
 	<c:forEach items="${userList}" var="user">
@@ -83,7 +74,6 @@
 		<td>${user.username}</td>
 		<td>${user.password}</td>
 		<td>${user.name}</td>
-		<td>${user.foto}</td>
 		<td>${user.bio}</td>
 	</tr>
 	</c:forEach>

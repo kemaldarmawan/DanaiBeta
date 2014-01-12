@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2014 at 06:13 AM
+-- Generation Time: Jan 12, 2014 at 06:24 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `location` (
   `city` varchar(50) NOT NULL,
   `province` varchar(50) NOT NULL,
   PRIMARY KEY (`locationId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `location`
@@ -125,7 +125,9 @@ CREATE TABLE IF NOT EXISTS `location` (
 
 INSERT INTO `location` (`locationId`, `city`, `province`) VALUES
 (1, 'Surabaya', 'Jawa Timur'),
-(2, 'Bandung', 'Jawa Barat');
+(2, 'Bandung', 'Jawa Barat'),
+(3, 'Malang', 'Jawa Timur'),
+(4, 'Bogor', 'Jawa Barat');
 
 -- --------------------------------------------------------
 

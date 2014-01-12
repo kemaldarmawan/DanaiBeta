@@ -45,7 +45,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	@Transactional
 	public List getAllCategory() {
 		// TODO Auto-generated method stub
-		return session.getCurrentSession().createQuery("from Category").list();
+		return session.getCurrentSession().createQuery("from Category order by name asc").list();
 	}
 
 }

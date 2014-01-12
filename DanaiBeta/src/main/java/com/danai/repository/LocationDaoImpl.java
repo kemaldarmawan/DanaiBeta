@@ -45,7 +45,7 @@ public class LocationDaoImpl implements LocationDao {
 	@Transactional
 	public List getAllLocation() {
 		// TODO Auto-generated method stub
-		return session.getCurrentSession().createQuery("from Location").list();
+		return session.getCurrentSession().createQuery("from Location order by province asc, city asc").list();
 	}
 
 }
