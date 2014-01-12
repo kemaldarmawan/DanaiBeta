@@ -71,4 +71,10 @@ public class ProjectDaoImpl implements ProjectDao {
 		
 	}
 
+	@Override
+	public List getProjectByCategory(int categoryId) {
+		// TODO Auto-generated method stub
+		return session.getCurrentSession().createCriteria(Project.class).createCriteria("category").add(Restrictions.eq("categoryId", categoryId)).list();
+	}
+
 }
