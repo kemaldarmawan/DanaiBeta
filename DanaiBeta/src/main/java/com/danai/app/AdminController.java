@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.danai.model.Location;
-import com.danai.model.User;
+
+import com.danai.model.*;
 import com.danai.repository.CategoryDao;
 import com.danai.repository.LocationDao;
 import com.danai.repository.ProjectDao;
@@ -64,4 +64,36 @@ public class AdminController {
 		locationDao.delete(locationId);
 		return "redirect:/admin/location/";
 	}
+	
+	
+	
+	
+	// Category
+	
+	@RequestMapping(value="/admin/category/",method = RequestMethod.GET)
+	public String category(Model model,HttpSession session){
+		User _user = (User) session.getAttribute("_user");
+		if(_user == null){
+			session.setAttribute("_user", userDao.getUser(1));
+			return "redirect:/";
+		}
+		else {
+			model.addAttribute("categories", categoryDao.getAllCategory());
+			model.addAttribute("category", new Category());
+			return "category";
+		}
+	}
+	
+	@RequestMapping(value="/admin/category/add",method = RequestMethod.POST)
+	public String addCategory(@ModelAttribute Category category){
+		categoryDao.add(category);
+		return "redirect:/admin/category/";
+	}
+	@RequestMapping(value="/admin/category/delete/{categoryId}",method = RequestMethod.GET)
+	public String deleteCategory(@PathVariable Integer categoryId){
+		categoryDao.delete(categoryId);
+		return "redirect:/admin/category/";
+	}
+	
+	
 }
