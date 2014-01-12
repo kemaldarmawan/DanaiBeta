@@ -116,6 +116,14 @@ public class ProjectDaoImpl implements ProjectDao {
 		iterateOrder(c);
 		return c.createCriteria("user").add(Restrictions.like("username", '%'+username+'%' ) ).list();
 	}
+	
+	@Transactional
+	public List getProjectSearchByCategory(String categoryName) {
+		// TODO Auto-generated method stub
+		Criteria c =session.getCurrentSession().createCriteria(Project.class);
+		iterateOrder(c);
+		return c.createCriteria("category").add(Restrictions.like("name", '%'+categoryName+'%' ) ).list();
+	}
 
 	
 

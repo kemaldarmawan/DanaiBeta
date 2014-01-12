@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <%@ page import="com.danai.model.User"  %>
 	<header class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
@@ -17,7 +15,7 @@
             <li><a href="<c:url value='/' />">Home</a></li>
             <li><a href="<c:url value='/' />">Projects</a></li>
           </ul>
-          <form name="searchForm" id="searchForm" action="<c:url value='/search' />" class="nav navbar-form navbar-left" role="search" method="GET">
+          <form id="searchForm" action="<c:url value='/search' />" class="nav navbar-form navbar-left"  method="GET">
           	<div class="right-inner-addon">
           		<input type="text" placeholder="Search Project" class="form-control" name="s" />
           		<i class="glyphicon glyphicon-search"></i>

@@ -1,11 +1,13 @@
 package com.danai.app;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -49,7 +51,14 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/search",method = RequestMethod.GET)
-	public String search(Model model){
+	public String search(Model model,HttpServletRequest request){
+		String param = (String)request.getParameter("s");
+		System.out.println("+"+param+"+");
+		if(param.trim().equals("")) return "redirect:/";
+		model.addAttribute("res", param);
+		model.addAttribute("projectsByUser",projectDao.getProjectSearchByUsername(param));
+		model.addAttribute("projectsByTitle",projectDao.getProjectSearchByTitle(param));
+		model.addAttribute("projectsByCategory",projectDao.getProjectSearchByCategory(param));
 		return "search";
 	}
 	
