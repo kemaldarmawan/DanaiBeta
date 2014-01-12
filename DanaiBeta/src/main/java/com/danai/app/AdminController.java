@@ -89,6 +89,7 @@ public class AdminController {
 		categoryDao.add(category);
 		return "redirect:/admin/category/";
 	}
+	
 	@RequestMapping(value="/admin/category/delete/{categoryId}",method = RequestMethod.GET)
 	public String deleteCategory(@PathVariable Integer categoryId){
 		categoryDao.delete(categoryId);

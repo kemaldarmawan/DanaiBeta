@@ -12,6 +12,36 @@
 	<script src="https://code.jquery.com/jquery.js"></script>
     <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
     
+    <div class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Danai</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="<c:url value='/' />">Home</a></li>
+            <li><a href="<c:url value='/' />">Projects</a></li>
+          </ul>
+          <form name="searchForm" id="searchForm" action="<c:url value='/search' />" class="nav navbar-form navbar-left" role="search" method="GET">
+          	<div class="right-inner-addon">
+          		<input type="text" placeholder="Search Project" class="form-control" name="s" />
+          		<i class="glyphicon glyphicon-search"></i>
+          	</div>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Sign Up</a></li>
+            <li><a href="#">Log In</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    
 	<div class="container">
 		<h1>Location</h1>
 	    <br>
@@ -52,7 +82,7 @@
 				<tr >
 					<td>${item.city}</td>
 					<td>${item.province}</td>
-					<td><a href="<c:url value="/location/delete/${item.locationId}"/>">delete</a></td>
+					<td><a href="<c:url value="/admin/location/delete/${item.locationId}"/>">delete</a></td>
 					<td><a href="">update</a></td>
 				</tr>
 			</c:forEach>

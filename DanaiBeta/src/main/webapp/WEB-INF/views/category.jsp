@@ -44,7 +44,7 @@
 			<c:forEach items="${categories}" var="item">
 				<tr >
 					<td>${item.name}</td>
-					<td><a href="<c:url value="/category/delete/${item.categoryId}"/>">delete</a></td>
+					<td><a href="<c:url value="/admin/category/delete/${item.categoryId}"/>">delete</a></td>
 					<td><a href="">update</a></td>
 				</tr>
 			</c:forEach>
