@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2014 at 05:34 AM
+-- Generation Time: Jan 12, 2014 at 05:55 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -76,15 +76,35 @@ CREATE TABLE IF NOT EXISTS `fund` (
   `value` int(11) NOT NULL,
   `createdDateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`fundId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `fund`
 --
 
 INSERT INTO `fund` (`fundId`, `projectId`, `userId`, `value`, `createdDateTime`) VALUES
-(1, 2, 3, 500, '2014-01-12 04:29:03'),
-(2, 2, 2, 1000, '2014-01-12 04:29:03');
+(4, 2, 2, 5000, '2014-01-12 04:55:03'),
+(5, 2, 3, 2000, '2014-01-12 04:55:03');
+
+--
+-- Triggers `fund`
+--
+DROP TRIGGER IF EXISTS `addCurrentFund`;
+DELIMITER //
+CREATE TRIGGER `addCurrentFund` AFTER INSERT ON `fund`
+ FOR EACH ROW BEGIN
+UPDATE project set currentFund = currentFund + new.value where project.projectId = new.projectId;
+END
+//
+DELIMITER ;
+DROP TRIGGER IF EXISTS `subtractCurrentFund`;
+DELIMITER //
+CREATE TRIGGER `subtractCurrentFund` AFTER DELETE ON `fund`
+ FOR EACH ROW BEGIN
+UPDATE project set currentFund = currentFund - old.value where project.projectId = old.projectId;
+END
+//
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -121,6 +141,7 @@ CREATE TABLE IF NOT EXISTS `project` (
   `title` varchar(100) NOT NULL,
   `description` varchar(255) NOT NULL,
   `minimalFund` int(11) NOT NULL,
+  `currentFund` int(11) NOT NULL DEFAULT '0',
   `createdDate` date NOT NULL,
   `lastDate` date NOT NULL,
   `photo` varchar(200) NOT NULL,
@@ -132,11 +153,11 @@ CREATE TABLE IF NOT EXISTS `project` (
 -- Dumping data for table `project`
 --
 
-INSERT INTO `project` (`projectId`, `locationId`, `categoryId`, `userId`, `title`, `description`, `minimalFund`, `createdDate`, `lastDate`, `photo`, `explanation`) VALUES
-(2, 1, 1, 1, 'Project Nimbus', 'Take to the sky in this high speed mech action game. Dodge bullets, intercept missiles, defeat your enemies and save the Earth.', 50000, '2014-01-01', '2014-02-07', '', ''),
-(3, 2, 2, 2, 'Another Project', 'Art Category', 250000, '2014-01-16', '2014-01-23', '', 'Another Project'),
-(4, 1, 1, 1, 'aaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaa', 1, '2013-12-01', '2014-01-10', '', ''),
-(5, 2, 2, 2, 'AAAAAAAAAAAAA', 'aaaaaaaaaaaaaa', 1, '2013-12-01', '2013-12-17', '', '');
+INSERT INTO `project` (`projectId`, `locationId`, `categoryId`, `userId`, `title`, `description`, `minimalFund`, `currentFund`, `createdDate`, `lastDate`, `photo`, `explanation`) VALUES
+(2, 1, 1, 1, 'Project Nimbus', 'Take to the sky in this high speed mech action game. Dodge bullets, intercept missiles, defeat your enemies and save the Earth.', 50000, 7000, '2014-01-01', '2014-02-07', '', ''),
+(3, 2, 2, 2, 'Another Project', 'Art Category', 250000, 0, '2014-01-16', '2014-01-23', '', 'Another Project'),
+(4, 1, 1, 1, 'aaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaa', 1, 0, '2013-12-01', '2014-01-10', '', ''),
+(5, 2, 2, 2, 'AAAAAAAAAAAAA', 'aaaaaaaaaaaaaa', 1, 0, '2013-12-01', '2013-12-17', '', '');
 
 -- --------------------------------------------------------
 
