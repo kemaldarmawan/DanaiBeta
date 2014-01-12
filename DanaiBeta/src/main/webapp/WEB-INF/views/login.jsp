@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Danai - Daftar</title>
+<title>Danai - Login</title>
 <link href="<c:url value="/resources/css/bootstrap.css"/>" type="text/css" rel="stylesheet" />
 </head>
 <body>
@@ -38,17 +38,11 @@
 	
 	<div class="container">
 		<h1>&nbsp;</h1>
-		<h1>Sign Up</h1>
+		<h1>Login</h1>
 		<div class="well">
 			<div class="row">
 				<div class="col-md-3 col-md-offset-1">
-					<form:form action="register.do" method="POST" commandName="user">
-						<div class="row">
-							<div class="form-group">
-								<label for="name">Nama Lengkap</label>
-								<form:input cssClass="form-control" path="name" placeholder="Nama Lengkap"/>
-							</div>
-						</div>
+					<form:form action="login.do" method="POST" commandName="user">
 						<div class="row">
 							<div class="form-group">
 								<label for="username">Username</label>
@@ -63,19 +57,7 @@
 						</div>
 						<div class="row">
 							<div class="form-group">
-								<label for="password">Confirm Password</label>
-								<input type="password" class="form-control" placeholder="Confirm Password"/>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group">
-								<label for="bio">Biodata</label>
-								<form:textarea cssClass="form-control" path="bio" placeholder="Biodata"/>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group">
-								<input type="submit" value="Daftar" class="btn btn-success"/>	
+								<input type="submit" value="Login" class="btn btn-success"/>	
 							</div>
 						</div>
 					</form:form>

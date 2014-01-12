@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Danai - Daftar</title>
+<title>Danai - Dashboard</title>
 <link href="<c:url value="/resources/css/bootstrap.css"/>" type="text/css" rel="stylesheet" />
 </head>
 <body>
@@ -38,11 +38,11 @@
 	
 	<div class="container">
 		<h1>&nbsp;</h1>
-		<h1>Sign Up</h1>
+		<h1>Dashboard</h1>
 		<div class="well">
 			<div class="row">
 				<div class="col-md-3 col-md-offset-1">
-					<form:form action="register.do" method="POST" commandName="user">
+					<form:form action="edit" method="POST" commandName="user">
 						<div class="row">
 							<div class="form-group">
 								<label for="name">Nama Lengkap</label>
@@ -52,19 +52,19 @@
 						<div class="row">
 							<div class="form-group">
 								<label for="username">Username</label>
-								<form:input cssClass="form-control" path="username" placeholder="Username"/>
+								<form:input cssClass="form-control" path="username" placeholder="Username" readonly="true"/>
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group">
-								<label for="password">Password</label>
+								<label for="password">Change Password</label>
 								<form:input type="password" cssClass="form-control" path="password" placeholder="Password"/>
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group">
-								<label for="password">Confirm Password</label>
-								<input type="password" class="form-control" placeholder="Confirm Password"/>
+								<label for="password">Confirm Change Password</label>
+								<form:input type="password" cssClass="form-control" path="password" placeholder="Confirm Password"/>
 							</div>
 						</div>
 						<div class="row">
@@ -75,13 +75,37 @@
 						</div>
 						<div class="row">
 							<div class="form-group">
-								<input type="submit" value="Daftar" class="btn btn-success"/>	
+								<input type="submit" value="Update Profile" class="btn btn-success"/>	
 							</div>
 						</div>
 					</form:form>
 				</div>
 			</div>
 		</div>
+	</div>
+	
+	<div class="container">
+		<h1>Created Project by ${dashboard.name}</h1>
+		<table class="table table-bordered">
+			<tr>
+			<th>ID</th>
+			<th>Location</th>
+			<th>Username</th>
+			<th>Category</th>
+			<th>Title</th>
+			<th>Last Date</th>
+			</tr>
+			<c:forEach items="${createdProject}" var="project">
+			<tr>
+				<td>${project.projectId}</td>
+				<td>${project.location.city}</td>
+				<td>${project.user.name}</td>
+				<td>${project.category.name}</td>
+				<td>${project.title}</td>
+				<td>${project.lastDate}</td>
+			</tr>
+			</c:forEach>
+		</table>
 	</div>
 	
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
