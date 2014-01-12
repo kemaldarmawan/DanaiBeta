@@ -15,7 +15,7 @@
 	Hello world!
 </h1>
 
-<P>  The time on the server is. ${user.name} </P>
+<P>  The time on the server is </P>
 
 	<div class="container">
 		<h1>User </h1>

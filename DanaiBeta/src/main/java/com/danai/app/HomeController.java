@@ -62,6 +62,21 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value="/model_testing", method = RequestMethod.GET)
+	public String modelTesting(Model model)
+	{
+		model.addAttribute("user",userDao.getUser(1));
+		model.addAttribute("userList",userDao.getAllUser());
+		model.addAttribute("locationList", locationDao.getAllLocation());
+		model.addAttribute("categoryList", categoryDao.getAllCategory());
+		model.addAttribute("projectList", projectDao.getAllProject() );
+		model.addAttribute("createdProjectList", userDao.getUser(1).getCreatedProject() );
+		model.addAttribute("fundProjectList", projectDao.getProject(2).getFunds() );
+		model.addAttribute("commentProjectList", projectDao.getProject(2).getComments() );
+		return "home";
+		
+	}
+	
 	@RequestMapping(value="/user.do", method=RequestMethod.POST)
 	public String doActions(@ModelAttribute User user, BindingResult result, @RequestParam String action, Map<String, Object> map) {
 		User userResult = new User();

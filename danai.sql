@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 11, 2014 at 12:10 PM
+-- Generation Time: Jan 12, 2014 at 05:34 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -30,14 +30,15 @@ CREATE TABLE IF NOT EXISTS `category` (
   `categoryId` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`categoryId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`categoryId`, `name`) VALUES
-(1, 'Games');
+(1, 'Games'),
+(2, 'Art');
 
 -- --------------------------------------------------------
 
@@ -50,9 +51,17 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `userId` int(11) NOT NULL,
   `projectId` int(11) NOT NULL,
   `content` varchar(500) NOT NULL,
-  `createdDateTime` datetime NOT NULL,
+  `createdDateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`commentId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`commentId`, `userId`, `projectId`, `content`, `createdDateTime`) VALUES
+(1, 1, 2, 'mantap gan', '2014-01-12 04:29:53'),
+(2, 2, 2, 'lanjut gan', '2014-01-12 04:29:53');
 
 -- --------------------------------------------------------
 
@@ -67,7 +76,15 @@ CREATE TABLE IF NOT EXISTS `fund` (
   `value` int(11) NOT NULL,
   `createdDateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`fundId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `fund`
+--
+
+INSERT INTO `fund` (`fundId`, `projectId`, `userId`, `value`, `createdDateTime`) VALUES
+(1, 2, 3, 500, '2014-01-12 04:29:03'),
+(2, 2, 2, 1000, '2014-01-12 04:29:03');
 
 -- --------------------------------------------------------
 
@@ -80,14 +97,15 @@ CREATE TABLE IF NOT EXISTS `location` (
   `city` varchar(50) NOT NULL,
   `province` varchar(50) NOT NULL,
   PRIMARY KEY (`locationId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `location`
 --
 
 INSERT INTO `location` (`locationId`, `city`, `province`) VALUES
-(1, 'Surabaya', 'Jawa Timur');
+(1, 'Surabaya', 'Jawa Timur'),
+(2, 'Bandung', 'Jawa Barat');
 
 -- --------------------------------------------------------
 
@@ -108,14 +126,17 @@ CREATE TABLE IF NOT EXISTS `project` (
   `photo` varchar(200) NOT NULL,
   `explanation` text NOT NULL,
   PRIMARY KEY (`projectId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `project`
 --
 
 INSERT INTO `project` (`projectId`, `locationId`, `categoryId`, `userId`, `title`, `description`, `minimalFund`, `createdDate`, `lastDate`, `photo`, `explanation`) VALUES
-(2, 1, 1, 1, 'Project Nimbus', 'Take to the sky in this high speed mech action game. Dodge bullets, intercept missiles, defeat your enemies and save the Earth.', 50000, '2014-01-01', '2014-02-07', '', '');
+(2, 1, 1, 1, 'Project Nimbus', 'Take to the sky in this high speed mech action game. Dodge bullets, intercept missiles, defeat your enemies and save the Earth.', 50000, '2014-01-01', '2014-02-07', '', ''),
+(3, 2, 2, 2, 'Another Project', 'Art Category', 250000, '2014-01-16', '2014-01-23', '', 'Another Project'),
+(4, 1, 1, 1, 'aaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaa', 1, '2013-12-01', '2014-01-10', '', ''),
+(5, 2, 2, 2, 'AAAAAAAAAAAAA', 'aaaaaaaaaaaaaa', 1, '2013-12-01', '2013-12-17', '', '');
 
 -- --------------------------------------------------------
 
@@ -139,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`userId`, `username`, `password`, `name`, `foto`, `bio`) VALUES
 (1, 'haidar', '1', 'haidar', '', ''),
-(2, 'witheld', '1', 'haidar', '', ''),
+(2, 'witheld', '1', 'witheld', '', ''),
 (3, 'kemal', 'kemal', 'kemal', '', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
