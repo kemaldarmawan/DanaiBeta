@@ -28,7 +28,7 @@
 	<tr>
 		<td>${project.projectId}</td>
 		<td>${project.location.city}</td>
-		<td>${project.user.name}</td>
+		<td>${project.user.username}</td>
 		<td>${project.category.name}</td>
 		<td>${project.title}</td>
 		<td>${project.lastDate}</td>
