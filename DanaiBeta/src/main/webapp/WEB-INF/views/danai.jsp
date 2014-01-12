@@ -25,10 +25,15 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Projects</a></li>
-            <li><a href="#"></a></li>
+            <li><a href="<c:url value='/' />">Home</a></li>
+            <li><a href="<c:url value='/' />">Projects</a></li>
           </ul>
+          <form name="searchForm" id="searchForm" action="<c:url value='/search' />" class="nav navbar-form navbar-left" role="search" method="GET">
+          	<div class="right-inner-addon">
+          		<input type="text" placeholder="Search Project" class="form-control" name="s" />
+          		<i class="glyphicon glyphicon-search"></i>
+          	</div>
+          </form>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Sign Up</a></li>
             <li><a href="#">Log In</a></li>
