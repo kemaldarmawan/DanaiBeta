@@ -117,6 +117,28 @@
 	</c:forEach>
 </table>
 <br>
+<h1>created project for location 1</h1>
+<table class="table table-bordered">
+	<tr>
+	<th>ID</th>
+	<th>location</th>
+	<th>username</th>
+	<th>category</th>
+	<th>title</th>
+	<th>last date</th>
+	</tr>
+	<c:forEach items="${locationProjectList}" var="project">
+	<tr>
+		<td>${project.projectId}</td>
+		<td>${project.location.city}</td>
+		<td>${project.user.name}</td>
+		<td>${project.category.name}</td>
+		<td>${project.title}</td>
+		<td>${project.lastDate}</td>
+	</tr>
+	</c:forEach>
+</table>
+<br>
 <h1>Category</h1>
 <table class="table table-bordered">
 	<tr>
@@ -127,6 +149,28 @@
 	<tr>
 		<td>${category.categoryId}</td>
 		<td>${category.name}</td>
+	</tr>
+	</c:forEach>
+</table>
+<br>
+<h1>created project for category 1</h1>
+<table class="table table-bordered">
+	<tr>
+	<th>ID</th>
+	<th>location</th>
+	<th>username</th>
+	<th>category</th>
+	<th>title</th>
+	<th>last date</th>
+	</tr>
+	<c:forEach items="${categoryProjectList}" var="project">
+	<tr>
+		<td>${project.projectId}</td>
+		<td>${project.location.city}</td>
+		<td>${project.user.name}</td>
+		<td>${project.category.name}</td>
+		<td>${project.title}</td>
+		<td>${project.lastDate}</td>
 	</tr>
 	</c:forEach>
 </table>

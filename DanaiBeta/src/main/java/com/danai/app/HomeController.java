@@ -68,7 +68,9 @@ public class HomeController {
 		model.addAttribute("user",userDao.getUser(1));
 		model.addAttribute("userList",userDao.getAllUser());
 		model.addAttribute("locationList", locationDao.getAllLocation());
+		model.addAttribute("locationProjectList", locationDao.getLocation(1).getProjects());
 		model.addAttribute("categoryList", categoryDao.getAllCategory());
+		model.addAttribute("categoryProjectList", categoryDao.getCategory(1).getProjects());
 		model.addAttribute("projectList", projectDao.getAllProject() );
 		model.addAttribute("createdProjectList", userDao.getUser(1).getCreatedProject() );
 		model.addAttribute("fundProjectList", projectDao.getProject(2).getFunds() );
@@ -125,6 +127,7 @@ public class HomeController {
 		int loc_id = Integer.parseInt(request.getParameter("id"));
 		//projectDao.addOrder("title", true);
 		//projectDao.addOrder("category",true);
+		projectDao.clearOrder();
 		projectDao.addOrder("lastDate", false);
 		model.addAttribute("projectList", projectDao.getProjectByCategory(loc_id) );
 		//String search = request.getParameter("title");
