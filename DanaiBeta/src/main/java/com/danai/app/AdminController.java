@@ -39,11 +39,11 @@ public class AdminController {
 
 	// Location 
 	
-	@RequestMapping(value="/admin/location/",method = RequestMethod.GET)
+	@RequestMapping(value="/admin/location",method = RequestMethod.GET)
 	public String location(Model model,HttpSession session){
-		User _user = (User) session.getAttribute("_user");
+		User _user = (User) session.getAttribute("user");
 		if(_user == null){
-			session.setAttribute("_user", userDao.getUser(1));
+			session.setAttribute("user", userDao.getUser(1));
 			return "redirect:/";
 		}
 		else {
@@ -55,7 +55,9 @@ public class AdminController {
 	
 	@RequestMapping(value="/admin/location/add",method = RequestMethod.POST)
 	public String addLocation(@ModelAttribute Location location){
-		locationDao.add(location);
+		if(location!= null){
+			locationDao.add(location);
+		}
 		return "redirect:/admin/location/";
 	}
 	@RequestMapping(value="/admin/location/delete/{locationId}",method = RequestMethod.GET)
