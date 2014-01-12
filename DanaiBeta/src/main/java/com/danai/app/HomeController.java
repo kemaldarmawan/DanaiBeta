@@ -108,6 +108,9 @@ public class HomeController {
 	public String projectLocation(Model model, HttpServletRequest request){
 		
 		int loc_id = Integer.parseInt(request.getParameter("id"));
+		//projectDao.addOrder("title", true);
+		//projectDao.addOrder("category",true);
+		projectDao.addOrder("lastDate", false);
 		model.addAttribute("projectList", projectDao.getProjectByCategory(loc_id) );
 		//String search = request.getParameter("title");
 		//model.addAttribute("projectList", projectDao.getProjectSearchByTitle(search) );
