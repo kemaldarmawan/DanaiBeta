@@ -150,6 +150,8 @@
 	<th>category</th>
 	<th>title</th>
 	<th>last date</th>
+	<th>current fund</th>
+	<th>minimal fund</th>
 	</tr>
 	<c:forEach items="${projectList}" var="project">
 	<tr>
@@ -159,6 +161,8 @@
 		<td>${project.category.name}</td>
 		<td>${project.title}</td>
 		<td>${project.lastDate}</td>
+		<td>${project.currentFund}</td>
+		<td>${project.minimalFund}</td>
 	</tr>
 	</c:forEach>
 </table>
