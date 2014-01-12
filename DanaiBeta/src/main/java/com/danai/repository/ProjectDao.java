@@ -16,6 +16,8 @@ public interface ProjectDao {
 	public List getProjectSearchByTitle(String search);
 	public List getProjectSearchByUsername(String username);
 	public List getProjectSearchByCategory(String categoryName);
+	public List getProjectSearchByCity(String city);
+	public List getProjectSearchByProvince(String province);
 	public void addOrder(String attribute, boolean asc);
 	public void clearOrder();
 

@@ -89,13 +89,13 @@ public class ModelTestingController {
 	public String projectLocation(Model model, HttpServletRequest request){
 		
 		//int loc_id = Integer.parseInt(request.getParameter("id"));
-		String usern = request.getParameter("user");
-		System.out.println("user "+usern);
+		String usern = request.getParameter("s");
+		System.out.println("search "+usern);
 		//projectDao.addOrder("title", true);
 		//projectDao.addOrder("category",true);
 		projectDao.clearOrder();
 		//projectDao.addOrder("lastDate", false);
-		model.addAttribute("projectList", projectDao.getProjectSearchByUsername(usern) );
+		model.addAttribute("projectList", projectDao.getProjectSearchByProvince(usern));
 		//String search = request.getParameter("title");
 		//model.addAttribute("projectList", projectDao.getProjectSearchByTitle(search) );
 		return "modelTestingProject";

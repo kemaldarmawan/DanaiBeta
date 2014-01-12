@@ -125,6 +125,22 @@ public class ProjectDaoImpl implements ProjectDao {
 		return c.createCriteria("category").add(Restrictions.like("name", '%'+categoryName+'%' ) ).list();
 	}
 
+	@Transactional
+	public List getProjectSearchByCity(String city) {
+		// TODO Auto-generated method stub
+		Criteria c =session.getCurrentSession().createCriteria(Project.class);
+		iterateOrder(c);
+		return c.createCriteria("location").add(Restrictions.like("city", '%'+city+'%' ) ).list();
+	}
+
+	@Transactional
+	public List getProjectSearchByProvince(String province) {
+		// TODO Auto-generated method stub
+		Criteria c =session.getCurrentSession().createCriteria(Project.class);
+		iterateOrder(c);
+		return c.createCriteria("location").add(Restrictions.like("province", '%'+province+'%' ) ).list();
+	}
+
 	
 
 }
