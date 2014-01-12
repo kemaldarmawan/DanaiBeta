@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="com.danai.model.User"  %>
-	<div class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+	<header class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -39,4 +39,4 @@
           </ul>
         </div><!--/.nav-collapse -->
       </div>
-    </div>
+    </header>

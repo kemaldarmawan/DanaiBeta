@@ -12,8 +12,7 @@
 </head>
 <body>
 	<%@ include file="header.jsp" %>
-  
-    
+  	
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
 </body>
