@@ -25,7 +25,7 @@ import com.danai.repository.UserDao;
 /**
  * Handles requests for the application home page.
  */
-
+@Controller
 public class StartController {
 	
 	private UserDao userDao;
