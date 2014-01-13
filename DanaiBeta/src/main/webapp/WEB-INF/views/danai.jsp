@@ -19,16 +19,33 @@
 	
   	<div class="container">
 		<ul class="nav nav-tabs">
-		  <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
-		  <li><a href="#profile" data-toggle="tab">Profile</a></li>
-		  <li><a href="#messages" data-toggle="tab">Messages</a></li>
-		  <li><a href="#settings" data-toggle="tab">Settings</a></li>
+			<c:forEach var="item" items="${projectsByCategory}" varStatus="counter">
+				<li class='<c:if test="${counter.count == 1}"><% out.print("active"); %></c:if>'><a href="#category${item.category.categoryId}" data-toggle="tab">${item.category.name }</a></li>
+			</c:forEach>
 		</ul>
 		<div class="tab-content">
-		  <div class="tab-pane fade in active" id="home">A</div>
-		  <div class="tab-pane fade" id="profile">B</div>
-		  <div class="tab-pane fade" id="messages">C</div>
-		  <div class="tab-pane fade" id="settings">D</div>
+		<c:forEach var="item" items="${projectsByCategory}" varStatus="counter">
+			<div class="tab-pane fade <c:if test="${counter.count == 1}"><% out.print("in active"); %></c:if>" id="category${item.category.categoryId }">
+				<p>&nbsp;</p>
+				<div class="col-md-3" >
+					<div class="panel panel-default" style="height:300px">
+  						
+  						<div class="panel-body">
+							<a href="#"><strong><small>${item.title }</small></strong></a>
+							<p><span class="glyphicon glyphicon-user"></span>&nbsp;<small> ${item.user.name }</small></p>
+							<div class="well well-sm" style="height:100px"><small>${item.description }</small></div>
+    						<p></p>
+    						<small><span class="glyphicon glyphicon-map-marker"></span>&nbsp; ${item.location.city}, ${item.location.province}</small>
+    						<p></p>
+    						<div class="progress-preview">
+								<div class="progress-bar progress-bar-success"  aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width:${item.currentFund / item.minimalFund * 100}%">
+						  		</div>
+							</div>
+  						</div>	
+					</div>
+				</div>
+			</div>
+		</c:forEach>
 		</div>
   	</div>
     <script src="https://code.jquery.com/jquery.js"></script>

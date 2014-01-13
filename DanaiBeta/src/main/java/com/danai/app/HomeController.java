@@ -45,8 +45,11 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Map<String, Object> map) {
-		
+	public String home(Model model) {
+		List<Project> p1= projectDao.getAllProject();
+		ConcurrentMap<Integer, Project> map = new ConcurrentHashMap<Integer, Project>();
+		for(Project p: p1) map.putIfAbsent(p.getCategory().getCategoryId(), p);
+		model.addAttribute("projectsByCategory", map.values());
 		return "danai";
 	}
 	
