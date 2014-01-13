@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.danai.model.User;
 import com.danai.repository.CategoryDao;
 import com.danai.repository.LocationDao;
 import com.danai.repository.ProjectDao;
@@ -79,10 +80,15 @@ public class ModelTestingController {
 	@RequestMapping(value="/modelTesting/user/",method = RequestMethod.GET)
 	public String user(Model model, HttpServletRequest request){
 		//model.addAttribute("users", locationDao.getAllLocation());
-		String username = request.getParameter("username");
-		model.addAttribute("user", userDao.getUser(username) );
+		//String username = request.getParameter("username");
+		//model.addAttribute("user", userDao.getUser(username) );
 		//model.addAttribute("user", new Location());
-		return "modelTestingUser";
+		User user = new User();
+		user.setUsername("haidar");
+		user.setBio("bio");
+		//user.setname(name);
+		userDao.add(user);
+		return modelTesting(model);
 	}
 	
 	@RequestMapping(value="/modelTesting/project/",method = RequestMethod.GET)
