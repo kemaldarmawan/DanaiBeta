@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2014 at 09:14 AM
+-- Generation Time: Jan 13, 2014 at 02:45 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -181,8 +181,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(50) NOT NULL,
   `name` varchar(100) NOT NULL,
   `bio` varchar(200) NOT NULL,
-  PRIMARY KEY (`userId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  PRIMARY KEY (`userId`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `user`
@@ -191,7 +192,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`userId`, `username`, `password`, `name`, `bio`) VALUES
 (1, 'haidar', '1', 'haidar', ''),
 (2, 'hahaidarha', '1', 'witheld', ''),
-(3, 'kemal', 'kemal', 'kemal', '');
+(3, 'kemal', 'kemal', 'kemal', ''),
+(10, 'haidars', '1', 'haidar', 'bio');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -84,10 +84,14 @@ public class ModelTestingController {
 		//model.addAttribute("user", userDao.getUser(username) );
 		//model.addAttribute("user", new Location());
 		User user = new User();
-		user.setUsername("haidar");
+		user.setUsername("haidarx");
 		user.setBio("bio");
-		//user.setname(name);
+		user.setPassword("1");
+		user.setName("haidar");
+		System.out.println(user.getUserId());
 		userDao.add(user);
+		System.out.println(user.getUserId());
+		userDao.delete(user.getUserId());
 		return modelTesting(model);
 	}
 	
