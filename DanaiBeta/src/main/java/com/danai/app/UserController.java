@@ -158,7 +158,7 @@ public class UserController{
 	@RequestMapping(value="/update.do",method = RequestMethod.POST)
 	public String doUpdate(@ModelAttribute("user") User user, BindingResult result, Model model, HttpSession session){
 		User _user = (User) session.getAttribute("user");
-		_user.setname(user.getname());
+		_user.setName(user.getName());
 		_user.setBio(user.getBio());
 		userValidator.validateUpdate(_user,result);
 		if (result.hasErrors()){

@@ -18,7 +18,7 @@ public class User {
 	@Column
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int userId;
-	@Column
+	@Column(unique=true)
 	private String username;
 	@Column
 	private String password;
@@ -38,10 +38,10 @@ public class User {
 		this.password = password;
 	}
 	
-	public String getname() {
+	public String getName() {
 		return name;
 	}
-	public void setname(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 	
