@@ -75,7 +75,8 @@ public class StartController {
 	
 	@RequestMapping(value="/insertimage.do",method = RequestMethod.POST)
 	public String doEditImage(@ModelAttribute("file") FileUpload uploadedFile, BindingResult result, Model model, HttpSession session){
-		Project project = (Project) session.getAttribute("project");
+		Project project = new Project();
+		projectDao.add(project);
 		InputStream inputStream = null;
 		OutputStream outputStream = null;
 		

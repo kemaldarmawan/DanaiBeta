@@ -100,6 +100,6 @@
 		</div>
   	</div>
     <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
+    <script src="<c:url value="/resources/js/jasny-bootstrap.js"/>"></script>
 </body>
 </html>
