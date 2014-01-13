@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2014 at 06:24 AM
+-- Generation Time: Jan 13, 2014 at 09:14 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `categoryId` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`categoryId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `category`
@@ -38,7 +38,8 @@ CREATE TABLE IF NOT EXISTS `category` (
 
 INSERT INTO `category` (`categoryId`, `name`) VALUES
 (1, 'Games'),
-(2, 'Art');
+(2, 'Art'),
+(3, 'Wearables');
 
 -- --------------------------------------------------------
 
@@ -83,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `fund` (
 --
 
 INSERT INTO `fund` (`fundId`, `projectId`, `userId`, `value`, `createdDateTime`) VALUES
-(5, 2, 3, 2000, '2014-01-12 04:55:03'),
+(5, 3, 3, 5000, '2014-01-13 08:13:03'),
 (6, 2, 3, 8000, '2014-01-12 05:07:33');
 
 --
@@ -105,6 +106,15 @@ UPDATE project set currentFund = currentFund - old.value where project.projectId
 END
 //
 DELIMITER ;
+DROP TRIGGER IF EXISTS `updateCurrentFund`;
+DELIMITER //
+CREATE TRIGGER `updateCurrentFund` AFTER UPDATE ON `fund`
+ FOR EACH ROW BEGIN
+UPDATE project set currentFund = currentFund - old.value where project.projectId = old.projectId;
+UPDATE project set currentFund = currentFund + new.value where project.projectId = new.projectId;
+END
+//
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -117,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `location` (
   `city` varchar(50) NOT NULL,
   `province` varchar(50) NOT NULL,
   PRIMARY KEY (`locationId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `location`
@@ -126,8 +136,7 @@ CREATE TABLE IF NOT EXISTS `location` (
 INSERT INTO `location` (`locationId`, `city`, `province`) VALUES
 (1, 'Surabaya', 'Jawa Timur'),
 (2, 'Bandung', 'Jawa Barat'),
-(3, 'Malang', 'Jawa Timur'),
-(4, 'Bogor', 'Jawa Barat');
+(3, 'Malang', 'Jawa Timur');
 
 -- --------------------------------------------------------
 
@@ -155,10 +164,10 @@ CREATE TABLE IF NOT EXISTS `project` (
 --
 
 INSERT INTO `project` (`projectId`, `locationId`, `categoryId`, `userId`, `title`, `description`, `minimalFund`, `currentFund`, `createdDate`, `lastDate`, `explanation`) VALUES
-(2, 1, 1, 1, 'Project Nimbus', 'Take to the sky in this high speed mech action game. Dodge bullets, intercept missiles, defeat your enemies and save the Earth.', 50000, 10000, '2014-01-01', '2014-02-07', ''),
-(3, 2, 2, 2, 'Another Project', 'Art Category', 250000, 0, '2014-01-16', '2014-01-23', 'Another Project'),
+(2, 1, 1, 1, 'Project Nimbus', 'Take to the sky in this high speed mech action game. Dodge bullets, intercept missiles, defeat your enemies and save the Earth.', 50000, 8000, '2014-01-01', '2014-02-07', ''),
+(3, 3, 3, 2, 'Another Project', 'Art Category', 250000, 5000, '2014-01-16', '2014-01-23', 'Another Project'),
 (4, 1, 1, 1, 'aaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaa', 1, 0, '2013-12-01', '2014-01-10', ''),
-(5, 2, 2, 2, 'AAAAAAAAAAAAA', 'aaaaaaaaaaaaaa', 1, 0, '2013-12-01', '2013-12-17', '');
+(5, 3, 3, 2, 'AAAAAAAAAAAAA', 'aaaaaaaaaaaaaa', 1, 0, '2013-12-01', '2013-12-17', '');
 
 -- --------------------------------------------------------
 
@@ -181,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`userId`, `username`, `password`, `name`, `bio`) VALUES
 (1, 'haidar', '1', 'haidar', ''),
-(2, 'witheld', '1', 'witheld', ''),
+(2, 'hahaidarha', '1', 'witheld', ''),
 (3, 'kemal', 'kemal', 'kemal', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
