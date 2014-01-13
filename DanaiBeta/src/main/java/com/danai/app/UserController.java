@@ -82,7 +82,8 @@ public class UserController{
 	@RequestMapping(value="/login.do",method = RequestMethod.POST)
 	public String doLogin(@ModelAttribute User user, Model model, HttpSession session){
 		User _user = userDao.getUser(user.getUsername());
-		if (_user.getPassword().equals(user.getPassword())){
+		if (_user==null) return "redirect:/login";
+		else if (_user.getPassword().equals(user.getPassword())){
 			session.setAttribute("user", _user);
 			return "redirect:/dashboard";
 		}
