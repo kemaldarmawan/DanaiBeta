@@ -12,7 +12,12 @@
 </head>
 <body>
 	<%@ include file="header.jsp" %>
+	<h1>&nbsp;</h1>
+	
   	<div class="container">
+  		<div class="jumbotron">
+			<h1>Hello World</h1>
+		</div>
   	</div>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
