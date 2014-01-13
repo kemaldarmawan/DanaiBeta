@@ -20,44 +20,7 @@
 		</div>
 		<div class="row">
 			<div class="container">
-				<c:forEach var="item" items="${projectsByCategory}">
-					<div class="col-md-3" >
-						<div class="panel panel-default" style="height:300px">
-	  						<div class="panel-body">
-								<a href="#"><strong><small>${item.title }</small></strong></a>
-								<p><span class="glyphicon glyphicon-user"></span>&nbsp;<small> ${item.user.name }</small></p>
-								<div class="well well-sm" style="height:100px"><small>${item.description }</small></div>
-	    						<p></p>
-	    						<small><span class="glyphicon glyphicon-map-marker"></span>&nbsp; ${item.location.city}, ${item.location.province}</small>
-	    						<p></p>
-	    						<div class="progress-preview">
-									<div class="progress-bar progress-bar-success"  aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width:${item.currentFund / item.minimalFund * 100}%">
-							  		</div>
-								</div>
-	  						</div>	
-						</div>
-					</div>
-				</c:forEach>
-				<c:forEach var="item" items="${projectsByUser}">
-					<div class="col-md-3" >
-						<div class="panel panel-default" style="height:300px">
-	  						<div class="panel-body">
-								<a href="#"><strong><small>${item.title }</small></strong></a>
-								<p><span class="glyphicon glyphicon-user"></span>&nbsp;<small> ${item.user.name }</small></p>
-								<div class="well well-sm" style="height:100px"><small>${item.description }</small></div>
-	    						<p></p>
-	    						<small><span class="glyphicon glyphicon-map-marker"></span>&nbsp; ${item.location.city}, ${item.location.province}</small>
-	    						<p></p>
-	    						<div class="progress-preview">
-									<div class="progress-bar progress-bar-success"  aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width:${item.currentFund / item.minimalFund * 100}%">
-							  		</div>
-								</div>
-	  						</div>	
-						</div>
-					</div>
-				</c:forEach>
-				
-				<c:forEach var="item" items="${projectsByTitle}">
+				<c:forEach var="item" items="${result}">
 					<div class="col-md-3" >
 						<div class="panel panel-default" style="height:300px">
 	  						<div class="panel-body">

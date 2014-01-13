@@ -1,7 +1,9 @@
 package com.danai.app;
 
-import java.util.HashMap;
-import java.util.Map;
+
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,9 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.danai.model.Category;
-import com.danai.model.Location;
-import com.danai.model.User;
+import com.danai.model.*;
 import com.danai.repository.CategoryDao;
 import com.danai.repository.LocationDao;
 import com.danai.repository.ProjectDao;
@@ -56,9 +56,18 @@ public class HomeController {
 		System.out.println("+"+param+"+");
 		if(param.trim().equals("")) return "redirect:/";
 		model.addAttribute("res", param);
-		model.addAttribute("projectsByUser",projectDao.getProjectSearchByUsername(param));
-		model.addAttribute("projectsByTitle",projectDao.getProjectSearchByTitle(param));
-		model.addAttribute("projectsByCategory",projectDao.getProjectSearchByCategory(param));
+		List<Project> p1= projectDao.getProjectSearchByTitle(param);
+		List<Project> p2= projectDao.getProjectSearchByUsername(param); 
+		List<Project> p3= projectDao.getProjectSearchByCategory(param); 
+		ConcurrentMap<Integer, Project> map = new ConcurrentHashMap<Integer, Project>();
+		for(Project p: p1) map.putIfAbsent(p.getProjectId(), p);
+		for(Project p: p2) map.putIfAbsent(p.getProjectId(), p);
+		for(Project p: p3) map.putIfAbsent(p.getProjectId(), p);
+		
+		
+		Collection<Project> result = map.values();
+		model.addAttribute("result",result);
+		
 		return "search";
 	}
 	
