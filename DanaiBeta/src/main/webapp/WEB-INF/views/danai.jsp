@@ -15,7 +15,7 @@
 </head>
 <body>
 	<%@ include file="header.jsp" %>
-	<h1>&nbsp;</h1>
+	<h3>&nbsp;</h3>
 	<div class="well well-sm">
   	<div class="container">
   		<div class="row">
@@ -56,6 +56,7 @@
 		</div>
   	</div>
   	</div>
+  	<hr>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
 </body>
