@@ -14,6 +14,7 @@
           <ul class="nav navbar-nav">
             <li><a href="<c:url value='/' />">Home</a></li>
             <li><a href="<c:url value='/' />">Projects</a></li>
+            <li><a href="<c:url value='/start' />">Start</a></li>
           </ul>
           <form id="searchForm" action="<c:url value='/search' />" class="nav navbar-form navbar-left"  method="GET">
           	<div class="right-inner-addon">
