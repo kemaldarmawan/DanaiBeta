@@ -50,56 +50,38 @@ public class HomeController {
 		return "danai";
 	}
 	
+	@RequestMapping(value = "/discover" , method = RequestMethod.GET)
+	public String discover(Model model){
+		
+		return "discover";
+	}
+	
+	@RequestMapping(value = "/discover/categories" , method = RequestMethod.GET)
+	public String discoverCategories(Model model , HttpServletRequest request){
+		
+		return "discoverCategories";
+	}
+	
 	@RequestMapping(value = "/search",method = RequestMethod.GET)
 	public String search(Model model,HttpServletRequest request){
 		String param = (String)request.getParameter("s");
-		System.out.println("+"+param+"+");
-		if(param.trim().equals("")) return "redirect:/";
+		if(param.trim().equals("") || param.length() < 3) return "redirect:/";
 		model.addAttribute("res", param);
+		
 		List<Project> p1= projectDao.getProjectSearchByTitle(param);
 		List<Project> p2= projectDao.getProjectSearchByUsername(param); 
 		List<Project> p3= projectDao.getProjectSearchByCategory(param); 
+		List<Project> p4= projectDao.getProjectSearchByCity(param);
+		
 		ConcurrentMap<Integer, Project> map = new ConcurrentHashMap<Integer, Project>();
 		for(Project p: p1) map.putIfAbsent(p.getProjectId(), p);
 		for(Project p: p2) map.putIfAbsent(p.getProjectId(), p);
 		for(Project p: p3) map.putIfAbsent(p.getProjectId(), p);
-		
+		for(Project p: p4) map.putIfAbsent(p.getProjectId(), p);
 		
 		Collection<Project> result = map.values();
 		model.addAttribute("result",result);
-		
 		return "search";
 	}
-	
-	
-	@RequestMapping(value="/user.do", method=RequestMethod.POST)
-	public String doActions(@ModelAttribute User user, BindingResult result, @RequestParam String action, Map<String, Object> map) {
-		User userResult = new User();
-		String com =action.toLowerCase();
-		if (com.equals("add")) {
-			userDao.add(user);
-			userResult = user;
-		}
-		if (com.equals("edit")) {
-			userDao.edit(user);
-			userResult = user;
-		}
-		if (com.equals("delete")) {
-			userDao.delete(user.getUserId());
-			userResult = user;
-		}
-		if (com.equals("search")) {
-			User searchedUser =  userDao.getUser(user.getUserId());
-			userResult = searchedUser!=null ? searchedUser : new User() ;
-		}
-		map.put("user",userResult);
-		//map.put("userList",userDao.getAllUser());
-		return "redirect:/";
-	}
-
-	
-	
-
-	
 	
 }
