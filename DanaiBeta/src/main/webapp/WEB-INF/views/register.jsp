@@ -8,6 +8,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Danai - Daftar</title>
 <link href="<c:url value="/resources/css/bootstrap.css"/>" type="text/css" rel="stylesheet" />
+<script>
+function validatePassword()
+{
+	var x = document.getElementById("pass").value;
+	var y = document.getElementById("confirmpass").value;
+	if (x != y){
+		document.getElementById("confirm.errors").innerHTML = "Password tidak sama.";
+		return false;
+	}
+}
+</script>
 </head>
 <body>
 	<%@ include file="header.jsp" %>
@@ -18,40 +29,45 @@
 		<div class="well">
 			<div class="row">
 				<div class="col-md-3 col-md-offset-1">
-					<form:form action="register.do" method="POST" commandName="user">
+					<form:form action="register.do" method="POST" commandName="user" onsubmit="return validatePassword()">
 						<div class="row">
 							<div class="form-group">
-								<label for="name">Nama Lengkap</label>
+								<label for="name">Full Name</label>
 								<form:input cssClass="form-control" path="name" placeholder="Nama Lengkap"/>
+								<form:errors path="name"></form:errors>
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group">
 								<label for="username">Username</label>
 								<form:input cssClass="form-control" path="username" placeholder="Username"/>
+								<form:errors path="username"></form:errors>
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group">
 								<label for="password">Password</label>
-								<form:input type="password" cssClass="form-control" path="password" placeholder="Password"/>
+								<form:input id="pass" type="password" cssClass="form-control" path="password" placeholder="Password"/>
+								<form:errors path="password"></form:errors>
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group">
 								<label for="password">Confirm Password</label>
-								<input type="password" class="form-control" placeholder="Confirm Password"/>
+								<input id="confirmpass" type="password" class="form-control" placeholder="Confirm Password"/>
+								<span id="confirm.errors"></span>
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group">
 								<label for="bio">Biodata</label>
 								<form:textarea cssClass="form-control" path="bio" placeholder="Biodata"/>
+								<form:errors path="bio"></form:errors>
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group">
-								<input type="submit" value="Daftar" class="btn btn-success"/>	
+								<input type="submit" value="Sign Up" class="btn btn-success"/>	
 							</div>
 						</div>
 					</form:form>
