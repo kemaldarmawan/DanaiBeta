@@ -50,7 +50,7 @@
 								
 								<div class="row">
 									<div class="form-group">
-									   <input type="submit" value="Change Avatar" class="btn btn-success"/>	
+									   <input type="submit" value="Submit" class="btn btn-success"/>	
 									</div>
 								</div>
 							</form:form>
@@ -74,16 +74,15 @@
 										<p>Category</p>
 										<select>
 										  <option value="art">Art</option>
-										  <option value="film">Film & Video</option>
-										  <option value="music">Music</option>
-										  <option value="technology">Technology</option>
+										  <option value="games">Games</option>
+										  <option value="wearables">Wearables</option>
 										</select>	
 									</div>
 								</div>
 								
 								<div class="row">
 									<div class="form-group">
-										<p>Short Blurb</p>
+										<p>Description</p>
 										<input type="text" value="" />	
 									</div>
 								</div>
@@ -92,6 +91,27 @@
 									<div class="form-group">
 										<p>Project Location</p>
 										<input type="text" value="" />	
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="form-group">
+										<p>Minimal Fund</p>
+										<input type="text" value="" />	
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="form-group">
+										<p>Last Fund</p>
+										<input type="date" value="" />	
+									</div>
+								</div>
+								
+								<div class="row">
+								<div>&nbsp</div>
+									<div class="form-group">
+									   <input type="submit" value="Publish" class="btn btn-success"/>	
 									</div>
 								</div>
 							</form:form>
