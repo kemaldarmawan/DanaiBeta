@@ -50,8 +50,8 @@ public class UserValidator implements Validator{
 		 Pattern password_pattern = Pattern.compile("^[a-zA-Z0-9_\\.]{6,50}$");
 		 Pattern name_pattern = Pattern.compile("^[a-zA-Z\" \"]{2,100}$");
 		 Pattern bio_pattern = Pattern.compile("^.{1,200}$");
-		 if (null == user.getname()){
-			 user.setname(EMPTY);
+		 if (null == user.getName()){
+			 user.setName(EMPTY);
 		 }
 		 if (null == user.getUsername()){
 			 user.setUsername(EMPTY);
@@ -65,7 +65,7 @@ public class UserValidator implements Validator{
 		 Matcher username = username_pattern.matcher(user.getUsername());
 		 Matcher password = password_pattern.matcher(user.getPassword());
 		 Matcher bio = bio_pattern.matcher(user.getBio());
-		 Matcher name = name_pattern.matcher(user.getname());
+		 Matcher name = name_pattern.matcher(user.getName());
 		 if (!username.matches()){
 			 errors.rejectValue("username", "username.invalid", "Username harus terdiri dari 6-50 karakter alfanumerik dan dapat mengandung karakter . dan _");
 		 }
@@ -90,8 +90,8 @@ public class UserValidator implements Validator{
 		 Pattern password_pattern = Pattern.compile("^[a-zA-Z0-9_\\.]{6,50}$");
 		 Pattern name_pattern = Pattern.compile("^[a-zA-Z\" \"]{2,100}$");
 		 Pattern bio_pattern = Pattern.compile("^.{1,200}$");
-		 if (null == user.getname()){
-			 user.setname(EMPTY);
+		 if (null == user.getName()){
+			 user.setName(EMPTY);
 		 }
 		 if (null == user.getUsername()){
 			 user.setUsername(EMPTY);
@@ -105,7 +105,7 @@ public class UserValidator implements Validator{
 		 Matcher username = username_pattern.matcher(user.getUsername());
 		 Matcher password = password_pattern.matcher(user.getPassword());
 		 Matcher bio = bio_pattern.matcher(user.getBio());
-		 Matcher name = name_pattern.matcher(user.getname());
+		 Matcher name = name_pattern.matcher(user.getName());
 		 if (!name.matches()){
 			 errors.rejectValue("name", "name.invalid", "Nama lengkap harus terdiri dari 2-100 karakter a-z (sensitif) dan dapat mengandung karakter spasi");
 		 }
@@ -120,8 +120,8 @@ public class UserValidator implements Validator{
 		 Pattern password_pattern = Pattern.compile("^[a-zA-Z0-9_\\.]{6,50}$");
 		 Pattern name_pattern = Pattern.compile("^[a-zA-Z\" \"]{2,100}$");
 		 Pattern bio_pattern = Pattern.compile("^.{1,200}$");
-		 if (null == user.getname()){
-			 user.setname(EMPTY);
+		 if (null == user.getName()){
+			 user.setName(EMPTY);
 		 }
 		 if (null == user.getUsername()){
 			 user.setUsername(EMPTY);
@@ -135,7 +135,7 @@ public class UserValidator implements Validator{
 		 Matcher username = username_pattern.matcher(user.getUsername());
 		 Matcher password = password_pattern.matcher(user.getPassword());
 		 Matcher bio = bio_pattern.matcher(user.getBio());
-		 Matcher name = name_pattern.matcher(user.getname());
+		 Matcher name = name_pattern.matcher(user.getName());
 		 if (!password.matches()){
 			 errors.rejectValue("password", "password.invalid", "Password harus terdiri dari 6-50 karakter alfanumerik dan dapat mengandung karakter . dan _");
 		 }

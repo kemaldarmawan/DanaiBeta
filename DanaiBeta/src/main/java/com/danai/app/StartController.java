@@ -28,6 +28,7 @@ import com.danai.repository.UserDao;
 @Controller
 public class StartController {
 	
+	@Autowired
 	private UserDao userDao;
 	
 	@RequestMapping(value="/start",method = RequestMethod.GET)

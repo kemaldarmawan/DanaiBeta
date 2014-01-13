@@ -45,6 +45,8 @@ public class Project {
 	private int minimalFund;
 	@Column
 	private int currentFund;
+	@Column
+	private int fundedNumber;
 	
 	@Temporal(TemporalType.DATE)
 	@Column
@@ -124,6 +126,14 @@ public class Project {
 	}
 	public int getCurrentFund() {
 		return currentFund;
+	}
+	
+	public int getFundedNumber() {
+		return fundedNumber;
+	}
+
+	public void setFundedNumber(int fundedNumber) {
+		this.fundedNumber = fundedNumber;
 	}
 
 	public void setCurrentFund(int currentFund) {
