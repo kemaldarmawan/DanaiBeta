@@ -9,15 +9,95 @@
 <link href="<c:url value="/resources/css/bootstrap.css"/>" type="text/css" rel="stylesheet" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Danai - Start Making Your Project..</title>
+<link href="<c:url value="/resources/css/bootstrap.css"/>" type="text/css" rel="stylesheet" />
+<link href="<c:url value="/resources/css/jasny-bootstrap.css"/>" type="text/css" rel="stylesheet" />
 </head>
 <body>
 	<%@ include file="header.jsp" %>
   	<div class="container">
+  		<h1>&nbsp</h1>
+  		<div align="center">
   		<h1>
-  			"A way for every creative "
+  			"A way for every creative
 			<br>
-			"person to control their destiny"
+			person to control their destiny"
   		</h1>
+  		</div>
+  		<div align="center">
+  			<h1>Meet your new project.</h1>
+  			<p>Start by giving it a name, a pic, and other important details.</p>
+  		</div>
+  		
+  		<div class="well">
+					<div class="row">
+						<div class="col-md-3 col-md-offset-1">
+							<form:form method="post" enctype="multipart/form-data" commandName="file" action="insertimage.do">  
+							   <div class="row">
+									<div class="form-group">
+									   <div class="fileinput fileinput-new" data-provides="fileinput">
+									   	  <p>Project Image</p>
+										  <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 950px; height: 150px;"></div>
+										  <div>
+										  	<div>
+										    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="file"></span>
+										    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+										  </div>
+										</div>
+									</div>
+									<form:errors path="file"></form:errors>
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="form-group">
+									   <input type="submit" value="Change Avatar" class="btn btn-success"/>	
+									</div>
+								</div>
+							</form:form>
+						</div>
+					</div>
+		</div>
+		
+		<div class="well">
+					<div class="row">
+						<div class="col-md-3 col-md-offset-1">
+							<form:form method="post" enctype="multipart/form-data" commandName="data" action="insertdata.do">
+								<div class="row">
+									<div class="form-group">
+										<p>Project Name</p>
+										<input type="text" value="" />	
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="form-group">
+										<p>Category</p>
+										<select>
+										  <option value="art">Art</option>
+										  <option value="film">Film & Video</option>
+										  <option value="music">Music</option>
+										  <option value="technology">Technology</option>
+										</select>	
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="form-group">
+										<p>Short Blurb</p>
+										<input type="text" value="" />	
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="form-group">
+										<p>Project Location</p>
+										<input type="text" value="" />	
+									</div>
+								</div>
+							</form:form>
+			  			</div>
+			  		</div>
+		</div>
   	</div>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
