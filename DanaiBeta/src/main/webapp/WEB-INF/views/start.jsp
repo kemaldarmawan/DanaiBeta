@@ -61,11 +61,12 @@
 		<div class="well">
 					<div class="row">
 						<div class="col-md-3 col-md-offset-1">
-							<form:form method="post" enctype="multipart/form-data" commandName="data" action="insertdata.do">
+							<form:form method="post" commandName="data" action="insertdata.do">
 								<div class="row">
 									<div class="form-group">
-										<p>Project Name</p>
-										<input type="text" value="" />	
+										<label for="title">Project Title</label>
+										<form:input cssClass="form-control" path="title" placeholder="Judul Project"/>
+										<form:errors path="title"></form:errors>
 									</div>
 								</div>
 								
@@ -120,6 +121,7 @@
 		</div>
   	</div>
     <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
     <script src="<c:url value="/resources/js/jasny-bootstrap.js"/>"></script>
 </body>
 </html>
