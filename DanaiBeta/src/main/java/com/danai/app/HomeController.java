@@ -50,6 +50,7 @@ public class HomeController {
 		ConcurrentMap<Integer, Project> map = new ConcurrentHashMap<Integer, Project>();
 		for(Project p: p1) map.putIfAbsent(p.getCategory().getCategoryId(), p);
 		model.addAttribute("projectsByCategory", map.values());
+		model.addAttribute("projectsByPopular",projectDao.getAllProject().subList(0,4));
 		return "danai";
 	}
 	

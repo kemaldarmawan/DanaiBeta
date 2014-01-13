@@ -10,8 +10,10 @@
 <link href="<c:url value="/resources/css/bootstrap.css"/>" type="text/css" rel="stylesheet" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Danai - Search</title>
+
 </head>
 <body>
+	
 	<%@ include file="header.jsp" %>
 	<%@ include file="staticJs.jsp" %>
 	<div class="container">
@@ -23,19 +25,22 @@
 			<div class="container">
 				<c:forEach var="item" items="${result}">
 					<div class="col-md-3" >
-						<div class="panel panel-default" style="height:350px">
+						<div class="panel panel-default" style="height:370px">
 	  						<div class="panel-body">
-	  							<img src="<c:url value="/resources/photos/projects/"/>${item.projectId}.png" class="img-rounded" height="100" width="100%" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/users/0.png"/>';" >
+	  							<a href="#"><img src="<c:url value="/resources/photos/projects/"/>${item.projectId}.png" class="img-rounded" height="100" width="100%" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/users/1.png"/>';"></a>
 								<a href="#"><strong><small>${item.title }</small></strong></a>
 								<p><span class="glyphicon glyphicon-user"></span>&nbsp;<small> ${item.user.name }</small></p>
 								<div class="well well-sm" style="height:100px"><small>${item.description }</small></div>
 	    						<small><span class="glyphicon glyphicon-map-marker"></span>&nbsp; ${item.location.city}, ${item.location.province}</small>
 	    						<div class="progress-preview">
-									<div class="progress-bar progress-bar-success"  aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width:${item.currentFund / item.minimalFund * 100}%">
+									<div class="progress-bar progress-bar-success"  aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width:${item.currentFund / item.minimalFund * 100 + 1}%">
 							  		</div>
 								</div>
-								<c:set var="funded" ><fmt:parseNumber type="number" value="${(item.currentFund / item.minimalFund) * 100}" /></c:set>
-								<small><span class="label label-primary">${funded}%</span></small>
+								<ul class="nav nav-pills nav-justified">
+							  	  <c:set var="funded" ><fmt:parseNumber type="number" value="${(item.currentFund / item.minimalFund) * 100}" /></c:set>
+								  <li><a title="funded" data-toggle="tooltip"><small><strong>${funded}%</strong></small></a></li>
+								  <li><a title="pledged" data-toggle="tooltip"><small><strong><fmt:formatNumber value="${item.currentFund}" minFractionDigits="0"  type="currency"/></strong></small></a></li>
+								</ul>
 	  						</div>	
 						</div>
 					</div>
@@ -43,5 +48,6 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">$('[data-toggle="tooltip"]').tooltip({'placement': 'top'});</script>
 </body>
 </html>
