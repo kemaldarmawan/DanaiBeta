@@ -25,9 +25,10 @@ import com.danai.repository.UserDao;
 /**
  * Handles requests for the application home page.
  */
-
+@Controller
 public class StartController {
 	
+	@Autowired
 	private UserDao userDao;
 	
 	@RequestMapping(value="/start",method = RequestMethod.GET)
