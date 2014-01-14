@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -16,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +32,8 @@ import com.danai.model.FileUpload;
 import com.danai.model.Location;
 import com.danai.model.Project;
 import com.danai.model.User;
+import com.danai.model.editor.CategoryEditor;
+import com.danai.model.editor.LocationEditor;
 import com.danai.repository.CategoryDao;
 import com.danai.repository.LocationDao;
 import com.danai.repository.ProjectDao;
@@ -38,6 +44,8 @@ import com.danai.repository.FundDao;
  */
 @Controller
 public class StartController {
+	@Autowired
+	private CategoryDao categoryDao;
 	
 	@Autowired
 	private UserDao userDao;
@@ -60,6 +68,13 @@ public class StartController {
 	@Inject
 	FileValidator fileValidator;
 	
+	@InitBinder
+	public void initBinder(WebDataBinder binder){
+		binder.registerCustomEditor(Category.class, new CategoryEditor(categoryDao));
+		binder.registerCustomEditor(Location.class, new LocationEditor(locationDao));
+	}
+	
+	
 	@RequestMapping(value="/start",method = RequestMethod.GET)
 	public String start(Model model, HttpSession session){
 		User user = (User) session.getAttribute("user");
@@ -69,6 +84,9 @@ public class StartController {
 		else{
 			model.addAttribute("user",user);
 			model.addAttribute("createdProject",(userDao.getUser(user.getUsername())).getCreatedProject());
+			model.addAttribute("project", new Project());
+			model.addAttribute("categories", categoryDao.getAllCategory());
+			model.addAttribute("locations", locationDao.getAllLocation());
 			return "start";
 		}
 	}
@@ -110,5 +128,25 @@ public class StartController {
 			e.printStackTrace();
 		}
 		return "redirect:/start";
+	}
+	
+	@RequestMapping(value="/insertdata.do",method = RequestMethod.POST)
+	public String doRegister(@ModelAttribute("data") Project project, BindingResult result, Model model,HttpSession session){
+		/*userValidator.validate(project,result);
+		if (result.hasErrors()){
+			return "start";
+		}
+		else {*/
+		User user = new User();
+		Date date = new Date();
+		//DateFormat dateFormat = DateFormat.getDateTimeInstance(dateFormat.MEDIUM, DateFormat.MEDIUM,locale);
+		//project.setCreatedDate();
+		date.getTime();
+		project.setCreatedDate(date);
+		project.setLastDate(date);
+		project.setUser((User) session.getAttribute("user"));
+		projectDao.add(project);
+		return "redirect:/dashboard";
+		//}
 	}
 }
