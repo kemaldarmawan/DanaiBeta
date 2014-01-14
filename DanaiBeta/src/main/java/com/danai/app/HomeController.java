@@ -46,6 +46,9 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
+		projectDao.clearOrder();
+		projectDao.addOrder("currentFund", false);
+		projectDao.addOrder("fundedNumber", false);
 		List<Project> p1= projectDao.getAllProject();
 		ConcurrentMap<Integer, Project> map = new ConcurrentHashMap<Integer, Project>();
 		for(Project p: p1) map.putIfAbsent(p.getCategory().getCategoryId(), p);
