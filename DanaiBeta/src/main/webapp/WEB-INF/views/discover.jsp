@@ -6,11 +6,10 @@
 <head>
 <%@ include file="staticCss.jsp" %>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Danai - Search</title>
+<title>Danai - Discover</title>
 </head>
 <body>
 	<%@ include file="header.jsp" %>
-	
 	<%@ include file="staticJs.jsp" %>
 </body>
 </html>
