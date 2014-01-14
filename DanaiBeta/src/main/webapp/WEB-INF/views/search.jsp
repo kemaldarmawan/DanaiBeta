@@ -19,13 +19,13 @@
 	<div class="container">
 		<h1>&nbsp;</h1>
 		<div class="page-header">
-			<h1>Result for <small>"${res}"</small></h1>
+			<h2><strong>Results for <small>"${res}"</strong></small></h2>
 		</div>
 		<div class="row">
 			<div class="container">
 				<c:forEach var="item" items="${result}">
 					<div class="col-md-3" >
-						<div class="panel panel-default" style="height:370px">
+						<div class="panel panel-default" style="height:370px;">
 	  						<div class="panel-body">
 	  							<a href="#"><img src="<c:url value="/resources/photos/projects/"/>${item.projectId}.png" class="img-rounded" height="100" width="100%" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/users/1.png"/>';"></a>
 								<a href="#"><strong><small>${item.title }</small></strong></a>

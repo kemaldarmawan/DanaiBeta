@@ -70,9 +70,11 @@ public class HomeController {
 		return "discover";
 	}
 	
-	@RequestMapping(value = "/discover/categories" , method = RequestMethod.GET)
-	public String discoverCategories(Model model , HttpServletRequest request){
-		
+	@RequestMapping(value = "/discover/categories/{categoryId}" , method = RequestMethod.GET)
+	public String discoverCategories(Model model , HttpServletRequest request , @PathVariable Integer categoryId){
+		model.addAttribute("results",projectDao.getProjectByCategory(categoryId));
+		model.addAttribute("categories",categoryDao.getAllCategory());
+		model.addAttribute("category",categoryDao.getCategory(categoryId));
 		return "discoverCategories";
 	}
 	

@@ -26,12 +26,12 @@
           	<%
           		User user = (User) request.getSession().getAttribute("user");
           		if (user == null){
-          			out.println("<li><a href='/app/register'>Sign Up</a></li>");
-          			out.println("<li><a href='/app/login'>Log In</a></li>");
+          			out.println("<li><a href='/app/register'><span class='glyphicon glyphicon-pencil'></span> Register</a></li>");
+          			out.println("<li><a href='/app/login'><span class='glyphicon glyphicon-log-in'></span> Log In</a></li>");
           		}
           		else {
-          			out.println("<li><a href='/app/dashboard'>"+user.getUsername().toUpperCase()+"</a></li>");
-          			out.println("<li><a href='/app/logout'>Log Out</a></li>");
+          			out.println("<li><a href='/app/dashboard'><span class='glyphicon glyphicon-user'></span> "+user.getUsername()+"</a></li>");
+          			out.println("<li><a href='/app/logout'><span class='glyphicon glyphicon-log-out'></span> Log Out</a></li>");
           		}
           	%>
             
