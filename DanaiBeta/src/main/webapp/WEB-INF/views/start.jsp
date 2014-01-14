@@ -61,51 +61,71 @@
 		<div class="well">
 					<div class="row">
 						<div class="col-md-3 col-md-offset-1">
-							<form:form method="post" commandName="data" action="insertdata.do">
+							<form:form method="post" commandName="project" action="insertdata.do">
 								<div class="row">
 									<div class="form-group">
-										<label for="title">Project Title</label>
-										<form:input cssClass="form-control" path="title" placeholder="Judul Project"/>
-										<form:errors path="title"></form:errors>
+										<p>Project Name</p>
+										<form:input path="title"/>	
 									</div>
 								</div>
 								
 								<div class="row">
 									<div class="form-group">
 										<p>Category</p>
-										<select>
-										  <option value="art">Art</option>
-										  <option value="games">Games</option>
-										  <option value="wearables">Wearables</option>
-										</select>	
+										<form:select path="category" items="${categories}"
+										itemLabel="name" itemValue="categoryId">
+										</form:select>
 									</div>
 								</div>
 								
 								<div class="row">
 									<div class="form-group">
 										<p>Description</p>
-										<input type="text" value="" />	
+										<form:input path="description"/>	
 									</div>
 								</div>
 								
 								<div class="row">
 									<div class="form-group">
 										<p>Project Location</p>
-										<input type="text" value="" />	
+										<form:select path="location" items="${locations}"
+										itemLabel="city" itemValue="locationId">
+										</form:select>
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="form-group">
+										<p>Funded Number</p>
+										<form:input path="fundedNumber"/>	
 									</div>
 								</div>
 								
 								<div class="row">
 									<div class="form-group">
 										<p>Minimal Fund</p>
-										<input type="text" value="" />	
+										<form:input path="minimalFund"/>	
 									</div>
 								</div>
 								
 								<div class="row">
 									<div class="form-group">
-										<p>Last Fund</p>
-										<input type="date" value="" />	
+										<p>Current Fund</p>
+										<form:input path="currentFund"/>	
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="form-group">
+										<p>Last Date</p>
+										<form:input path="lastDate"/>
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="form-group">
+										<p>Explanation</p>
+										<form:input path="explanation"/>	
 									</div>
 								</div>
 								
