@@ -25,6 +25,15 @@ function validatePassword()
 	
 	<div class="container">
 		<h1>&nbsp;</h1>
+		<c:choose>
+			<c:when test="${not empty  eror}">
+	    		<div class="alert alert-danger">
+	    			<c:forEach items="${eror}" var="err">
+	        		${err.defaultMessage}<br>
+	    			</c:forEach>
+	    		</div>
+			</c:when>
+		</c:choose>
 		<h1>Sign Up</h1>
 		<div class="well">
 			<div class="row">
@@ -33,7 +42,7 @@ function validatePassword()
 						<div class="row">
 							<div class="form-group">
 								<label for="name">Full Name</label>
-								<form:input cssClass="form-control" path="name" placeholder="Nama Lengkap"/>
+								<form:input cssClass="form-control" path="name" placeholder="Full Name"/>
 								<form:errors path="name"></form:errors>
 							</div>
 						</div>

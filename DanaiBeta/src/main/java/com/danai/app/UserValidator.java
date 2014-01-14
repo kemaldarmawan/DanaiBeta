@@ -86,24 +86,14 @@ public class UserValidator implements Validator{
 	}
 	 public void validateUpdate(Object target, Errors errors){
 		 User user = (User) target;
-		 Pattern username_pattern = Pattern.compile("^[a-zA-Z0-9_\\.]{6,50}$");
-		 Pattern password_pattern = Pattern.compile("^[a-zA-Z0-9_\\.]{6,50}$");
 		 Pattern name_pattern = Pattern.compile("^[a-zA-Z\" \"]{2,100}$");
 		 Pattern bio_pattern = Pattern.compile("^.{1,200}$");
 		 if (null == user.getName()){
 			 user.setName(EMPTY);
 		 }
-		 if (null == user.getUsername()){
-			 user.setUsername(EMPTY);
-		 }
 		 if (null == user.getBio()){
 			 user.setBio(EMPTY);
 		 }
-		 if (null == user.getPassword()){
-			 user.setPassword(EMPTY);
-		 }
-		 Matcher username = username_pattern.matcher(user.getUsername());
-		 Matcher password = password_pattern.matcher(user.getPassword());
 		 Matcher bio = bio_pattern.matcher(user.getBio());
 		 Matcher name = name_pattern.matcher(user.getName());
 		 if (!name.matches()){
@@ -116,28 +106,32 @@ public class UserValidator implements Validator{
 	
 	 public void validateChangePass(Object target, Errors errors){
 		 User user = (User) target;
-		 Pattern username_pattern = Pattern.compile("^[a-zA-Z0-9_\\.]{6,50}$");
 		 Pattern password_pattern = Pattern.compile("^[a-zA-Z0-9_\\.]{6,50}$");
-		 Pattern name_pattern = Pattern.compile("^[a-zA-Z\" \"]{2,100}$");
-		 Pattern bio_pattern = Pattern.compile("^.{1,200}$");
-		 if (null == user.getName()){
-			 user.setName(EMPTY);
+		 if (null == user.getPassword()){
+			 user.setPassword(EMPTY);
 		 }
+		 Matcher password = password_pattern.matcher(user.getPassword());
+		 if (!password.matches()){
+			 errors.rejectValue("password", "password.invalid", "Password harus terdiri dari 6-50 karakter alfanumerik dan dapat mengandung karakter . dan _");
+		 }
+	}
+	 
+	 public void validateLogin(Object target, Errors errors){
+		 User user = (User) target;
 		 if (null == user.getUsername()){
 			 user.setUsername(EMPTY);
-		 }
-		 if (null == user.getBio()){
-			 user.setBio(EMPTY);
 		 }
 		 if (null == user.getPassword()){
 			 user.setPassword(EMPTY);
 		 }
-		 Matcher username = username_pattern.matcher(user.getUsername());
-		 Matcher password = password_pattern.matcher(user.getPassword());
-		 Matcher bio = bio_pattern.matcher(user.getBio());
-		 Matcher name = name_pattern.matcher(user.getName());
-		 if (!password.matches()){
-			 errors.rejectValue("password", "password.invalid", "Password harus terdiri dari 6-50 karakter alfanumerik dan dapat mengandung karakter . dan _");
+		 User _user = userDao.getUser(user.getUsername());
+		 if (_user == null){
+			 errors.rejectValue("username", "login.error", "Username/Password salah");
+		 }
+		 else {
+			 if (!(_user.getPassword()).equals(user.getPassword())){
+				 errors.rejectValue("username", "login.error", "Username/Password salah");
+			 }
 		 }
 	}
 	 

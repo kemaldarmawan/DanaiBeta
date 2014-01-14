@@ -18,8 +18,8 @@ public class FileValidator implements Validator {
 	@Override
 	public void validate(Object uploadedFile, Errors errors){
 		FileUpload file = (FileUpload) uploadedFile;
-		if(file.getFile().getSize()==0){
-			errors.rejectValue("file", "file.error","File kosong");
+		if(file.getFile().getSize()==0 || file.getFile().getSize()>1000000){
+			errors.rejectValue("file", "file.error","File gambar tidak valid");
 		}
 	}
 }

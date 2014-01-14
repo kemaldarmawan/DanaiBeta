@@ -1,10 +1,12 @@
 package com.danai.app;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.lf5.util.Resource;
@@ -14,14 +16,23 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.danai.model.Category;
 import com.danai.model.FileUpload;
@@ -61,9 +72,12 @@ public class UserController{
 	 */
 	
 	@RequestMapping(value="/register",method = RequestMethod.GET)
-	public String register(Model model, HttpSession session){
+	public String register(@ModelAttribute("user_temp") User user, Model model, HttpSession session){
 		session.setAttribute("user",null);
-		model.addAttribute("user", new User());
+		if (user != null)
+			model.addAttribute("user", user);
+		else
+			model.addAttribute("user", new User());
 		return "register";
 	}
 	
@@ -80,19 +94,20 @@ public class UserController{
 	}
 	
 	@RequestMapping(value="/login.do",method = RequestMethod.POST)
-	public String doLogin(@ModelAttribute User user, Model model, HttpSession session){
-		User _user = userDao.getUser(user.getUsername());
-		if (_user==null) return "redirect:/login";
-		else if (_user.getPassword().equals(user.getPassword())){
+	public String doLogin(@ModelAttribute User user, BindingResult result, Model model, HttpSession session, RedirectAttributes redirectAttributes){
+		userValidator.validateLogin(user, result);
+		if (result.hasErrors()){
+			redirectAttributes.addFlashAttribute("eror", result.getAllErrors());
+			return "redirect:/login";
+		}
+		else{
+			User _user = userDao.getUser(user.getUsername());
 			session.setAttribute("user", _user);
 			return "redirect:/dashboard";
 		}
-		else{
-			return "redirect:/login";
-		}
 	}
 	@RequestMapping(value="/changeimage.do",method = RequestMethod.POST)
-	public String doEditImage(@ModelAttribute("file") FileUpload uploadedFile, BindingResult result, Model model, HttpSession session){
+	public String doEditImage(@ModelAttribute("file") FileUpload uploadedFile, BindingResult result, Model model, HttpSession session, RedirectAttributes redirectAttributes){
 		User user = (User) session.getAttribute("user");
 		InputStream inputStream = null;
 		OutputStream outputStream = null;
@@ -103,8 +118,8 @@ public class UserController{
 		String fileName = String.valueOf(user.getUserId()) + ".png";
 		
 		if (result.hasErrors()){
-			model.addAttribute("user",user);
-			return "dashboard";
+			redirectAttributes.addFlashAttribute("eror", result.getAllErrors());
+			return "redirect:/dashboard";
 		}
 		
 		try {
@@ -130,10 +145,12 @@ public class UserController{
 	}
 	
 	@RequestMapping(value="/register.do",method = RequestMethod.POST)
-	public String doRegister(@ModelAttribute("user") User user, BindingResult result, Model model){
+	public String doRegister(@ModelAttribute("user") User user, BindingResult result, Model model, RedirectAttributes redirectAttributes){
 		userValidator.validate(user,result);
 		if (result.hasErrors()){
-			return "register";
+			redirectAttributes.addFlashAttribute("eror", result.getAllErrors());
+			redirectAttributes.addFlashAttribute("user_temp", user);
+			return "redirect:/register";
 		}
 		else {
 			userDao.add(user);
@@ -156,29 +173,32 @@ public class UserController{
 	}
 	
 	@RequestMapping(value="/update.do",method = RequestMethod.POST)
-	public String doUpdate(@ModelAttribute("user") User user, BindingResult result, Model model, HttpSession session){
-		User _user = (User) session.getAttribute("user");
-		_user.setName(user.getName());
-		_user.setBio(user.getBio());
-		userValidator.validateUpdate(_user,result);
+	public String doUpdate(@ModelAttribute("user") User user, BindingResult result, Model model, HttpSession session, RedirectAttributes redirectAttributes){
+		userValidator.validateUpdate(user,result);
 		if (result.hasErrors()){
-			return "dashboard";
+			redirectAttributes.addFlashAttribute("eror", result.getAllErrors());
+			return "redirect:/dashboard";
 		}
 		else {
+			User _user = (User) session.getAttribute("user");
+			_user.setName(user.getName());
+			_user.setBio(user.getBio());
 			userDao.edit(_user);
 			return "redirect:/dashboard";
 		}
 	}
 	
 	@RequestMapping(value="/changepass.do",method = RequestMethod.POST)
-	public String doChangePass(@ModelAttribute("user") User user, BindingResult result, Model model, HttpSession session){
-		User _user = (User) session.getAttribute("user");
-		_user.setPassword(user.getPassword());
-		userValidator.validateChangePass(_user,result);
+	public String doChangePass(@ModelAttribute("user") User user, BindingResult result, Model model, HttpSession session, RedirectAttributes redirectAttributes){
+		userValidator.validateChangePass(user,result);
 		if (result.hasErrors()){
-			return "dashboard";
+			redirectAttributes.addFlashAttribute("eror", result.getAllErrors());
+			return "redirect:/dashboard";
 		}
 		else {
+			User _user = (User) session.getAttribute("user");
+			_user.setName(user.getName());
+			_user.setBio(user.getBio());
 			userDao.edit(_user);
 			return "redirect:/dashboard";
 		}
@@ -189,5 +209,6 @@ public class UserController{
 		session.setAttribute("user",null);
 		return "redirect:/login";
 	}
+	
 	
 }

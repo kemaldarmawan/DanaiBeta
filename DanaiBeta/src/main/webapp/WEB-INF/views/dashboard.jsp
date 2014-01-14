@@ -19,6 +19,13 @@ function validatePassword()
 		return false;
 	}
 }
+function validateImage()
+{
+	var f = document.getElementById("inputfile");
+    if( ""==f.value){
+    	return false;
+    }
+}
 </script>
 </head>
 <body>
@@ -26,6 +33,15 @@ function validatePassword()
 	
 	<div class="container">
 		<h1>&nbsp;</h1>
+		<c:choose>
+			<c:when test="${not empty  eror}">
+	    		<div class="alert alert-danger">
+	    			<c:forEach items="${eror}" var="err">
+	        		${err.defaultMessage}<br>
+	    			</c:forEach>
+	    		</div>
+			</c:when>
+		</c:choose>
 		<h1>Dashboard</h1>
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
@@ -40,13 +56,13 @@ function validatePassword()
 							<form:form action="update.do" method="POST" commandName="user">
 								<div class="row">
 									<div class="form-group">
-										<img src="<c:url value="/resources/photos/users/"/>${user.userId}.png" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/users/0.png"/>';" class="img-thumbnail">
+										<img src="<c:url value="/resources/photos/users/"/>${user.userId}.png" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/users/0.png"/>';" class="img-thumbnail" style="height:200px;width:200px">
 									</div>
 								</div>
 								<div class="row">
 									<div class="form-group">
 										<label for="name">Full Name</label>
-										<form:input cssClass="form-control" path="name" placeholder="Nama Lengkap"/>
+										<form:input cssClass="form-control" path="name" placeholder="Full Name"/>
 										<form:errors path="name"></form:errors>
 									</div>
 								</div>
@@ -106,17 +122,18 @@ function validatePassword()
 				<div class="well">
 					<div class="row">
 						<div class="col-md-3 col-md-offset-1">
-							<form:form method="post" enctype="multipart/form-data" commandName="file" action="changeimage.do">  
+							<form:form method="post" enctype="multipart/form-data" commandName="file" action="changeimage.do" onsubmit="return validateImage()">  
 							   <div class="row">
 									<div class="form-group">
 									   <div class="fileinput fileinput-new" data-provides="fileinput">
 										  <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
 										  <div>
-										    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="file"></span>
+										    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input id="inputfile" type="file" name="file" accept="image/jpg,image/jpeg,image/png"></span>
 										    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
 										  </div>
 										</div>
 									</div>
+									<p>Ukuran file tidak melebihi 1 MB</p>
 									<form:errors path="file"></form:errors>
 								</div>
 								<div class="row">

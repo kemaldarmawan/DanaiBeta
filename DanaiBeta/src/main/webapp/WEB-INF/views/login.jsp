@@ -14,6 +14,15 @@
 	
 	<div class="container">
 		<h1>&nbsp;</h1>
+		<c:choose>
+			<c:when test="${not empty  eror}">
+	    		<div class="alert alert-danger">
+	    			<c:forEach items="${eror}" var="err">
+	        		${err.defaultMessage}
+	    			</c:forEach>
+	    		</div>
+			</c:when>
+		</c:choose>
 		<h1>Login</h1>
 		<div class="well">
 			<div class="row">
