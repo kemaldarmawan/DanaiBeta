@@ -172,6 +172,12 @@ public class UserController{
 		}
 	}
 	
+	@RequestMapping(value="/profile/{userId}",method = RequestMethod.GET)
+	public String profile(Model model, HttpSession session, @PathVariable Integer userId){
+		model.addAttribute("user",userDao.getUser(userId));
+		return "profile";
+	}
+	
 	@RequestMapping(value="/update.do",method = RequestMethod.POST)
 	public String doUpdate(@ModelAttribute("user") User user, BindingResult result, Model model, HttpSession session, RedirectAttributes redirectAttributes){
 		userValidator.validateUpdate(user,result);
