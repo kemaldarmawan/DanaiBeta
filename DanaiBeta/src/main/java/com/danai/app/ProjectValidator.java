@@ -1,5 +1,7 @@
 package com.danai.app;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,17 +38,22 @@ public class ProjectValidator implements Validator {
 			project.setDescription(EMPTY);
 		if (null == project.getExplanation())
 			project.setExplanation(EMPTY);
+		
 		Pattern titlePattern = Pattern.compile("^.{1,100}$");
 		Pattern descriptionPattern = Pattern.compile("^.{1,150}$");
-		Pattern explanationPattern = Pattern.compile("^+");
+		Pattern explanationPattern = Pattern.compile("^.+");
 
 		Matcher title = titlePattern.matcher(project.getTitle());
 		Matcher description = descriptionPattern.matcher(project.getDescription());
 		Matcher explanation = explanationPattern.matcher(project.getExplanation());
+		
+		Date date = new Date();
 
 		System.out.println(project.getMinimalFund());
 		if (project.getMinimalFund()==0)
 			errors.rejectValue("minimalFund", "minimalFund.invalid", "minimal fund harus lebih besar dari 0");	
+		if (project.getLastDate()==null)
+			errors.rejectValue("lastDate", "lastDate.invalid", "last date harus ada");	
 		if (!title.matches()) {
 			errors.rejectValue("title","title.invalid","title tidak lebih banyak dari 100 karakter");
 		}
