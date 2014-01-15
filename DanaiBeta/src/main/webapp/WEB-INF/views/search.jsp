@@ -14,7 +14,7 @@
 	
 	<%@ include file="header.jsp" %>
 	<%@ include file="staticJs.jsp" %>
-	<div class="container">
+	<div class="container" style="min-height: 800px;">
 		<h1>&nbsp;</h1>
 		<div class="page-header">
 			<h2><strong>Results for <small>"${res}"</strong></small></h2>
@@ -63,7 +63,7 @@
 			</div>
 		</div>
 	</div>
-	<%@ include file="footer.jsp" %>
+	<div style="position: relative;"><%@ include file="footer.jsp" %></div>
 	<script type="text/javascript">$('[data-toggle="tooltip"]').tooltip({'placement': 'top'});</script>
 </body>
 </html>
