@@ -1,4 +1,4 @@
-<footer style="background-color: rgb(0,15,40);">
+<footer style="background-color: rgb(0,15,40); position: absolute; bottom: 0px; left: 0px; right: 0px; height: 50px;">
 	<div id="footer" class="container">
 		<span style="position: relative;" >
 			<a href="<c:url value='/ ' />">

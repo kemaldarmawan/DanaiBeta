@@ -50,7 +50,7 @@
 			</div>
 		</div>
 	</div>
-	
+	<%@ include file="footer.jsp" %>
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
 </body>
