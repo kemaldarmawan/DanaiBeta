@@ -1,6 +1,7 @@
 package com.danai.app;
 
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,9 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.danai.model.Category;
+import com.danai.model.Comment;
 import com.danai.model.Location;
+import com.danai.model.Project;
 import com.danai.model.User;
 import com.danai.repository.CategoryDao;
+import com.danai.repository.CommentDao;
 import com.danai.repository.LocationDao;
 import com.danai.repository.ProjectDao;
 import com.danai.repository.UserDao;
@@ -26,19 +30,24 @@ import com.danai.repository.UserDao;
  * Handles requests for the application home page.
  */
 
+@Controller
 public class ProjectController {
 	
+	@Autowired
 	private UserDao userDao;
 	
-	@RequestMapping(value="/project",method = RequestMethod.GET)
-	public String project(Model model, HttpSession session){
-		User user = (User) session.getAttribute("user");
-		if(user == null){
-			model.addAttribute("user",new User());
-			return "login";
-		}
-		else{
-			return "redirect:/dashboard";
-		}
+	@Autowired
+	private ProjectDao projectDao;
+	
+	@Autowired
+	private CommentDao commentDao;
+	
+	@RequestMapping(value="/project/{projectId}",method = RequestMethod.GET)
+	public String project(Model model, HttpSession session, @PathVariable Integer projectId){
+		Project project = projectDao.getProject(projectId);
+		Set<Comment> comment = project.getComments();
+		model.addAttribute("project", project);
+		model.addAttribute("comment", comment);
+		return "project";
 	}
 }
