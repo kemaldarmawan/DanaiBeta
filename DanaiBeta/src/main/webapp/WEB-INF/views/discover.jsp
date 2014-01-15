@@ -108,7 +108,7 @@
 			<hr>
 		</div>
 		<div class="col-md-3">
-          <div class="bs-sidebar hidden-print affix" role="complementary">
+          <div class="bs-sidebar" role="complementary">
             <ul class="nav bs-sidenav">
             	<li class="disabled"><a href=""><strong>Categories</strong></a></li>
             	<c:forEach var="item" items="${categories }">
