@@ -27,8 +27,8 @@
 					<div class="col-md-3" >
 						<div class="panel panel-default" style="height:370px;">
 	  						<div class="panel-body">
-	  							<a href="#"><img src="<c:url value="/resources/photos/projects/"/>${item.projectId}.png" class="img-rounded" height="100" width="100%" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/users/1.png"/>';"></a>
-								<a href="#"><strong><small>${item.title }</small></strong></a>
+	  							<a href="<c:url value="/project/${item.projectId }"></c:url>"><img src="<c:url value="/resources/photos/projects/"/>${item.projectId}.png" class="img-rounded" height="100" width="100%" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/users/1.png"/>';"></a>
+								<a href="<c:url value="/project/${item.projectId }"></c:url>"><strong><small>${item.title }</small></strong></a>
 								<p><span class="glyphicon glyphicon-user"></span>&nbsp;<small> ${item.user.name }</small></p>
 								<div class="well well-sm" style="height:100px"><small>${item.description }</small></div>
 	    						<small><span class="glyphicon glyphicon-map-marker"></span>&nbsp; ${item.location.city}, ${item.location.province}</small>
