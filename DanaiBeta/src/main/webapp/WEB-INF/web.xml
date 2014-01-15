@@ -25,10 +25,16 @@
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
 	
+	<error-page>
+	    <error-code>404</error-code>
+	    <location>/errors/404</location>
+	</error-page>
+	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
 
 	<!-- Processes application requests -->
 	<servlet>

@@ -10,6 +10,19 @@
 </head>
 <body>
 	<%@ include file="header.jsp" %>
+	<div class="container">
+		<h1>&nbsp;</h1>
+		<div class="col-md-3">
+          <div class="bs-sidebar hidden-print affix" role="complementary">
+            <ul class="nav bs-sidenav">
+            	<li class="disabled"><a href=""><strong>Categories</strong></a></li>
+            	<c:forEach var="item" items="${categories }">
+            		<li class=""><a href="<c:url value="/discover/categories/"></c:url>${item.categoryId}">${item.name}</a></li>
+            	</c:forEach>
+            </ul>
+          </div>
+        </div>
+	</div>
 	<%@ include file="staticJs.jsp" %>
 </body>
 </html>
