@@ -79,6 +79,7 @@ public class ProjectDaoImpl implements ProjectDao {
 		// TODO Auto-generated method stub	
 		Criteria c = session.getCurrentSession().createCriteria(Project.class);
 		iterateOrder(c);
+		clearOrder();
 		return c.list();
 		
 	}
@@ -88,6 +89,7 @@ public class ProjectDaoImpl implements ProjectDao {
 		// TODO Auto-generated method stub
 		Criteria c = session.getCurrentSession().createCriteria(Project.class);
 		iterateOrder(c);
+		clearOrder();
 		return c.createCriteria("location").add(Restrictions.eq("locationId", locationId)).list();
 	}
 
@@ -97,6 +99,7 @@ public class ProjectDaoImpl implements ProjectDao {
 		Criteria criteria = session.getCurrentSession().createCriteria(Project.class);
 		criteria.add(Restrictions.like("title", '%'+search+'%') );
 		iterateOrder(criteria);
+		clearOrder();
 		return criteria.list();
 	}
 
@@ -106,6 +109,7 @@ public class ProjectDaoImpl implements ProjectDao {
 		// TODO Auto-generated method stub
 		Criteria c =session.getCurrentSession().createCriteria(Project.class);
 		iterateOrder(c);
+		clearOrder();
 		return c.createCriteria("category").add(Restrictions.eq("categoryId", categoryId)).list();
 	}
 
@@ -114,6 +118,7 @@ public class ProjectDaoImpl implements ProjectDao {
 		// TODO Auto-generated method stub
 		Criteria c =session.getCurrentSession().createCriteria(Project.class);
 		iterateOrder(c);
+		clearOrder();
 		return c.createCriteria("user").add(Restrictions.like("username", '%'+username+'%' ) ).list();
 	}
 	
@@ -122,6 +127,7 @@ public class ProjectDaoImpl implements ProjectDao {
 		// TODO Auto-generated method stub
 		Criteria c =session.getCurrentSession().createCriteria(Project.class);
 		iterateOrder(c);
+		clearOrder();
 		return c.createCriteria("category").add(Restrictions.like("name", '%'+categoryName+'%' ) ).list();
 	}
 
@@ -130,6 +136,7 @@ public class ProjectDaoImpl implements ProjectDao {
 		// TODO Auto-generated method stub
 		Criteria c =session.getCurrentSession().createCriteria(Project.class);
 		iterateOrder(c);
+		clearOrder();
 		return c.createCriteria("location").add(Restrictions.like("city", '%'+city+'%' ) ).list();
 	}
 
@@ -138,6 +145,7 @@ public class ProjectDaoImpl implements ProjectDao {
 		// TODO Auto-generated method stub
 		Criteria c =session.getCurrentSession().createCriteria(Project.class);
 		iterateOrder(c);
+		clearOrder();
 		return c.createCriteria("location").add(Restrictions.like("province", '%'+province+'%' ) ).list();
 	}
 

@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,10 +24,10 @@ public class Fund {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable=true)
 	private Date createdDateTime;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY )
 	@JoinColumn(name="projectId")
 	private Project project;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY )
 	@JoinColumn(name="userId")
 	private User user;
 	@Column

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.danai.model.Category;
 import com.danai.model.Comment;
+import com.danai.model.Fund;
 import com.danai.model.Location;
 import com.danai.model.Project;
 import com.danai.model.User;
@@ -28,6 +29,7 @@ import com.danai.model.editor.CategoryEditor;
 import com.danai.model.editor.LocationEditor;
 import com.danai.repository.CategoryDao;
 import com.danai.repository.CommentDao;
+import com.danai.repository.FundDao;
 import com.danai.repository.LocationDao;
 import com.danai.repository.ProjectDao;
 import com.danai.repository.UserDao;
@@ -36,37 +38,33 @@ import com.danai.repository.UserDao;
  */
 
 @Controller
-public class ProjectController {
+public class DonationController {
 	
 	@Autowired
-	private UserDao userDao;
+	private FundDao fundDao;
 	
 	@Autowired
 	private ProjectDao projectDao;
 	
 	@Autowired
-	private CommentDao commentDao;
+	private UserDao userDao;
 	
-	@RequestMapping(value="/project/{projectId}",method = RequestMethod.GET)
-	public String project(Model model, HttpSession session, @PathVariable Integer projectId){
-		Project project = projectDao.getProject(projectId);
-		session.setAttribute("projectId", project);
-		Set<Comment> comment = project.getComments();
+	@RequestMapping(value="/project/donation",method = RequestMethod.GET)
+	public String donation(Model model, HttpSession session){
+		Project project = (Project) session.getAttribute("projectId");
 		model.addAttribute("project", project);
-		model.addAttribute("comment", comment);
-		model.addAttribute("addcomment", new Comment());
-		return "project";
+		model.addAttribute("fund", new Fund());
+		return "donation";
 	}
 	
-	@RequestMapping(value="/project/insertcomment.do",method = RequestMethod.POST)
-	public String doComment(@ModelAttribute("addcomment") Comment comment, BindingResult result, Model model,HttpSession session){
+	@RequestMapping(value="/project/insertdonation.do",method = RequestMethod.POST)
+	public String doDonation(@ModelAttribute("fund") Fund fund, BindingResult result, Model model,HttpSession session){
 		Date date = new Date();
 		date.getTime();
-		comment.setProject((Project) session.getAttribute("projectId"));
-		Project project = (Project) session.getAttribute("projectId");
-		comment.setUser((User) session.getAttribute("user"));
-		comment.setCreatedDateTime(date);
-		commentDao.add(comment);
-		return "redirect:/project/"+project.getProjectId();
+		fund.setProject((Project) session.getAttribute("projectId"));
+		fund.setUser((User) session.getAttribute("user"));
+		fund.setCreatedDateTime(date);
+		fundDao.add(fund);
+		return "redirect:/dashboard";
 	}
 }
