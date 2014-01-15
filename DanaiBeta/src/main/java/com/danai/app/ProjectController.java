@@ -1,6 +1,6 @@
 package com.danai.app;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,8 @@ import com.danai.model.Comment;
 import com.danai.model.Location;
 import com.danai.model.Project;
 import com.danai.model.User;
+import com.danai.model.editor.CategoryEditor;
+import com.danai.model.editor.LocationEditor;
 import com.danai.repository.CategoryDao;
 import com.danai.repository.CommentDao;
 import com.danai.repository.LocationDao;
@@ -46,9 +50,23 @@ public class ProjectController {
 	@RequestMapping(value="/project/{projectId}",method = RequestMethod.GET)
 	public String project(Model model, HttpSession session, @PathVariable Integer projectId){
 		Project project = projectDao.getProject(projectId);
+		session.setAttribute("projectId", project);
 		Set<Comment> comment = project.getComments();
 		model.addAttribute("project", project);
 		model.addAttribute("comment", comment);
+		model.addAttribute("addcomment", new Comment());
 		return "project";
+	}
+	
+	@RequestMapping(value="/project/insertcomment.do",method = RequestMethod.POST)
+	public String doComment(@ModelAttribute("addcomment") Comment comment, BindingResult result, Model model,HttpSession session){
+		Date date = new Date();
+		date.getTime();
+		comment.setProject((Project) session.getAttribute("projectId"));
+		Project project = (Project) session.getAttribute("projectId");
+		comment.setUser((User) session.getAttribute("user"));
+		comment.setCreatedDateTime(date);
+		commentDao.add(comment);
+		return "redirect:/project/"+project.getProjectId();
 	}
 }

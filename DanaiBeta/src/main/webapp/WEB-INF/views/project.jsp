@@ -70,6 +70,22 @@
 									</tr>
 									</c:forEach>
 				</table>
+				<div class="row">
+				<div class="col-md-3 col-md-offset-1">
+					<form:form action="insertcomment.do" method="POST" commandName="addcomment">
+						<div class="row">
+							<div class="form-group">
+								<label for="content">Add Comment</label>
+								<form:input cssClass="form-control" path="content" placeholder="Add Comment"/>
+								<form:errors path="content"></form:errors>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group">
+								<input type="submit" value="Submit" class="btn btn-primary"/>	
+							</div>
+						</div>
+					</form:form>
 			</div>
 		</div>
   	</div>
