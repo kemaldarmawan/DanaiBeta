@@ -81,7 +81,8 @@
 								<div class="row">
 									<div class="form-group">
 										<p>Minimal Fund</p>
-										<form:input path="project.minimalFund"/>	
+										<form:input path="project.minimalFund"/>
+										<br><form:errors path="minimalFund"></form:errors>	
 									</div>
 								</div>
 

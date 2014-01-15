@@ -71,6 +71,9 @@ public class StartController {
 	@Inject
 	FileValidator fileValidator;
 	
+	@Inject
+	ProjectValidator projectValidator;
+	
 	@InitBinder
 	public void initBinder(WebDataBinder binder){
 		binder.registerCustomEditor(Category.class, new CategoryEditor(categoryDao));
@@ -100,6 +103,24 @@ public class StartController {
 	
 	@RequestMapping(value="/insertdata.do",method = RequestMethod.POST)
 	public String doRegister(@ModelAttribute("project") ProjectForm project, BindingResult result, Model model,HttpSession session){
+		
+		
+		projectValidator.validate(project.getProject(), result);
+		
+		if (result.hasErrors()) {
+			model.addAttribute("project", project);
+			model.addAttribute("eror", result.getAllErrors());
+			return "start";
+		}
+		
+		Date date = new Date();
+		System.out.println(project.getLastDate());
+		date.getTime();
+		(project.getProject()).setCreatedDate(date);
+		(project.getProject()).setCurrentFund(0);
+		(project.getProject()).setFundedNumber(0);
+		(project.getProject()).setUser((User) session.getAttribute("user"));
+		projectDao.add(project.getProject());
 		InputStream inputStream = null;
 		OutputStream outputStream = null;
 		
@@ -132,15 +153,6 @@ public class StartController {
 		} catch (IOException e){
 			e.printStackTrace();
 		}
-		
-		Date date = new Date();
-		System.out.println(project.getLastDate());
-		date.getTime();
-		(project.getProject()).setCreatedDate(date);
-		(project.getProject()).setCurrentFund(0);
-		(project.getProject()).setFundedNumber(0);
-		(project.getProject()).setUser((User) session.getAttribute("user"));
-		projectDao.add(project.getProject());
 		return "redirect:/dashboard";
 	}
 }
