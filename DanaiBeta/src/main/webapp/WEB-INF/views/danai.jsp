@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://danai.com/functions" prefix="f" %>
 <%@ page session="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -52,8 +53,17 @@
 											  	</div>
 											  	<ul class="nav nav-pills nav-justified">
 											  	  <c:set var="funded" ><fmt:parseNumber type="number" value="${(item.currentFund / item.minimalFund) * 100}" /></c:set>
-												  <li ><a title="funded" data-toggle="tooltip"><strong>${funded}%</strong></a></li>
-												  <li ><a title="pledged" data-toggle="tooltip"><strong><fmt:formatNumber value="${item.currentFund}" minFractionDigits="0"  type="currency"/></strong></a></li>
+												  <li><a title="funded" data-toggle="tooltip"><strong>${funded}%</strong></a></li>
+												  <li><a title="pledged" data-toggle="tooltip"><strong><fmt:formatNumber value="${item.currentFund}" minFractionDigits="0"  type="currency"/></strong></a></li>
+												  <c:if test="${f:daysUntilToday(item.lastDate) == 0 && (item.currentFund / item.minimalFund) < 1}">
+												  	<li><a title=""><strong>unsuccessful</strong></a></li>
+												  </c:if>
+												  <c:if test="${f:daysUntilToday(item.lastDate) == 0 && (item.currentFund / item.minimalFund) >= 1}">
+												  	<li><a title=""><strong>funded</strong></a></li>
+												  </c:if>
+												  <c:if test="${f:daysUntilToday(item.lastDate) > 0}">
+												  	<li><a title="days to go"><strong>${f:daysUntilToday(item.lastDate)}</strong></a></li>
+												  </c:if>
 												</ul>
 											</div>
 										</div>
@@ -90,6 +100,15 @@
 							  	  <c:set var="funded" ><fmt:parseNumber type="number" value="${(item.currentFund / item.minimalFund) * 100}" /></c:set>
 								  <li><a title="funded" data-toggle="tooltip"><small><strong>${funded}%</strong></small></a></li>
 								  <li ><a title="pledged" data-toggle="tooltip"><small><strong><fmt:formatNumber value="${item.currentFund}" minFractionDigits="0"  type="currency"/></strong></small></a></li>
+								  <c:if test="${f:daysUntilToday(item.lastDate) == 0 && (item.currentFund / item.minimalFund) < 1}">
+								  	<li><a title=""><small><strong>unsuccessful</strong></small></a></li>
+								  </c:if>
+								  <c:if test="${f:daysUntilToday(item.lastDate) == 0 && (item.currentFund / item.minimalFund) >= 1}">
+								  	<li><a title=""><small><strong>funded</strong></small></a></li>
+								  </c:if>
+								  <c:if test="${f:daysUntilToday(item.lastDate) > 0}">
+								  	<li><a title="days to go"><small><strong>${f:daysUntilToday(item.lastDate)}</strong></small></a></li>
+								  </c:if>
 								</ul>
 	  						</div>	
 						</div>
@@ -99,7 +118,6 @@
   		</div>
   		<hr>
   	</div>
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
+    <%@ include file="staticJs.jsp" %>
 </body>
 </html>
