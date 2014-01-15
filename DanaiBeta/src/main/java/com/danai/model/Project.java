@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 public class Project {
@@ -51,8 +53,10 @@ public class Project {
 	@Temporal(TemporalType.DATE)
 	@Column
 	private Date createdDate;
+	
 	@Temporal(TemporalType.DATE)
 	@Column
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date lastDate;
 	
 	@Column
