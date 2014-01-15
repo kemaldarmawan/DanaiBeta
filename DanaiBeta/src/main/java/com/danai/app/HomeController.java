@@ -88,7 +88,6 @@ public class HomeController {
 	@RequestMapping(value = "/search",method = RequestMethod.GET)
 	public String search(Model model,HttpServletRequest request){
 		String param = (String)request.getParameter("s");
-		if(param.trim().equals("") || param.length() < 3) return "redirect:/";
 		model.addAttribute("res", param);
 		
 		List<Project> p1= projectDao.getProjectSearchByTitle(param);
