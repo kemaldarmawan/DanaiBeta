@@ -63,6 +63,7 @@
 			</div>
 		</div>
 	</div>
+	<%@ include file="footer.jsp" %>
 	<script type="text/javascript">$('[data-toggle="tooltip"]').tooltip({'placement': 'top'});</script>
 </body>
 </html>
