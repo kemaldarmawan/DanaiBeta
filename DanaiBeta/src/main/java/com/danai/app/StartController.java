@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.danai.model.Category;
 import com.danai.model.FileUpload;
@@ -82,7 +83,7 @@ public class StartController {
 	
 	
 	@RequestMapping(value="/start",method = RequestMethod.GET)
-	public String start(Model model, HttpSession session){
+	public String start(@ModelAttribute("project_temp") ProjectForm project, Model model, HttpSession session, RedirectAttributes redirectAttributes){
 		User user = (User) session.getAttribute("user");
 		if (user == null){
 			return "redirect:/login";
@@ -91,10 +92,17 @@ public class StartController {
 			model.addAttribute("user",user);
 			model.addAttribute("createdProject",(userDao.getUser(user.getUsername())).getCreatedProject());
 			//model.addAttribute("project", new Project());
-			ProjectForm form = new ProjectForm();
-			form.setProject(new Project());
-			form.setFileUploaded(new FileUpload());
-			model.addAttribute("project",form);
+			if (project!= null) {
+				model.addAttribute("project",project);
+				System.out.println("not null");
+			}
+			else {
+				System.out.println("alkdaklsd");
+				ProjectForm form = new ProjectForm();
+				form.setProject(new Project());
+				form.setFileUploaded(new FileUpload());
+				model.addAttribute("project",form);
+			}
 			model.addAttribute("categories", categoryDao.getAllCategory());
 			model.addAttribute("locations", locationDao.getAllLocation());
 			return "start";
@@ -102,14 +110,14 @@ public class StartController {
 	}
 	
 	@RequestMapping(value="/insertdata.do",method = RequestMethod.POST)
-	public String doRegister(@ModelAttribute("project") ProjectForm project, BindingResult result, Model model,HttpSession session){
+	public String doRegister(@ModelAttribute("project") ProjectForm project, BindingResult result, Model model,RedirectAttributes redirectAttributes,HttpSession session){
 		
 		projectValidator.validate(project.getProject(), result);
 		
 		if (result.hasErrors()) {
-			model.addAttribute("project", project);
-			model.addAttribute("eror", result.getAllErrors());
-			return "start";
+			redirectAttributes.addFlashAttribute("project_temp", project);
+			redirectAttributes.addFlashAttribute("eror", result.getAllErrors());
+			return "redirect:/start";
 		}
 		
 		Date date = new Date();
@@ -129,8 +137,9 @@ public class StartController {
 		String fileName = String.valueOf((project.getProject()).getProjectId()) + ".png";
 		
 		if (result.hasErrors()){
-			model.addAttribute("project",project);
-			return "start";
+			redirectAttributes.addFlashAttribute("project_temp", project);
+			redirectAttributes.addFlashAttribute("eror", result.getAllErrors());
+			return "redirect:/start";
 		}
 		
 		try {

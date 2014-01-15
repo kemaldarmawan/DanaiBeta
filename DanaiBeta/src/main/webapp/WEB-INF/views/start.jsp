@@ -27,7 +27,17 @@
   			<h1>Meet your new project.</h1>
   			<p>Start by giving it a name, a pic, and other important details.</p>
   		</div>
+  		<c:choose>
+			<c:when test="${not empty  eror}">
+	    		<div class="alert alert-danger">
+	    			<c:forEach items="${eror}" var="err">
+	        		${err.defaultMessage}<br>
+	    			</c:forEach>
+	    		</div>
+			</c:when>
+		</c:choose>
 		<div class="well">
+		
 					<div class="row">
 						<div class="col-md-3 col-md-offset-1">
 							<form:form method="post" commandName="project" action="insertdata.do" enctype="multipart/form-data">
@@ -43,7 +53,7 @@
 										  </div>
 										</div>
 									</div>
-									<form:errors path="file"></form:errors>
+									
 									</div>
 								</div>
 								<div class="row">
@@ -82,7 +92,7 @@
 									<div class="form-group">
 										<p>Minimal Fund</p>
 										<form:input path="project.minimalFund"/>
-										<br><form:errors path="minimalFund"></form:errors>	
+											
 									</div>
 								</div>
 
