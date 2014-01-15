@@ -14,19 +14,10 @@
 </head>
 <body>
 	<%@ include file="header.jsp" %>
+	<div style="position: static; left: 0px; right: 0px; width: 100%; height: 100%;">
+		<img src="<c:url value="/resources/photos/start-image.jpg"></c:url>" width="100%" />
+	</div>
   	<div class="container">
-  		<h1>&nbsp;</h1>
-  		<div align="center">
-  		<h1>
-  			"A way for every creative
-			<br>
-			person to control their destiny"
-  		</h1>
-  		</div>
-  		<div align="center">
-  			<h1>Meet your new project.</h1>
-  			<p>Start by giving it a name, a pic, and other important details.</p>
-  		</div>
   		<c:choose>
 			<c:when test="${not empty  eror}">
 	    		<div class="alert alert-danger">
@@ -124,6 +115,8 @@
 			  		</div>
 		</div>
   	</div>
+  	
+  	<div style="position: relative;"><%@ include file="footer.jsp" %></div>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
     <script src="<c:url value="/resources/js/jasny-bootstrap.js"/>"></script>
