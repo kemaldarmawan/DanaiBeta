@@ -9,7 +9,7 @@
             <span class="icon-bar"></span>
           </button>
           	<a href="<c:url value='/ ' />">
-				<img alt="Danai.Com" src="http://i1216.photobucket.com/albums/dd370/farisghani/danai-logo_zpsf671911f.png~original" height="44px">
+				<img src="<c:url value="/resources/photos/danai-logo.png"></c:url>" height="44px">
 			</a>
           <!-- <a class="navbar-brand" href="#">Danai</a> -->
         </div>
