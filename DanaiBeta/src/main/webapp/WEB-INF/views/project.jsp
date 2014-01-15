@@ -74,15 +74,24 @@
 									<h1><strong>${f:daysUntilToday(project.lastDate)}</strong></h1>
 									<strong>days to go</strong>
 								</div>
+								&nbsp;
 								<div class="container">
-									<h1>&nbsp;</h1>
 									<%
 						          		User iuser = (User) request.getSession().getAttribute("user");
 						          		Project project = (Project) request.getSession().getAttribute("projectId");
 										if (iuser != null && iuser.getUserId() != project.getUser().getUserId()){
-						          			out.println("<a href='donation'><input type='submit' value='Donation' class='btn btn-primary' /></a>");
+						          			out.println("<a href='donation'><button class='btn btn-primary'>Donate</button></a>");
 						          		}
 						          	%>
+								</div>
+								&nbsp;
+								<div class="container">
+									<div class="well" style="width:350px;">
+										<img src="<c:url value="/resources/photos/users/"/>${project.user.userId}.png" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/users/0.png"/>';" class="img-thumbnail" style="height:100px;width:100px">
+										<br>
+										<br><strong>project by <a href="<c:url value="/profile/"/>${project.user.userId}">${project.user.name}</a></strong>
+										<br><br><strong>in ${project.location.city}, ${project.location.province}</strong>
+									</div>
 								</div>
 							</div>
 						</div>
