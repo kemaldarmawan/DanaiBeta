@@ -16,9 +16,10 @@
 </head>
 <body>
 	<%@ include file="header.jsp" %>
-	<div style="position: static; left: 0px; right: 0px; width: 100%; height: 100%;">
+	<div style="height: 300px; position: static; left: 0px; right: 0px;">
 		<img src="http://i1216.photobucket.com/albums/dd370/farisghani/homepage_zps2f548a52.jpg~original" width="100%">
 	</div>
+	<h3>&nbsp;</h3>
 	<div class="well well-sm">
 	  	<div class="container">
 	  		<div class="row">
@@ -101,7 +102,6 @@
   		</div>
   		<hr>
   	</div>
-  	<%@ include file="footer.jsp" %>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
 </body>

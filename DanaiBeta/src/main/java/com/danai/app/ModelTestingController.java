@@ -111,4 +111,11 @@ public class ModelTestingController {
 		return "modelTestingProject";
 		
 	}
+	
+	@RequestMapping(value="/designTesting/",method = RequestMethod.GET)
+	public String designTesting(Model model, HttpServletRequest request){
+		
+		return "testingDesign";
+		
+	}
 }
