@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page session="false" %>
 <%@ include file="prefix.jsp" %>
+<%@ page import="com.danai.model.*"  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -49,6 +50,16 @@
 									<h1>${f:daysUntilToday(project.lastDate)}</h1>
 									<p>days to go</p>
 								</div>
+								<div class="container">
+									<h1>&nbsp;</h1>
+									<%
+						          		User iuser = (User) request.getSession().getAttribute("user");
+						          		Project project = (Project) request.getSession().getAttribute("projectId");
+										if (iuser != null && iuser.getUserId() != project.getUser().getUserId()){
+						          			out.println("<a href='donation'><input type='submit' value='Donation' class='btn btn-primary' /></a>");
+						          		}
+						          	%>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -87,8 +98,8 @@
 							</div>
 						</div>
 					</form:form>
-			</div>
-		</div>
+				</div>
+				</div>
   	</div>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>

@@ -15,7 +15,7 @@
 <body>
 	<%@ include file="header.jsp" %>
   	<div class="container">
-  		<h1>&nbsp</h1>
+  		<h1>&nbsp;</h1>
   		<div align="center">
   		<h1>
   			"A way for every creative
@@ -27,19 +27,18 @@
   			<h1>Meet your new project.</h1>
   			<p>Start by giving it a name, a pic, and other important details.</p>
   		</div>
-  		
-  		<div class="well">
+		<div class="well">
 					<div class="row">
 						<div class="col-md-3 col-md-offset-1">
-							<form:form method="post" enctype="multipart/form-data" commandName="file" action="insertimage.do">  
-							   <div class="row">
+							<form:form method="post" commandName="project" action="insertdata.do" enctype="multipart/form-data">
+								<div class="row">
 									<div class="form-group">
 									   <div class="fileinput fileinput-new" data-provides="fileinput">
 									   	  <p>Project Image</p>
 										  <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 950px; height: 150px;"></div>
 										  <div>
 										  	<div>
-										    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="file"></span>
+										    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="fileUploaded.file"></span>
 										    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
 										  </div>
 										</div>
@@ -47,32 +46,17 @@
 									<form:errors path="file"></form:errors>
 									</div>
 								</div>
-								
-								<div class="row">
-									<div class="form-group">
-									   <input type="submit" value="Submit" class="btn btn-success"/>	
-									</div>
-								</div>
-							</form:form>
-						</div>
-					</div>
-		</div>
-		
-		<div class="well">
-					<div class="row">
-						<div class="col-md-3 col-md-offset-1">
-							<form:form method="post" commandName="project" action="insertdata.do">
 								<div class="row">
 									<div class="form-group">
 										<p>Project Name</p>
-										<form:input path="title"/>	
+										<form:input path="project.title"/>	
 									</div>
 								</div>
 								
 								<div class="row">
 									<div class="form-group">
 										<p>Category</p>
-										<form:select path="category" items="${categories}"
+										<form:select path="project.category" items="${categories}"
 										itemLabel="name" itemValue="categoryId">
 										</form:select>
 									</div>
@@ -81,14 +65,14 @@
 								<div class="row">
 									<div class="form-group">
 										<p>Description</p>
-										<form:textarea path="description"/>	
+										<form:textarea path="project.description"/>	
 									</div>
 								</div>
 								
 								<div class="row">
 									<div class="form-group">
 										<p>Project Location</p>
-										<form:select path="location" items="${locations}"
+										<form:select path="project.location" items="${locations}"
 										itemLabel="city" itemValue="locationId">
 										</form:select>
 									</div>
@@ -97,14 +81,14 @@
 								<div class="row">
 									<div class="form-group">
 										<p>Minimal Fund</p>
-										<form:input path="minimalFund"/>	
+										<form:input path="project.minimalFund"/>	
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="form-group">
 										<p>Last Date</p>
-										<form:input type="date" path="lastDate" />
+										<form:input type="date" path="project.lastDate" />
 									</div>
 								</div>
 								
@@ -112,13 +96,12 @@
 								<div class="row">
 									<div class="form-group">
 										<p>Explanation</p>
-										<form:textarea path="explanation"/>	
+										<form:textarea path="project.explanation"/>	
 									</div>
 								</div>
 								
 								
 								<div class="row">
-								<div>&nbsp</div>
 									<div class="form-group">
 									   <input type="submit" value="Publish" class="btn btn-success"/>	
 									</div>

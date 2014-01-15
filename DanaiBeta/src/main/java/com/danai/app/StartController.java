@@ -28,12 +28,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.danai.model.Category;
 import com.danai.model.FileUpload;
 import com.danai.model.Location;
 import com.danai.model.Project;
+import com.danai.model.ProjectForm;
 import com.danai.model.User;
 import com.danai.model.editor.CategoryEditor;
 import com.danai.model.editor.LocationEditor;
@@ -71,9 +71,6 @@ public class StartController {
 	@Inject
 	FileValidator fileValidator;
 	
-	@Inject
-	ProjectValidator projectValidator;
-	
 	@InitBinder
 	public void initBinder(WebDataBinder binder){
 		binder.registerCustomEditor(Category.class, new CategoryEditor(categoryDao));
@@ -90,22 +87,24 @@ public class StartController {
 		else{
 			model.addAttribute("user",user);
 			model.addAttribute("createdProject",(userDao.getUser(user.getUsername())).getCreatedProject());
-			model.addAttribute("project", new Project());
+			//model.addAttribute("project", new Project());
+			ProjectForm form = new ProjectForm();
+			form.setProject(new Project());
+			form.setFileUploaded(new FileUpload());
+			model.addAttribute("project",form);
 			model.addAttribute("categories", categoryDao.getAllCategory());
 			model.addAttribute("locations", locationDao.getAllLocation());
 			return "start";
 		}
 	}
 	
-	@RequestMapping(value="/insertimage.do",method = RequestMethod.POST)
-	public String doEditImage(@ModelAttribute("file") FileUpload uploadedFile, BindingResult result, Model model, HttpSession session){
-		Project project = new Project();
-		projectDao.add(project);
+	@RequestMapping(value="/insertdata.do",method = RequestMethod.POST)
+	public String doRegister(@ModelAttribute("project") ProjectForm project, BindingResult result, Model model,HttpSession session){
 		InputStream inputStream = null;
 		OutputStream outputStream = null;
 		
-		MultipartFile file = uploadedFile.getFile();
-		fileValidator.validate(uploadedFile, result);
+		MultipartFile file = project.getFileUploaded().getFile();
+		fileValidator.validate(project.getFileUploaded(), result);
 		
 		String fileName = String.valueOf(project.getProjectId()) + ".png";
 		
@@ -133,28 +132,15 @@ public class StartController {
 		} catch (IOException e){
 			e.printStackTrace();
 		}
-		return "redirect:/start";
-	}
-	
-	@RequestMapping(value="/insertdata.do",method = RequestMethod.POST)
-	public String doRegister(@ModelAttribute("data") Project project, BindingResult result, Model model, RedirectAttributes redirectAttributes, HttpSession session){
-		projectValidator.validate(project, result);
-		if (result.hasErrors()) {
-			redirectAttributes.addFlashAttribute("eror", result.getAllErrors() );
-			redirectAttributes.addFlashAttribute("projectTemp", project);
-			return "redirect:/start";
-		}
-		else {
-			User user = new User();
-			Date date = new Date();
-			System.out.println(project.getLastDate());
-			date.getTime();
-			project.setCreatedDate(date);
-			project.setCurrentFund(0);
-			project.setFundedNumber(0);
-			project.setUser((User) session.getAttribute("user"));
-			projectDao.add(project);
-			return "redirect:/dashboard";
-		}
+		
+		Date date = new Date();
+		System.out.println(project.getLastDate());
+		date.getTime();
+		(project.getProject()).setCreatedDate(date);
+		(project.getProject()).setCurrentFund(0);
+		(project.getProject()).setFundedNumber(0);
+		(project.getProject()).setUser((User) session.getAttribute("user"));
+		projectDao.add(project.getProject());
+		return "redirect:/dashboard";
 	}
 }
