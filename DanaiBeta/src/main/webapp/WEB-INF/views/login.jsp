@@ -42,7 +42,7 @@
 						</div>
 						<div class="row">
 							<div class="form-group">
-								<input type="submit" value="Login" class="btn btn-success"/>	
+								<input type="submit" value="Login" class="btn btn-primary"/>	
 							</div>
 						</div>
 					</form:form>

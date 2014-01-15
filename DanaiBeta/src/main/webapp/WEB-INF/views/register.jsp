@@ -76,7 +76,7 @@ function validatePassword()
 						</div>
 						<div class="row">
 							<div class="form-group">
-								<input type="submit" value="Sign Up" class="btn btn-success"/>	
+								<input type="submit" value="Sign Up" class="btn btn-primary"/>	
 							</div>
 						</div>
 					</form:form>

@@ -44,12 +44,44 @@ function validateImage()
 		</c:choose>
 		<h1>Dashboard</h1>
 		<ul class="nav nav-tabs">
-			<li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
+			<li class="active"><a href="#project" data-toggle="tab">Created Project</a></li>
+			<li><a href="#profile" data-toggle="tab">Profile</a></li>
 			<li><a href="#changepass" data-toggle="tab">Change Password</a></li>
 			<li><a href="#pict" data-toggle="tab">Change Avatar</a></li>
 		</ul>
 		<div class="tab-content">
-			<div class="tab-pane fade in active" id="profile">
+			<div class="tab-pane fade in active" id="project">
+				<c:choose>
+					<c:when test="${not empty createdProject}">
+			    		<table class="table table-hover">
+								<tr>
+								<th>ID</th>
+								<th>Title</th>
+								<th>Category</th>
+								<th>Location</th>
+								<th>Last Date</th>
+								</tr>
+								<c:forEach items="${createdProject}" var="project">
+								<tr>
+									<td>${project.projectId}</td>
+									<td>${project.title}</td>
+									<td>${project.category.name}</td>
+									<td>${project.location.city}</td>
+									<td>${project.lastDate}</td>
+								</tr>
+								</c:forEach>
+							</table>
+							<a href="/app/start"><button type="button" class="btn btn-primary">Add Project</button></a>
+					</c:when>
+					<c:when test="${empty createdProject}">
+			    		<div class="alert alert-info">
+			    			You haven't created any projects.
+			    		</div>
+			    		<a href="/app/start"><button type="button" class="btn btn-primary">Add Project</button></a>
+					</c:when>
+				</c:choose>
+			</div>
+			<div class="tab-pane fade" id="profile">
 				<div class="well">
 					<div class="row">
 						<div class="col-md-3 col-md-offset-1">
@@ -81,7 +113,7 @@ function validateImage()
 								</div>
 								<div class="row">
 									<div class="form-group">
-										<input type="submit" value="Update Profile" class="btn btn-success"/>	
+										<input type="submit" value="Update Profile" class="btn btn-primary"/>	
 									</div>
 								</div>
 							</form:form>
@@ -110,7 +142,7 @@ function validateImage()
 								</div>
 								<div class="row">
 									<div class="form-group">
-										<input type="submit" value="Change Password" class="btn btn-success"/>	
+										<input type="submit" value="Change Password" class="btn btn-primary"/>	
 									</div>
 								</div>
 							</form:form>
@@ -126,19 +158,19 @@ function validateImage()
 							   <div class="row">
 									<div class="form-group">
 									   <div class="fileinput fileinput-new" data-provides="fileinput">
-										  <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+										  <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 200px;"></div>
 										  <div>
-										    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input id="inputfile" type="file" name="file" accept="image/jpg,image/jpeg,image/png"></span>
-										    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+										  	<small><em>Ukuran file tidak melebihi 1 MB</em></small><br>
+										    <span class="btn btn-link btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input id="inputfile" type="file" name="file" accept="image/jpg,image/jpeg,image/png"></span>
+										    <a href="#" class="btn btn-link fileinput-exists" data-dismiss="fileinput">Remove</a>
 										  </div>
 										</div>
 									</div>
-									<p>Ukuran file tidak melebihi 1 MB</p>
 									<form:errors path="file"></form:errors>
 								</div>
 								<div class="row">
 									<div class="form-group">
-									   <input type="submit" value="Change Avatar" class="btn btn-success"/>	
+									   <input type="submit" value="Change Avatar" class="btn btn-primary"/>	
 									</div>
 								</div>
 							</form:form>
@@ -148,31 +180,6 @@ function validateImage()
 			</div>
 		</div>
 	</div>
-	
-	<div class="container">
-		<h1>Created Project by ${user.name}</h1>
-		<table class="table table-bordered">
-			<tr>
-			<th>ID</th>
-			<th>Location</th>
-			<th>Username</th>
-			<th>Category</th>
-			<th>Title</th>
-			<th>Last Date</th>
-			</tr>
-			<c:forEach items="${createdProject}" var="project">
-			<tr>
-				<td>${project.projectId}</td>
-				<td>${project.location.city}</td>
-				<td>${project.user.name}</td>
-				<td>${project.category.name}</td>
-				<td>${project.title}</td>
-				<td>${project.lastDate}</td>
-			</tr>
-			</c:forEach>
-		</table>
-	</div>
-	
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
 	<script src="<c:url value="/resources/js/jasny-bootstrap.js"/>"></script>
