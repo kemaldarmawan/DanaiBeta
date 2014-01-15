@@ -137,8 +137,8 @@
   		</div>
   		<hr>
   	</div>
-<<<<<<< HEAD
-  	<%@ include file="footer.jsp" %>
+  	<div style="position: relative;"><%@ include file="footer.jsp" %></div>
+  	
     <%@ include file="staticJs.jsp" %>
 </body>
 </html>
