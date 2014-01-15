@@ -104,7 +104,6 @@ public class StartController {
 	@RequestMapping(value="/insertdata.do",method = RequestMethod.POST)
 	public String doRegister(@ModelAttribute("project") ProjectForm project, BindingResult result, Model model,HttpSession session){
 		
-		
 		projectValidator.validate(project.getProject(), result);
 		
 		if (result.hasErrors()) {
@@ -127,7 +126,7 @@ public class StartController {
 		MultipartFile file = project.getFileUploaded().getFile();
 		fileValidator.validate(project.getFileUploaded(), result);
 		
-		String fileName = String.valueOf(project.getProjectId()) + ".png";
+		String fileName = String.valueOf((project.getProject()).getProjectId()) + ".png";
 		
 		if (result.hasErrors()){
 			model.addAttribute("project",project);
