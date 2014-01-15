@@ -112,24 +112,27 @@
 									</tr>
 									</c:forEach>
 				</table>
-				<div class="row">
-				<div class="col-md-3 col-md-offset-1">
-					<form:form action="insertcomment.do" method="POST" commandName="addcomment">
-						<div class="row">
-							<div class="form-group">
-								<label for="content">Add Comment</label>
-								<form:input cssClass="form-control" path="content" placeholder="Add Comment"/>
-								<form:errors path="content"></form:errors>
+				<c:if test="${user != null}">
+					<div class="row">
+					<div class="col-md-3 col-md-offset-1">
+						<form:form action="insertcomment.do" method="POST" commandName="addcomment">
+							<div class="row">
+								<div class="form-group">
+									<label for="content">Add Comment</label>
+									<form:textarea cssClass="form-control" path="content" placeholder="Add Comment"/>
+									<form:errors path="content"></form:errors>
+								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="form-group">
-								<input type="submit" value="Submit" class="btn btn-primary"/>	
+							<div class="row">
+								<div class="form-group">
+									<input type="submit" value="Submit" class="btn btn-primary"/>	
+								</div>
 							</div>
-						</div>
-					</form:form>
-				</div>
-				</div>
+						</form:form>
+					</div>
+					</div>
+				</c:if>
+				
   	</div>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
