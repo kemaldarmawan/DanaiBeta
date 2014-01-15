@@ -32,7 +32,7 @@ function validateImage()
 <body>
 	<%@ include file="header.jsp" %>
 	
-	<div class="container">
+	<div class="container" style="bottom: 50px;">
 		<h1>&nbsp;</h1>
 		<c:choose>
 			<c:when test="${not empty  eror}">
@@ -81,7 +81,7 @@ function validateImage()
 													<ul class="nav nav-pills nav-justified">
 												  	  <c:set var="funded" ><fmt:parseNumber type="number" value="${(item.currentFund / item.minimalFund) * 100}" /></c:set>
 													  <li><a title="funded" data-toggle="tooltip"><small><strong>${funded}%</strong></small></a></li>
-													  <li><a title="pledged" data-toggle="tooltip"><small><strong><fmt:formatNumber value="${item.currentFund}" minFractionDigits="0"  type="currency"/></strong></small></a></li>
+													  <li><a title="pledged" data-toggle="tooltip"><small><strong><fmt:formatNumber value="${item.currentFund}" minFractionDigits="0" currencySymbol="$" type="currency"/></strong></small></a></li>
 													  <c:if test="${f:daysUntilToday(item.lastDate) == 0 && (item.currentFund / item.minimalFund) < 1}">
 													  	<li><a title=""><small><strong><span class="label label-danger">Unsuccessful</span></strong></strong></small></a></li>
 													  </c:if>
@@ -207,7 +207,9 @@ function validateImage()
 				</div>
 			</div>
 		</div>
+		&nbsp;
 	</div>
+	<div style="position: relative;"><%@ include file="footer.jsp" %></div>
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
 	<script src="<c:url value="/resources/js/jasny-bootstrap.js"/>"></script>

@@ -11,7 +11,7 @@
 <body>
 	<%@ include file="header.jsp" %>
 	<div style="position: static; left: 0px; right: 0px; width: 100%; height: 100%;">
-		<img src="http://i1216.photobucket.com/albums/dd370/farisghani/discover-image_zpsa9850f68.jpg~original" width="100%">
+		<img src="<c:url value="/resources/photos/discover-image.jpg"></c:url>" width="100%" />
 	</div>
 	<div class="container">
 		<h1>&nbsp;</h1>
@@ -43,7 +43,7 @@
 								<ul class="nav nav-pills nav-justified">
 							  	  <c:set var="funded" ><fmt:parseNumber type="number" value="${(item.currentFund / item.minimalFund) * 100}" /></c:set>
 								  <li><a title="funded" data-toggle="tooltip"><small><strong>${funded}%</strong></small></a></li>
-								  <li><a title="pledged" data-toggle="tooltip"><small><strong><fmt:formatNumber value="${item.currentFund}" minFractionDigits="0"  type="currency"/></strong></small></a></li>
+								  <li><a title="pledged" data-toggle="tooltip"><small><strong><fmt:formatNumber value="${item.currentFund}" minFractionDigits="0" currencySymbol="$" type="currency"/></strong></small></a></li>
 								  <c:if test="${f:daysUntilToday(item.lastDate) == 0 && (item.currentFund / item.minimalFund) < 1}">
 								  	<li><a title=""><small><strong><span class="label label-danger">Unsuccessful</span></strong></strong></small></a></li>
 								  </c:if>
@@ -88,7 +88,7 @@
 								<ul class="nav nav-pills nav-justified">
 							  	  <c:set var="funded" ><fmt:parseNumber type="number" value="${(item.currentFund / item.minimalFund) * 100}" /></c:set>
 								  <li><a title="funded" data-toggle="tooltip"><small><strong>${funded}%</strong></small></a></li>
-								  <li><a title="pledged" data-toggle="tooltip"><small><strong><fmt:formatNumber value="${item.currentFund}" minFractionDigits="0"  type="currency"/></strong></small></a></li>
+								  <li><a title="pledged" data-toggle="tooltip"><small><strong><fmt:formatNumber value="${item.currentFund}" minFractionDigits="0" currencySymbol="$" type="currency"/></strong></small></a></li>
 								  <c:if test="${f:daysUntilToday(item.lastDate) == 0 && (item.currentFund / item.minimalFund) < 1}">
 								  	<li><a title=""><small><strong><span class="label label-danger">Unsuccessful</span></strong></strong></small></a></li>
 								  </c:if>
@@ -108,7 +108,7 @@
 			<hr>
 		</div>
 		<div class="col-md-3">
-          <div class="bs-sidebar hidden-print affix" role="complementary">
+          <div class="bs-sidebar" role="complementary">
             <ul class="nav bs-sidenav">
             	<li class="disabled"><a href=""><strong>Categories</strong></a></li>
             	<c:forEach var="item" items="${categories }">
