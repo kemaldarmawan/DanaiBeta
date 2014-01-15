@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.danai.model.Category;
 import com.danai.model.FileUpload;
@@ -69,6 +70,9 @@ public class StartController {
 	
 	@Inject
 	FileValidator fileValidator;
+	
+	@Inject
+	ProjectValidator projectValidator;
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder){
@@ -133,16 +137,24 @@ public class StartController {
 	}
 	
 	@RequestMapping(value="/insertdata.do",method = RequestMethod.POST)
-	public String doRegister(@ModelAttribute("data") Project project, BindingResult result, Model model,HttpSession session){
-		User user = new User();
-		Date date = new Date();
-		System.out.println(project.getLastDate());
-		date.getTime();
-		project.setCreatedDate(date);
-		project.setCurrentFund(0);
-		project.setFundedNumber(0);
-		project.setUser((User) session.getAttribute("user"));
-		projectDao.add(project);
-		return "redirect:/dashboard";
+	public String doRegister(@ModelAttribute("data") Project project, BindingResult result, Model model, RedirectAttributes redirectAttributes, HttpSession session){
+		projectValidator.validate(project, result);
+		if (result.hasErrors()) {
+			redirectAttributes.addFlashAttribute("eror", result.getAllErrors() );
+			redirectAttributes.addFlashAttribute("projectTemp", project);
+			return "redirect:/start";
+		}
+		else {
+			User user = new User();
+			Date date = new Date();
+			System.out.println(project.getLastDate());
+			date.getTime();
+			project.setCreatedDate(date);
+			project.setCurrentFund(0);
+			project.setFundedNumber(0);
+			project.setUser((User) session.getAttribute("user"));
+			projectDao.add(project);
+			return "redirect:/dashboard";
+		}
 	}
 }
