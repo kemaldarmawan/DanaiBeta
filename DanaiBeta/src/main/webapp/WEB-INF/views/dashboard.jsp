@@ -62,7 +62,7 @@ function validateImage()
 										<div class="col-md-3" >
 											<div class="panel panel-default" style="height:370px;">
 							 						<div class="panel-body">
-							 							<a href="/app/project/${item.projectId}"><img src="<c:url value="/resources/photos/projects/"/>${item.projectId}.png" class="img-rounded" height="100" width="100%" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/users/1.png"/>';"></a>
+							 							<a href="/app/project/${item.projectId}"><img src="<c:url value="/resources/photos/projects/"/>${item.projectId}.png" class="img-rounded" height="100" width="100%" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/projects/0.png"/>';"></a>
 													<a href="/app/project/${item.projectId}"><strong><small>${item.title }</small></strong></a>
 													<p><span class="glyphicon glyphicon-user"></span>&nbsp;<small> ${item.user.name }</small></p>
 													<div class="well well-sm" style="height:100px"><small>${item.description }</small></div>
