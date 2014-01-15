@@ -26,7 +26,7 @@ public class Comment {
 	private String content;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column
+	@Column(nullable=true)
 	private Date createdDateTime;
 	
 	@ManyToOne(cascade=CascadeType.ALL)

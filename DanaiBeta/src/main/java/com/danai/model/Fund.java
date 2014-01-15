@@ -21,7 +21,7 @@ public class Fund {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int fundId;
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column
+	@Column(nullable=true)
 	private Date createdDateTime;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="projectId")
