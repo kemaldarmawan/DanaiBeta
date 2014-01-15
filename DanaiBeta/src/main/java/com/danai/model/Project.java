@@ -45,9 +45,9 @@ public class Project {
 	private String description;
 	@Column
 	private int minimalFund;
-	@Column
+	@Column(nullable=true)
 	private int currentFund;
-	@Column
+	@Column(nullable=true)
 	private int fundedNumber;
 	
 	@Temporal(TemporalType.DATE)

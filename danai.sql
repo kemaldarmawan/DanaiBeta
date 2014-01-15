@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2014 at 03:09 PM
+-- Generation Time: Jan 15, 2014 at 12:20 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `userId` int(11) NOT NULL,
   `projectId` int(11) NOT NULL,
   `content` varchar(500) NOT NULL,
-  `createdDateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createdDateTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`commentId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `fund` (
   `projectId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `value` int(11) NOT NULL,
-  `createdDateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `createdDateTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`fundId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
@@ -155,9 +155,9 @@ CREATE TABLE IF NOT EXISTS `project` (
   `userId` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `fundedNumber` int(11) NOT NULL DEFAULT '0',
+  `fundedNumber` int(11) DEFAULT '0',
   `minimalFund` int(11) NOT NULL,
-  `currentFund` int(11) NOT NULL DEFAULT '0',
+  `currentFund` int(11) DEFAULT '0',
   `createdDate` date NOT NULL,
   `lastDate` date NOT NULL,
   `explanation` text NOT NULL,
@@ -188,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `bio` varchar(200) NOT NULL,
   PRIMARY KEY (`userId`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `user`
@@ -198,7 +198,8 @@ INSERT INTO `user` (`userId`, `username`, `password`, `name`, `bio`) VALUES
 (1, 'haidar', '1', 'haidar', ''),
 (2, 'hahaidarha', '1', 'witheld', ''),
 (3, 'kemal', 'kemal', 'kemal', ''),
-(10, 'haidars', '1', 'haidar', 'bio');
+(10, 'haidars', '1', 'haidar', 'bio'),
+(11, 'sandra', '123456', 'Sandra Dewi', 'Indonesian artist');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
