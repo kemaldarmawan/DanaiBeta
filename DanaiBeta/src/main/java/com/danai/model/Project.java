@@ -69,7 +69,9 @@ public class Project {
 	private Set<Comment> comments;
 	
 	
-	public Project() {}
+	public Project() {
+		this.lastDate = new Date();
+	}
 	
 	public Project(int projectId, Location location, Category category,
 			User user, String title, String description, int minimalFund,
