@@ -32,7 +32,7 @@ function validateImage()
 <body>
 	<%@ include file="header.jsp" %>
 	
-	<div class="container" style="bottom: 50px;">
+	<div class="container" style="bottom: 50px;min-height: 800px;">
 		<h1>&nbsp;</h1>
 		<c:choose>
 			<c:when test="${not empty  eror}">
