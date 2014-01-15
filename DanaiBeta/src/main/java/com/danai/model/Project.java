@@ -55,8 +55,8 @@ public class Project {
 	private Date createdDate;
 	
 	@Temporal(TemporalType.DATE)
-	@Column
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Column(nullable=true)
+	@DateTimeFormat(pattern="YYYY-MM-dd")
 	private Date lastDate;
 	
 	@Column
@@ -70,7 +70,6 @@ public class Project {
 	
 	
 	public Project() {
-		this.lastDate = new Date();
 	}
 	
 	public Project(int projectId, Location location, Category category,
