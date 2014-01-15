@@ -74,7 +74,7 @@
 								</div>
 								<div class="container">
 									<h1><strong><fmt:formatNumber value="${project.currentFund}" minFractionDigits="0"  type="currency"/></strong></h1>
-									<strong><span>pledged of </span><span><fmt:formatNumber value="${project.minimalFund}" minFractionDigits="0"  type="currency"/></span><span> goal</span></strong>
+									<strong><span>pledged of </span><span><fmt:formatNumber value="${project.minimalFund}" minFractionDigits="0" currencySymbol="$" type="currency"/></span><span> goal</span></strong>
 								</div>
 								<div class="container">
 									<h1><strong>${f:daysUntilToday(project.lastDate)}</strong></h1>
