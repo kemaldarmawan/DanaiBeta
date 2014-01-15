@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2014 at 12:20 PM
+-- Generation Time: Jan 15, 2014 at 03:22 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -159,10 +159,10 @@ CREATE TABLE IF NOT EXISTS `project` (
   `minimalFund` int(11) NOT NULL,
   `currentFund` int(11) DEFAULT '0',
   `createdDate` date NOT NULL,
-  `lastDate` date NOT NULL,
+  `lastDate` date DEFAULT NULL,
   `explanation` text NOT NULL,
   PRIMARY KEY (`projectId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `project`
@@ -172,7 +172,16 @@ INSERT INTO `project` (`projectId`, `locationId`, `categoryId`, `userId`, `title
 (2, 1, 1, 1, 'Project Nimbus', 'Take to the sky in this high speed mech action game. Dodge bullets, intercept missiles, defeat your enemies and save the Earth.', 0, 50000, 0, '2014-01-01', '2014-02-07', ''),
 (3, 3, 3, 2, 'Another Project', 'Art Category', 1, 250000, 8000, '2014-01-16', '2014-01-23', 'Another Project'),
 (4, 1, 1, 1, 'aaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaa', 1, 200, 5000, '2013-12-01', '2014-01-10', ''),
-(5, 3, 3, 2, 'AAAAAAAAAAAAA', 'aaaaaaaaaaaaaa', 0, 1, 0, '2013-12-01', '2013-12-17', '');
+(5, 3, 3, 2, 'AAAAAAAAAAAAA', 'aaaaaaaaaaaaaa', 0, 1, 0, '2013-12-01', '2013-12-17', ''),
+(6, 2, 2, 1, 'Da VInci Duplicate', 'Duplicate of', 0, 5000, 0, '2014-01-15', '2014-01-15', 'Haloooo'),
+(7, 2, 2, 1, 'aaaaa', 'aaaa', 0, 5000, 0, '2014-01-15', '2014-01-15', 'aaa'),
+(8, 2, 2, 1, 'eeeee', 'eeeee', 0, 5000, 0, '2014-01-15', NULL, 'ggggg'),
+(9, 2, 2, 1, 'ggggggg', 'ggggg', 0, 0, 0, '2014-01-15', NULL, 'gggggg'),
+(10, 2, 2, 1, 'eeeee', 'effff', 0, 0, 0, '2014-01-15', NULL, 'ffff'),
+(11, 2, 2, 1, 'xxxxxxx', 'xxxx', 0, 0, 0, '2014-01-15', '2014-10-12', 'xxxxx'),
+(12, 2, 2, 1, 'eeee', 'gggg', 0, 0, 0, '2014-01-15', NULL, '2014-01-31'),
+(13, 1, 2, 1, 'hhhhh', 'hhhh', 0, 50000, 0, '2014-01-15', NULL, 'hhhh'),
+(14, 3, 1, 1, 'tttt', 'tttt', 0, 5000, 0, '2014-01-15', '2014-01-31', 'hhhh');
 
 -- --------------------------------------------------------
 
@@ -188,18 +197,19 @@ CREATE TABLE IF NOT EXISTS `user` (
   `bio` varchar(200) NOT NULL,
   PRIMARY KEY (`userId`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`userId`, `username`, `password`, `name`, `bio`) VALUES
-(1, 'haidar', '1', 'haidar', ''),
+(1, 'haidar', '1', 'haidar', 'biodata'),
 (2, 'hahaidarha', '1', 'witheld', ''),
 (3, 'kemal', 'kemal', 'kemal', ''),
 (10, 'haidars', '1', 'haidar', 'bio'),
-(11, 'sandra', '123456', 'Sandra Dewi', 'Indonesian artist');
+(11, 'sandra', '123456', 'Sandra Dewi', 'Indonesian artist'),
+(12, 'faldir', '123456', 'faldi', 'bio');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
