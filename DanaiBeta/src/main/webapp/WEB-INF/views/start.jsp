@@ -59,7 +59,7 @@
 								<div class="row">
 									<div class="form-group">
 										<p>Project Name</p>
-										<form:input path="project.title"/>	
+										<form:input cssClass="form-control" path="project.title"/>	
 									</div>
 								</div>
 								
@@ -75,15 +75,17 @@
 								<div class="row">
 									<div class="form-group">
 										<p>Description</p>
-										<form:textarea path="project.description"/>	
+										<form:textarea cssClass="form-control" path="project.description"/>	
 									</div>
 								</div>
 								
 								<div class="row">
 									<div class="form-group">
 										<p>Project Location</p>
-										<form:select path="project.location" items="${locations}"
-										itemLabel="city" itemValue="locationId">
+										<form:select path="project.location" >
+											<c:forEach var="loc" items="${locations}">
+												<form:option value="${loc.locationId}">${loc.city} , ${loc.province}</form:option>
+											</c:forEach>
 										</form:select>
 									</div>
 								</div>
@@ -91,7 +93,7 @@
 								<div class="row">
 									<div class="form-group">
 										<p>Minimal Fund</p>
-										<form:input path="project.minimalFund"/>
+										<form:input cssClass="form-control" path="project.minimalFund"/>
 											
 									</div>
 								</div>
@@ -99,7 +101,7 @@
 								<div class="row">
 									<div class="form-group">
 										<p>Last Date</p>
-										<form:input type="date" path="project.lastDate" />
+										<form:input cssClass="form-control" type="date" path="project.lastDate" />
 									</div>
 								</div>
 								
@@ -107,7 +109,7 @@
 								<div class="row">
 									<div class="form-group">
 										<p>Explanation</p>
-										<form:textarea path="project.explanation"/>	
+										<form:textarea cssClass="form-control" path="project.explanation"/>	
 									</div>
 								</div>
 								

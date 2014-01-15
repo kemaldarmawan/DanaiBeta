@@ -30,47 +30,41 @@
 							<div class="row">
 								<img src="<c:url value="/resources/photos/projects/"/>${project.projectId}.png" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/projects/0.png"/>';" class="img-thumbnail" style="height:450px;width:800px">
 							</div>
-							
 							<div>&nbsp;</div>
-							
 							<div class="panel-group" id="accordion">
-							  <div class="panel panel-primary">
-							    <div class="panel-heading">
-							      <h4 class="panel-title">
-							        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-							          Project Description
-							        </a>
-							      </h4>
-							    </div>
-							    <div id="collapseOne" class="panel-collapse collapse in">
-							      <div class="panel-body">
-							      	${project.description}
-							      </div>
-							    </div>
-							  </div>
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Project Description</a>
+										</h4>
+									</div>
+									<div id="collapseOne" class="panel-collapse collapse in">
+										<div class="panel-body">
+											${project.description}
+										</div>
+									</div>
+								</div>
 							  
-							  <div class="panel panel-primary">
-							    <div class="panel-heading">
-							      <h4 class="panel-title">
-							        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-							          Project Explanation
-							        </a>
-							      </h4>
-							    </div>
-							    <div id="collapseTwo" class="panel-collapse collapse in">
-							      <div class="panel-body">
-							      	${project.explanation}
-							      </div>
-							    </div>
-							  </div>
-							 </div>
-							 <div>&nbsp;</div>
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Project Explanation</a>
+										</h4>
+									</div>
+									<div id="collapseTwo" class="panel-collapse collapse in">
+										<div class="panel-body">
+											${project.explanation}
+										</div>
+									</div>
+								</div>
+							</div>
+							<div>&nbsp;</div>
 						</div>
 						<div class="col-md-2">
 							<div class="row">
 								<div class="container">
 									<h1><strong>${project.fundedNumber}</strong></h1>
-									<strong><p>backers</p></strong>
+									<strong>backers</strong>
 								</div>
 								<div class="container">
 									<h1><strong><fmt:formatNumber value="${project.currentFund}" minFractionDigits="0"  type="currency"/></strong></h1>
@@ -78,7 +72,7 @@
 								</div>
 								<div class="container">
 									<h1><strong>${f:daysUntilToday(project.lastDate)}</strong></h1>
-									<strong><p>days to go</p></strong>
+									<strong>days to go</strong>
 								</div>
 								<div class="container">
 									<h1>&nbsp;</h1>
@@ -93,46 +87,42 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				
+				</div>	
 			</div>
 			
 			<div class="tab-pane fade" id="comment">
-				<table class="table table-hover">
-									<tr>
-									<th></th>
-									<th>Username</th>
-									<th>Comment</th>
-									</tr>
-									<c:forEach items="${comment}" var="com">
-									<tr>
-										<td><img src="<c:url value="/resources/photos/users/"/>${com.user.userId}.png" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/users/0.png"/>';" class="img-thumbnail" style="height:50px;width:50px"></td>
-										<td>${com.user.username}</td>
-										<td>${com.content}</td>
-									</tr>
-									</c:forEach>
-				</table>
-				<c:if test="${user != null}">
-					<div class="row">
-					<div class="col-md-3 col-md-offset-1">
+				<table class="table" style="width:50%;">
+					<c:if test="${empty comment}">
+						<div class="alert alert-info">
+				    		There are no comments.
+				    	</div>
+					</c:if>
+					<c:forEach items="${comment}" var="com">
+						<tr>
+							<td rowspan="2" style="width:140px;height:160px;"><img src="<c:url value="/resources/photos/users/"/>${com.user.userId}.png" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/users/0.png"/>';" class="img-thumbnail" style="height:100px;width:100px"></td>
+							<td><a href="<c:url value="/profile/"/>${com.user.userId}">${com.user.name}</a></td>
+						</tr>
+						<tr>
+							<td>${com.content}</td>
+						</tr>
+					</c:forEach>
+					<c:if test="${user != null}">
 						<form:form action="insertcomment.do" method="POST" commandName="addcomment">
-							<div class="row">
-								<div class="form-group">
-									<label for="content">Add Comment</label>
-									<form:textarea cssClass="form-control" path="content" placeholder="Add Comment"/>
-									<form:errors path="content"></form:errors>
-								</div>
-							</div>
-							<div class="row">
-								<div class="form-group">
-									<input type="submit" value="Submit" class="btn btn-primary"/>	
-								</div>
-							</div>
+							<tr>
+								<td rowspan="3" style="width:140px;height:160px;"><img src="<c:url value="/resources/photos/users/"/>${user.userId}.png" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/users/0.png"/>';" class="img-thumbnail" style="height:100px;width:100px"></td>
+								<td>${user.name}</td>
+							</tr>
+							<tr>
+								<td>
+									<form:textarea cssClass="form-control" path="content" placeholder="Add a Comment..."/>
+								</td>
+							</tr>
+							<tr><td align="right"><input type="submit" value="Submit" class="btn btn-primary"/></td></tr>
 						</form:form>
-					</div>
-					</div>
-				</c:if>
-				
+					</c:if>
+				</table>
+			</div>
+		</div>
   	</div>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
