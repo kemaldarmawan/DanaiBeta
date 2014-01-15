@@ -34,7 +34,7 @@ function validatePassword()
 	    		</div>
 			</c:when>
 		</c:choose>
-		<h1>Sign Up</h1>
+		<h1>Register</h1>
 		<div class="well">
 			<div class="row">
 				<div class="col-md-3 col-md-offset-1">
@@ -76,7 +76,7 @@ function validatePassword()
 						</div>
 						<div class="row">
 							<div class="form-group">
-								<input type="submit" value="Sign Up" class="btn btn-primary"/>	
+								<input type="submit" value="Register" class="btn btn-primary"/>	
 							</div>
 						</div>
 					</form:form>
