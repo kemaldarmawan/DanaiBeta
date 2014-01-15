@@ -81,7 +81,7 @@
 								<div class="row">
 									<div class="form-group">
 										<p>Description</p>
-										<form:input path="description"/>	
+										<form:textarea path="description"/>	
 									</div>
 								</div>
 								
@@ -96,36 +96,22 @@
 								
 								<div class="row">
 									<div class="form-group">
-										<p>Funded Number</p>
-										<form:input path="fundedNumber"/>	
-									</div>
-								</div>
-								
-								<div class="row">
-									<div class="form-group">
 										<p>Minimal Fund</p>
 										<form:input path="minimalFund"/>	
 									</div>
 								</div>
-								
-								<div class="row">
-									<div class="form-group">
-										<p>Current Fund</p>
-										<form:input path="currentFund"/>	
-									</div>
-								</div>
-								
+
 								<div class="row">
 									<div class="form-group">
 										<p>Last Date</p>
-										<form:input path="lastDate"/>
+										<form:input type="date" path="lastDate" />
 									</div>
 								</div>
 								
 								<div class="row">
 									<div class="form-group">
 										<p>Explanation</p>
-										<form:input path="explanation"/>	
+										<form:textarea path="explanation"/>	
 									</div>
 								</div>
 								

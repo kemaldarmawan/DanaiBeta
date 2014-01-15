@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
@@ -132,21 +133,15 @@ public class StartController {
 	
 	@RequestMapping(value="/insertdata.do",method = RequestMethod.POST)
 	public String doRegister(@ModelAttribute("data") Project project, BindingResult result, Model model,HttpSession session){
-		/*userValidator.validate(project,result);
-		if (result.hasErrors()){
-			return "start";
-		}
-		else {*/
 		User user = new User();
 		Date date = new Date();
-		//DateFormat dateFormat = DateFormat.getDateTimeInstance(dateFormat.MEDIUM, DateFormat.MEDIUM,locale);
-		//project.setCreatedDate();
+		
 		date.getTime();
 		project.setCreatedDate(date);
-		project.setLastDate(date);
+		project.setCurrentFund(0);
+		project.setFundedNumber(0);
 		project.setUser((User) session.getAttribute("user"));
 		projectDao.add(project);
 		return "redirect:/dashboard";
-		//}
 	}
 }
