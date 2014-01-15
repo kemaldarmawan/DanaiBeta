@@ -50,11 +50,13 @@ public class ProjectController {
 	@RequestMapping(value="/project/{projectId}",method = RequestMethod.GET)
 	public String project(Model model, HttpSession session, @PathVariable Integer projectId){
 		Project project = projectDao.getProject(projectId);
+		User iuser = (User) session.getAttribute("user");
 		session.setAttribute("projectId", project);
 		Set<Comment> comment = project.getComments();
 		model.addAttribute("project", project);
 		model.addAttribute("comment", comment);
 		model.addAttribute("addcomment", new Comment());
+		model.addAttribute("user", iuser);
 		return "project";
 	}
 	
