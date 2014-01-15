@@ -48,7 +48,7 @@
 										  <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 950px; height: 150px;"></div>
 										  <div>
 										  	<div>
-										    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="fileUploaded.file"></span>
+										    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="fileUploaded.file" accept="image/jpg,image/jpeg,image/png"></span>
 										    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
 										  </div>
 										</div>
