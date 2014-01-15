@@ -18,7 +18,7 @@
 <body>
 	<%@ include file="header.jsp" %>
 	<div style="position: static; left: 0px; right: 0px; width: 100%; height: 100%;">
-		<img src="http://i1216.photobucket.com/albums/dd370/farisghani/homepage_zps2f548a52.jpg~original" width="100%">
+		<img src="<c:url value="/resources/photos/homepage-image.jpg"></c:url>" width="100%" />
 	</div>
 	<div class="well well-sm">
 	  	<div class="container">

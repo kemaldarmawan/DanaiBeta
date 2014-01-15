@@ -32,7 +32,7 @@ function validateImage()
 <body>
 	<%@ include file="header.jsp" %>
 	
-	<div class="container">
+	<div class="container" style="bottom: 50px;">
 		<h1>&nbsp;</h1>
 		<c:choose>
 			<c:when test="${not empty  eror}">
@@ -207,7 +207,9 @@ function validateImage()
 				</div>
 			</div>
 		</div>
+		&nbsp;
 	</div>
+	<div style="position: relative;"><%@ include file="footer.jsp" %></div>
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
 	<script src="<c:url value="/resources/js/jasny-bootstrap.js"/>"></script>

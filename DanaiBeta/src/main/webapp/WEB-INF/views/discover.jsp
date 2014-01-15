@@ -11,7 +11,7 @@
 <body>
 	<%@ include file="header.jsp" %>
 	<div style="position: static; left: 0px; right: 0px; width: 100%; height: 100%;">
-		<img src="http://i1216.photobucket.com/albums/dd370/farisghani/discover-image_zpsa9850f68.jpg~original" width="100%">
+		<img src="<c:url value="/resources/photos/discover-image.jpg"></c:url>" width="100%" />
 	</div>
 	<div class="container">
 		<h1>&nbsp;</h1>
