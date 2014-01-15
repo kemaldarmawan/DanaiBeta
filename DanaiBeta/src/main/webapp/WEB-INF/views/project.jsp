@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page session="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,28 +20,57 @@
 			<li class="active"><a href="#home" data-toggle="tab">Home</a></li>
 			<li><a href="#comment" data-toggle="tab">Comment</a></li>
 		</ul>
-		
-		<div class="tab-pane fade in active" id="home">
-			<img src="<c:url value="/resources/photos/projects/"/>${com.project.projectId}.png" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/projects/0.png"/>';" class="img-thumbnail" style="height:450px;width:800px">
-			<div>&nbsp;</div>
-			${project.description}
-		</div>
-		
-		<div class="tab-pane fade" id="comment">
-			<table class="table table-hover">
-								<tr>
-								<th></th>
-								<th>Username</th>
-								<th>Comment</th>
-								</tr>
-								<c:forEach items="${comment}" var="com">
-								<tr>
-									<td><img src="<c:url value="/resources/photos/users/"/>${com.user.userId}.png" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/users/0.png"/>';" class="img-thumbnail" style="height:50px;width:50px"></td>
-									<td>${com.user.username}</td>
-									<td>${com.content}</td>
-								</tr>
-								</c:forEach>
-			</table>
+		<div class="tab-content">
+			<div class="tab-pane fade in active" id="home">
+				<div class="row">
+					<div class="container">
+						<div class="col-md-8">
+							<div class="row">
+								<img src="<c:url value="/resources/photos/projects/"/>${com.project.projectId}.png" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/projects/0.png"/>';" class="img-thumbnail" style="height:450px;width:800px">
+							</div>
+							
+							<div>&nbsp;</div>
+							<div class="row">
+								${project.description}
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="row">
+								<div class="container">
+									<h1>${project.fundedNumber}</h1>
+									<p>backers</p>
+								</div>
+								<div class="container">
+									<h1><fmt:formatNumber value="${project.currentFund}" minFractionDigits="0"  type="currency"/></h1>
+									<p>pledged of goal</p>
+								</div>
+								<div class="container">
+									<h1>${project.lastDate}</h1>
+									<p>days to go</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="tab-pane fade" id="comment">
+				<table class="table table-hover">
+									<tr>
+									<th></th>
+									<th>Username</th>
+									<th>Comment</th>
+									</tr>
+									<c:forEach items="${comment}" var="com">
+									<tr>
+										<td><img src="<c:url value="/resources/photos/users/"/>${com.user.userId}.png" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/users/0.png"/>';" class="img-thumbnail" style="height:50px;width:50px"></td>
+										<td>${com.user.username}</td>
+										<td>${com.content}</td>
+									</tr>
+									</c:forEach>
+				</table>
+			</div>
 		</div>
   	</div>
     <script src="https://code.jquery.com/jquery.js"></script>

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -135,7 +136,7 @@ public class StartController {
 	public String doRegister(@ModelAttribute("data") Project project, BindingResult result, Model model,HttpSession session){
 		User user = new User();
 		Date date = new Date();
-		
+		System.out.println(project.getLastDate());
 		date.getTime();
 		project.setCreatedDate(date);
 		project.setCurrentFund(0);
