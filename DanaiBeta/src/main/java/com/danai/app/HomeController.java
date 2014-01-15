@@ -52,7 +52,6 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-		projectDao.clearOrder();
 		projectDao.addOrder("currentFund", false);
 		projectDao.addOrder("fundedNumber", false);
 		List<Project> p1= projectDao.getAllProject();
@@ -73,6 +72,7 @@ public class HomeController {
 		for(Project p: p1) map.putIfAbsent(p.getCategory().getCategoryId(), p);
 		List projects = new ArrayList(map.values());
 		model.addAttribute("staffPicks", projects.subList(0, projects.size()<3?projects.size():3));
+		model.addAttribute("populars",projectDao.getAllProject().subList(0,3));
 		model.addAttribute("categories",categoryDao.getAllCategory());
 		return "discover";
 	}
