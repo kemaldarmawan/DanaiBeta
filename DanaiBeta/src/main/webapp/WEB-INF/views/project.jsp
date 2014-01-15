@@ -32,23 +32,53 @@
 							</div>
 							
 							<div>&nbsp;</div>
-							<div class="row">
-								${project.description}
-							</div>
+							
+							<div class="panel-group" id="accordion">
+							  <div class="panel panel-primary">
+							    <div class="panel-heading">
+							      <h4 class="panel-title">
+							        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+							          Project Description
+							        </a>
+							      </h4>
+							    </div>
+							    <div id="collapseOne" class="panel-collapse collapse in">
+							      <div class="panel-body">
+							      	${project.description}
+							      </div>
+							    </div>
+							  </div>
+							  
+							  <div class="panel panel-primary">
+							    <div class="panel-heading">
+							      <h4 class="panel-title">
+							        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+							          Project Explanation
+							        </a>
+							      </h4>
+							    </div>
+							    <div id="collapseTwo" class="panel-collapse collapse in">
+							      <div class="panel-body">
+							      	${project.explanation}
+							      </div>
+							    </div>
+							  </div>
+							 </div>
+							 <div>&nbsp;</div>
 						</div>
 						<div class="col-md-2">
 							<div class="row">
 								<div class="container">
-									<h1>${project.fundedNumber}</h1>
-									<p>backers</p>
+									<h1><strong>${project.fundedNumber}</strong></h1>
+									<strong><p>backers</p></strong>
 								</div>
 								<div class="container">
-									<h1><fmt:formatNumber value="${project.currentFund}" minFractionDigits="0"  type="currency"/></h1>
-									<p>pledged of goal</p>
+									<h1><strong><fmt:formatNumber value="${project.currentFund}" minFractionDigits="0"  type="currency"/></strong></h1>
+									<strong><span>pledged of </span><span><fmt:formatNumber value="${project.minimalFund}" minFractionDigits="0"  type="currency"/></span><span> goal</span></strong>
 								</div>
 								<div class="container">
-									<h1>${f:daysUntilToday(project.lastDate)}</h1>
-									<p>days to go</p>
+									<h1><strong>${f:daysUntilToday(project.lastDate)}</strong></h1>
+									<strong><p>days to go</p></strong>
 								</div>
 								<div class="container">
 									<h1>&nbsp;</h1>
