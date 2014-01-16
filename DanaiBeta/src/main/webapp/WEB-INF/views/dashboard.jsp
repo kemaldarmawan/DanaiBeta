@@ -72,10 +72,10 @@ function validateImage()
 																<div class="progress-bar progress-bar-danger"  aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width:${item.currentFund / item.minimalFund * 100 + 1}%">
 												  				</div>
 															</c:when>
-															<c:when test="">
+															<c:otherwise>
 																<div class="progress-bar progress-bar-success"  aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width:${item.currentFund / item.minimalFund * 100 + 1}%">
 												  				</div>
-															</c:when>
+															</c:otherwise>
 														</c:choose>									
 													</div>
 													<ul class="nav nav-pills nav-justified">
