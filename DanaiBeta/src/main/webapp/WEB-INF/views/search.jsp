@@ -14,7 +14,7 @@
 	
 	<%@ include file="header.jsp" %>
 	<%@ include file="staticJs.jsp" %>
-	<div class="container" style="min-height: 800px;">
+	<div class="container" style="min-height: 1200px;">
 		<h1>&nbsp;</h1>
 		<div class="page-header">
 			<h2><strong>Results for <small>"${res}"</strong></small></h2>
