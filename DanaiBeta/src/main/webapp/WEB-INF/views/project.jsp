@@ -28,7 +28,7 @@
 					<div class="container">
 						<div class="col-md-8">
 							<div class="row">
-								<img src="<c:url value="/resources/photos/projects/"/>${com.project.projectId}.png" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/projects/0.png"/>';" class="img-thumbnail" style="height:450px;width:800px">
+								<img src="<c:url value="/resources/photos/projects/"/>${project.projectId}.png" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/projects/0.png"/>';" class="img-thumbnail" style="height:450px;width:800px">
 							</div>
 							
 							<div>&nbsp;</div>

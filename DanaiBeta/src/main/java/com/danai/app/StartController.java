@@ -100,13 +100,23 @@ public class StartController {
 	
 	@RequestMapping(value="/insertdata.do",method = RequestMethod.POST)
 	public String doRegister(@ModelAttribute("project") ProjectForm project, BindingResult result, Model model,HttpSession session){
+		
+		
+		Date date = new Date();
+		System.out.println(project.getLastDate());
+		date.getTime();
+		(project.getProject()).setCreatedDate(date);
+		(project.getProject()).setCurrentFund(0);
+		(project.getProject()).setFundedNumber(0);
+		(project.getProject()).setUser((User) session.getAttribute("user"));
+		projectDao.add(project.getProject());
 		InputStream inputStream = null;
 		OutputStream outputStream = null;
 		
 		MultipartFile file = project.getFileUploaded().getFile();
 		fileValidator.validate(project.getFileUploaded(), result);
 		
-		String fileName = String.valueOf(project.getProjectId()) + ".png";
+		String fileName = String.valueOf((project.getProject()).getProjectId()) + ".png";
 		
 		if (result.hasErrors()){
 			model.addAttribute("project",project);
@@ -132,15 +142,6 @@ public class StartController {
 		} catch (IOException e){
 			e.printStackTrace();
 		}
-		
-		Date date = new Date();
-		System.out.println(project.getLastDate());
-		date.getTime();
-		(project.getProject()).setCreatedDate(date);
-		(project.getProject()).setCurrentFund(0);
-		(project.getProject()).setFundedNumber(0);
-		(project.getProject()).setUser((User) session.getAttribute("user"));
-		projectDao.add(project.getProject());
 		return "redirect:/dashboard";
 	}
 }
