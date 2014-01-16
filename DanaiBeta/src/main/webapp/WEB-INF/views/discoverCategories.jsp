@@ -41,18 +41,26 @@
 								<div class="well well-sm" style="height:100px"><small>${item.description }</small></div>
 	    						<small><span class="glyphicon glyphicon-map-marker"></span>&nbsp; ${item.location.city}, ${item.location.province}</small>
 	    						<div class="progress-preview">
-									<div class="progress-bar progress-bar-success"  aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width:${item.currentFund / item.minimalFund * 100 + 1}%">
-							  		</div>
+									<c:choose>
+										<c:when test="${f:daysUntilToday(item.lastDate) == 0 && (item.currentFund / item.minimalFund) < 1}">
+											<div class="progress-bar progress-bar-danger"  aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width:${item.currentFund / item.minimalFund * 100 + 1}%">
+							  				</div>
+										</c:when>
+										<c:when test="">
+											<div class="progress-bar progress-bar-success"  aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width:${item.currentFund / item.minimalFund * 100 + 1}%">
+							  				</div>
+										</c:when>
+									</c:choose>									
 								</div>
 								<ul class="nav nav-pills nav-justified">
 							  	  <c:set var="funded" ><fmt:parseNumber type="number" value="${(item.currentFund / item.minimalFund) * 100}" /></c:set>
 								  <li><a title="funded" data-toggle="tooltip"><small><strong>${funded}%</strong></small></a></li>
 								  <li><a title="pledged" data-toggle="tooltip"><small><strong><fmt:formatNumber value="${item.currentFund}" minFractionDigits="0"  type="currency"/></strong></small></a></li>
 								  <c:if test="${f:daysUntilToday(item.lastDate) == 0 && (item.currentFund / item.minimalFund) < 1}">
-								  	<li><a title=""><small><strong>unsuccessful</strong></small></a></li>
+								  	<li><a title=""><small><strong><span class="label label-danger">Unsuccessful</span></strong></strong></small></a></li>
 								  </c:if>
 								  <c:if test="${f:daysUntilToday(item.lastDate) == 0 && (item.currentFund / item.minimalFund) >= 1}">
-								  	<li><a title=""><small><strong>funded</strong></small></a></li>
+								  	<li><a title=""><small><strong><span class="label label-success">Funded</span></strong></small></a></li>
 								  </c:if>
 								  <c:if test="${f:daysUntilToday(item.lastDate) > 0}">
 								  	<li><a title="days to go"><small><strong>${f:daysUntilToday(item.lastDate)}</strong></small></a></li>
