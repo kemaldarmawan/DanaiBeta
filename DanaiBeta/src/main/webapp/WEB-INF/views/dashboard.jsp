@@ -2,6 +2,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -51,35 +53,45 @@ function validateImage()
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane fade in active" id="project">
-				<c:choose>
-					<c:when test="${not empty createdProject}">
-			    		<table class="table table-hover">
-								<tr>
-								<th>ID</th>
-								<th>Title</th>
-								<th>Category</th>
-								<th>Location</th>
-								<th>Last Date</th>
-								</tr>
-								<c:forEach items="${createdProject}" var="project">
-								<tr>
-									<td>${project.projectId}</td>
-									<td>${project.title}</td>
-									<td>${project.category.name}</td>
-									<td>${project.location.city}</td>
-									<td>${project.lastDate}</td>
-								</tr>
-								</c:forEach>
-							</table>
+				<div class="well">
+					<c:choose>
+						<c:when test="${not empty createdProject}">
+							<div class="row">
+								<div class="container">
+									<c:forEach var="item" items="${createdProject}">
+										<div class="col-md-3" >
+											<div class="panel panel-default" style="height:370px;">
+							 						<div class="panel-body">
+							 							<a href="/app/project/${item.projectId}"><img src="<c:url value="/resources/photos/projects/"/>${item.projectId}.png" class="img-rounded" height="100" width="100%" alt="Image not found" onError="this.onerror=null;this.src='<c:url value="/resources/photos/users/1.png"/>';"></a>
+													<a href="/app/project/${item.projectId}"><strong><small>${item.title }</small></strong></a>
+													<p><span class="glyphicon glyphicon-user"></span>&nbsp;<small> ${item.user.name }</small></p>
+													<div class="well well-sm" style="height:100px"><small>${item.description }</small></div>
+							   						<small><span class="glyphicon glyphicon-map-marker"></span>&nbsp; ${item.location.city}, ${item.location.province}</small>
+							   						<div class="progress-preview">
+														<div class="progress-bar progress-bar-success"  aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width:${item.currentFund / item.minimalFund * 100 + 1}%">
+												  		</div>
+													</div>
+													<ul class="nav nav-pills nav-justified">
+												  	  <c:set var="funded" ><fmt:parseNumber type="number" value="${(item.currentFund / item.minimalFund) * 100}" /></c:set>
+													  <li><a title="funded" data-toggle="tooltip"><small><strong>${funded}%</strong></small></a></li>
+													  <li><a title="pledged" data-toggle="tooltip"><small><strong><fmt:formatNumber value="${item.currentFund}" minFractionDigits="0"  type="currency"/></strong></small></a></li>
+													</ul>
+							 						</div>	
+											</div>
+										</div>
+									</c:forEach>
+								</div>
+							</div>
 							<a href="/app/start"><button type="button" class="btn btn-primary">Add Project</button></a>
-					</c:when>
-					<c:when test="${empty createdProject}">
-			    		<div class="alert alert-info">
-			    			You haven't created any projects.
-			    		</div>
-			    		<a href="/app/start"><button type="button" class="btn btn-primary">Add Project</button></a>
-					</c:when>
-				</c:choose>
+						</c:when>
+						<c:when test="${empty createdProject}">
+				    		<div class="alert alert-info">
+				    			You haven't created any projects.
+				    		</div>
+				    		<a href="/app/start"><button type="button" class="btn btn-primary">Add Project</button></a>
+						</c:when>
+					</c:choose>
+				</div>
 			</div>
 			<div class="tab-pane fade" id="profile">
 				<div class="well">
