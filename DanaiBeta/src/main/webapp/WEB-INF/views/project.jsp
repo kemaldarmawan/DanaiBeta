@@ -17,7 +17,7 @@
 	<%@ include file="header.jsp" %>
   	<div class="container">
   		<h1>&nbsp;</h1>
-  		<h1>Project</h1>
+  		<h1>${project.title}</h1>
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#home" data-toggle="tab">Home</a></li>
 			<li><a href="#comment" data-toggle="tab">Comment</a></li>
