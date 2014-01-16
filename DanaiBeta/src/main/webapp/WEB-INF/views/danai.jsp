@@ -10,7 +10,7 @@
 <head>
 <link href="<c:url value="/resources/css/bootstrap.css"/>" type="text/css" rel="stylesheet" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Danai---Home</title>
+<title>Danai - Home</title>
 <script type="text/javascript">
 	$('#myTab a:first').tab('show'); // Select first tab
 </script>

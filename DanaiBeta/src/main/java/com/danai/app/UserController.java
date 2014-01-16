@@ -197,8 +197,7 @@ public class UserController{
 		}
 		else {
 			User _user = (User) session.getAttribute("user");
-			_user.setName(user.getName());
-			_user.setBio(user.getBio());
+			_user.setPassword(user.getPassword());
 			userDao.edit(_user);
 			return "redirect:/dashboard";
 		}
