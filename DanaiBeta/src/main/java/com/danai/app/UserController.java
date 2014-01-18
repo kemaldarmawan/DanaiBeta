@@ -174,8 +174,14 @@ public class UserController{
 	
 	@RequestMapping(value="/profile/{userId}",method = RequestMethod.GET)
 	public String profile(Model model, HttpSession session, @PathVariable Integer userId){
-		model.addAttribute("user",userDao.getUser(userId));
-		return "profile";
+		User user = userDao.getUser(userId);
+		if (user == null){
+			return "404";
+		}
+		else{
+			model.addAttribute("user",user);
+			return "profile";
+		}
 	}
 	
 	@RequestMapping(value="/update.do",method = RequestMethod.POST)
