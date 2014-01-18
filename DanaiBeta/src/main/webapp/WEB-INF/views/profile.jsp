@@ -14,7 +14,7 @@
 <body>
 	<%@ include file="header.jsp" %>
 	
-	<div class="container">
+	<div class="container" style="bottom: 50px;min-height: 800px;">
 		<h1>&nbsp;</h1>
 		<h1>${user.name}'s Profile</h1>
 		<ul class="nav nav-tabs">
@@ -111,6 +111,7 @@
 			</div>
 		</div>
 	</div>
+	<div style="position: relative;"><%@ include file="footer.jsp" %></div>
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
 	<script src="<c:url value="/resources/js/jasny-bootstrap.js"/>"></script>

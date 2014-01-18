@@ -83,8 +83,10 @@ function validatePassword()
 				</div>
 			</div>
 		</div>
+		&nbsp;
 	</div>
-	<%@ include file="footer.jsp" %>
+	&nbsp;
+	<div style="position: relative;"><%@ include file="footer.jsp" %></div>
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
 </body>
