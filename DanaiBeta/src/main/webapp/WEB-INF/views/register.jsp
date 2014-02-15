@@ -23,7 +23,7 @@ function validatePassword()
 <body>
 	<%@ include file="header.jsp" %>
 	
-	<div class="container">
+	<div class="container" style="min-height:800px">
 		<h1>&nbsp;</h1>
 		<c:choose>
 			<c:when test="${not empty  eror}">
